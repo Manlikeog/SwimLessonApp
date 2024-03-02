@@ -8,8 +8,8 @@ public class Data {
 
     static {
         // static list of learners
-        listOfLearners.add(new Learner("John", "Doe", "Male", 8, "1234567890"));
-        listOfLearners.add(new Learner("Alice", "Smith", "Female", 10, "9876543210"));
+        listOfLearners.add(new Learner( "John", "Doe", "Male", 8, "1234567890"));
+        listOfLearners.add(new Learner( "Alice", "Smith", "Female", 10, "9876543210"));
     }
 
     // Method to add a learner to the list of registered learners
@@ -20,7 +20,7 @@ public class Data {
     // Method to check if a learner is already registered
     public static boolean isLearnerRegistered(Learner newlearner) {
         return listOfLearners.stream().anyMatch(learner ->
-                Objects.equals(learner.getFirstName(), newlearner.getFirstName()) ||
+                Objects.equals(learner.getFirstName(), newlearner.getFirstName()) &&
                         Objects.equals(learner.getLastName(), newlearner.getLastName()));
     }
 
