@@ -1,7 +1,6 @@
 package swimlessonapp;
 
 import java.util.Random;
-import java.util.Scanner;
 
 public class Learner {
     private int userId;
