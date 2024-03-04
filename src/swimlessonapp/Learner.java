@@ -31,13 +31,29 @@ public class Learner {
     //Method to generate a unique user id
     private int generateUserId() {
         Random random = new Random();
-        return random.nextInt(100); // Generate a random integer as user ID
+        int newUserId;
+        boolean exists;
+        do {
+            exists = false;
+            newUserId = random.nextInt(1000); // Generate a random integer as user ID
+
+            // Check if the generated ID already exists
+            for (Learner learner : Data.getListOfLearners()) {
+                if (learner.getUserId() == newUserId) {
+                    exists = true;
+                    break;
+                }
+            }
+        } while (exists);
+        return newUserId;
     }
 
     //Method for user details
     private void learnerDetailsInput() {
         firstName = config.stringInput("Enter first name: ");
+        firstName = firstName.substring(0,1).toUpperCase() + firstName.substring(1).toLowerCase();
         lastName = config.stringInput("Enter last name: ");
+        lastName = lastName.substring(0,1).toUpperCase() + lastName.substring(1).toLowerCase();
         gender = config.stringInput("Enter gender: ");
         age = config.intInput("Enter age: ");
         emergencyContact = config.stringInput("Enter emergency contact number: ");
@@ -50,7 +66,7 @@ public class Learner {
 
     //Method to ensure the emergency contact number is correct
     public boolean checkEmergencyContact() {
-        return emergencyContact.matches("\\d{10}");
+        return !emergencyContact.matches("\\d{10}") || !emergencyContact.matches("[0-9]+");
     }
 
     //Method to register a new learner
@@ -60,9 +76,12 @@ public class Learner {
             config.stringOutput("Age must be between 4 and 11 years old.");
             return;
         }
-        if (!checkEmergencyContact()) {
+        if (checkEmergencyContact()) {
             config.stringOutput("Invalid emergency contact number format. It must be a 10-digit number.");
-            return;
+            do{
+                emergencyContact = config.stringInput("Invalid Format! Re-Enter Emergency Number: ");
+
+            } while (checkEmergencyContact());
         }
 
         // Check if the learner already exists

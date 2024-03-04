@@ -10,10 +10,15 @@ public class Config {
         System.out.println(displayText);
         String input = scanner.nextLine();
         if (!input.isEmpty()) {
-            return Integer.parseInt(input);
+            try {
+                return Integer.parseInt(input); // Attempt to parse the input as an integer
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid Entry!! Please enter a valid integer.");
+                return intInput(displayText); // Prompt again for valid input
+            }
         } else {
             System.out.println("Invalid Entry!! Try Again");
-            return intInput(displayText);
+            return intInput(displayText); // Prompt again for valid input
         }
     }
 

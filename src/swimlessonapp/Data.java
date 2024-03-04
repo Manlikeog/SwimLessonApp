@@ -33,4 +33,8 @@ public class Data {
                 ", Age: " + learner.getAge() +
                 ", Emergency Contact Number: " + learner.getEmergencyContact()));
     }
+
+    public static ArrayList<Learner> getListOfLearners() {
+        return listOfLearners;
+    }
 }
