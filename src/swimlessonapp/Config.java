@@ -1,12 +1,16 @@
 package swimlessonapp;
 
+import swimlessonapp.model.Learner;
+import swimlessonapp.repository.LearnerRepository;
+
+import java.util.Random;
 import java.util.Scanner;
 
 public class Config {
 
     Scanner scanner = new Scanner(System.in);
 
-    public int intInput(String displayText) {
+    public  int intInput(String displayText) {
         System.out.println(displayText);
         String input = scanner.nextLine();
         if (!input.isEmpty()) {
@@ -35,5 +39,24 @@ public class Config {
 
     public void stringOutput(String displayText) {
         System.out.println("\n" + displayText);
+    }
+
+    public static int generateUserId() {
+        Random random = new Random();
+        int newUserId;
+        boolean exists;
+        do {
+            exists = false;
+            newUserId = random.nextInt(1000); // Generate a random integer as user ID
+
+            // Check if the generated ID already exists
+//            for (Learner learner : LearnerRepository.getAllLearners()) {
+//                if (learner.getUserId() == newUserId) {
+//                    exists = true;
+//                    break;
+//                }
+//            }
+        } while (exists);
+        return newUserId;
     }
 }

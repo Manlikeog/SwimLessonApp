@@ -4,11 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da58d885-6f23-4c35-97e9-d4b6a05f8c99" name="Changes" comment="Code Refactor, Menu method created, Created constructor for learner class.">
+    <list default="true" id="da58d885-6f23-4c35-97e9-d4b6a05f8c99" name="Changes" comment="Check if user exists, fix bugs on invalid format, assign proper user id,">
+      <change afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/LearnerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/swimlessonapp/model/Coach.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/swimlessonapp/model/Learner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/swimlessonapp/model/Lesson.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/swimlessonapp/repository/LearnerRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/swimlessonapp/view/LearnerView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/Data.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/Learner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/Learner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/Data.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/Learner.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/SwimLessonApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/SwimLessonApp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +25,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -174,7 +182,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709420054112</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Check if user exists, fix bugs on invalid format, assign proper user id,">
+      <option name="closed" value="true" />
+      <created>1709592089029</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1709592089029</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -211,6 +227,7 @@
     <MESSAGE value="Uml Diagram added" />
     <MESSAGE value="Registration of learner implemented" />
     <MESSAGE value="Code Refactor, Menu method created, Created constructor for learner class." />
-    <option name="LAST_COMMIT_MESSAGE" value="Code Refactor, Menu method created, Created constructor for learner class." />
+    <MESSAGE value="Check if user exists, fix bugs on invalid format, assign proper user id," />
+    <option name="LAST_COMMIT_MESSAGE" value="Check if user exists, fix bugs on invalid format, assign proper user id," />
   </component>
 </project>

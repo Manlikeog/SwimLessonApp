@@ -1,5 +1,9 @@
 package swimlessonapp;
 
+import swimlessonapp.controllers.LearnerController;
+import swimlessonapp.model.Learner;
+import swimlessonapp.repository.LearnerRepository;
+
 import java.util.Scanner;
 
 /**
@@ -16,6 +20,9 @@ public class SwimLessonApp {
     //Method to select menu
     public static void menu() {
         Scanner scanner = new Scanner(System.in);
+        Learner newlearner = new Learner();
+        LearnerRepository storedLearners = new LearnerRepository();
+        LearnerController registerLearner = new LearnerController(newlearner, storedLearners);
         Config config = new Config();
         boolean bookLesson = true;
 
@@ -48,8 +55,9 @@ public class SwimLessonApp {
                     config.stringOutput("Generate monthly coach");
                     break;
                 case 6:
-                    Learner newlearner = new Learner();
-                    newlearner.registerNewLearner();
+
+                    registerLearner.registerNewLearner();
+
                     break;
                 case 7:
                     config.stringOutput("Exiting...");
