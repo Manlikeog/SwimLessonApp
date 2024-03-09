@@ -11,8 +11,18 @@ public class LearnerRepository {
 
     // Add learners to the list
     static {
-        listOfLearners.add(new Learner(1, "John", "Doe", "Male", 8, "1234567890", 1));
-        listOfLearners.add(new Learner(1, "John", "Doe", "Male", 8, "1234567890", 1));
+        listOfLearners.add(new Learner(1, "JOHN", "DOE", "Male", 8, "1234567890", 1));
+        listOfLearners.add(new Learner(2, "ALICE", "SMITH", "Female", 7, "2345678901", 2));
+        listOfLearners.add(new Learner(3, "BOB", "JOHNSON", "Male", 9, "3456789012", 3));
+        listOfLearners.add(new Learner(4, "EMILY", "BROWN", "Female", 6, "4567890123", 4));
+        listOfLearners.add(new Learner(5, "DAVID", "WILSON", "Male", 8, "5678901234", 5));
+        listOfLearners.add(new Learner(6, "SOPHIA", "MARTINEZ", "Female", 7, "6789012345", 6));
+        listOfLearners.add(new Learner(7, "MICHAEL", "ANDERSON", "Male", 9, "7890123456", 7));
+        listOfLearners.add(new Learner(8, "OLIVIA", "TAYLOR", "Female", 6, "8901234567", 8));
+        listOfLearners.add(new Learner(9, "EMMA", "THOMAS", "Female", 8, "9012345678", 9));
+        listOfLearners.add(new Learner(10, "JAMES", "JACKSON", "Male", 7, "0123456789", 10));
+        listOfLearners.add(new Learner(11, "DANIEL", "WHITE", "Male", 9, "1357902468", 11));
+        listOfLearners.add(new Learner(12, "SOPHIE", "HARRIS", "Female", 7, "2468013579", 12));
     }
 
     // Get all learners
@@ -26,12 +36,15 @@ public class LearnerRepository {
     }
 
     // Get a learner by user ID
-    public static Learner getLearnerById(int userId) {
+    public Learner getLearnerByName(Learner newLearner) {
+
         for (Learner learner : listOfLearners) {
-            if (learner.getUserId() == userId) {
+            if (Objects.equals(learner.getFirstName(), newLearner.getFirstName()) &&
+                    Objects.equals(learner.getLastName(), newLearner.getLastName())) {
                 return learner;
             }
         }
+
         return null;
     }
 

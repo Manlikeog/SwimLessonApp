@@ -1,8 +1,11 @@
 package swimlessonapp;
 
 import swimlessonapp.controllers.LearnerController;
+import swimlessonapp.controllers.LessonController;
 import swimlessonapp.model.Learner;
+import swimlessonapp.repository.CoachRepository;
 import swimlessonapp.repository.LearnerRepository;
+import swimlessonapp.repository.LessonRepository;
 
 import java.util.Scanner;
 
@@ -11,19 +14,47 @@ import java.util.Scanner;
  */
 
 public class SwimLessonApp {
+    static Scanner scanner = new Scanner(System.in);
+    static Config config = new Config();
 
+    static Learner learner = new Learner();
+    static LearnerRepository storedLearners = new LearnerRepository();
+    static CoachRepository storedCoach = new CoachRepository();
+    static  LessonRepository storedLessons = new LessonRepository(storedCoach, storedLearners);
+
+
+
+    static LearnerController manageLearner = new LearnerController(learner, storedLearners);
+    static LessonController manageLesson = new LessonController(storedLessons);
     public static void main(String[] args) {
         System.out.println("Welcome to Hatfield Junior Swimming School");
-        menu();
+        existingUser();
+    }
+
+
+    public static void existingUser() {
+        String userType = config.stringInput("Are you an existing user? (Y/N)");
+
+        char choice = Character.toUpperCase(userType.charAt(0))  ;
+        switch (choice) {
+            case 'Y':
+
+                learner = manageLearner.login();
+                menu();
+                break;
+            case 'N':
+                manageLearner.registerNewLearner();
+                break;
+            default:
+                config.stringOutput("Invalid choice. Please try again.");
+
+        }
     }
 
     //Method to select menu
     public static void menu() {
-        Scanner scanner = new Scanner(System.in);
-        Learner newlearner = new Learner();
-        LearnerRepository storedLearners = new LearnerRepository();
-        LearnerController registerLearner = new LearnerController(newlearner, storedLearners);
-        Config config = new Config();
+
+
         boolean bookLesson = true;
 
         do {
@@ -33,14 +64,14 @@ public class SwimLessonApp {
             config.stringOutput("3. Attend a swimming lesson");
             config.stringOutput("4. Monthly learner report");
             config.stringOutput("5. Monthly coach report");
-            config.stringOutput("6. Register a new learner");
-            config.stringOutput("7. Exit");
+            config.stringOutput("6. Exit");
 
             //Select option
             int choice = config.intInput("Enter your choice: ");
             switch (choice) {
                 case 1:
                     config.stringOutput("Book swimming lesson");
+                    manageLesson.viewAvailableLessons();
                     break;
                 case 2:
                     config.stringOutput("Cancel swimming lesson");
@@ -55,11 +86,6 @@ public class SwimLessonApp {
                     config.stringOutput("Generate monthly coach");
                     break;
                 case 6:
-
-                    registerLearner.registerNewLearner();
-
-                    break;
-                case 7:
                     config.stringOutput("Exiting...");
                     System.exit(0);
                     break;

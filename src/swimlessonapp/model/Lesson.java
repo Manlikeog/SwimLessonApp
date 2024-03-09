@@ -1,24 +1,20 @@
 package swimlessonapp.model;
 
-import java.util.Arrays;
-
 public class Lesson {
     private String day;
     private String time;
     private String gradeLevel;
     private Coach coach;
     private Learner[] learners;
-    private boolean[] attendance;
-    private int[] ratings;
+    private int maxLearners;
 
-    public Lesson(String day, String time, String gradeLevel, Coach coach, int maxLearners) {
+    public Lesson(String day, String time, String gradeLevel, Coach coach) {
         this.day = day;
         this.time = time;
         this.gradeLevel = gradeLevel;
         this.coach = coach;
         this.learners = new Learner[maxLearners];
-        this.attendance = new boolean[maxLearners];
-        this.ratings = new int[maxLearners];
+       this.maxLearners = 4;
     }
 
     public String getDay() {
@@ -57,14 +53,6 @@ public class Lesson {
         return learners;
     }
 
-    public boolean[] getAttendance() {
-        return attendance;
-    }
-
-    public int[] getRatings() {
-        return ratings;
-    }
-
     @Override
     public String toString() {
         return "Lesson{" +
@@ -73,5 +61,38 @@ public class Lesson {
                 ", gradeLevel='" + gradeLevel + '\'' +
                 ", coach=" + coach.getName() +
                 '}';
+    }
+
+    public void addLearner(Learner learner) {
+        for (int i = 0; i < learners.length; i++) {
+            if (learners[i] == null) {
+                learners[i] = learner;
+                return;
+            }
+        }
+    }
+
+    public boolean removeLearner(Learner learner) {
+        for (int i = 0; i < learners.length; i++) {
+            if (learners[i] != null && learners[i].equals(learner)) {
+                learners[i] = null;
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public boolean isLearnerEnrolled(Learner learner) {
+        for (Learner enrolled : learners) {
+            if (enrolled != null && enrolled.equals(learner)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int getMaxLearners() {
+        return maxLearners;
     }
 }

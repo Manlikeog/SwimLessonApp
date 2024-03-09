@@ -2,28 +2,33 @@ package swimlessonapp.view;
 
 import swimlessonapp.Config;
 
-import swimlessonapp.controllers.LearnerController;
+
 import swimlessonapp.model.Learner;
 import swimlessonapp.repository.LearnerRepository;
 
-import java.util.Scanner;
+
 
 public class LearnerView {
 
     static Config config = new Config();
     static Learner newLearner = new Learner();
 
-    public static Learner learnerDetailsInput() {
+    public static Learner learnerDetailsInput(boolean registerUser) {
         String firstName = config.stringInput("Enter first name: ").toUpperCase();
         newLearner.setFirstName(firstName);
         String lastName = config.stringInput("Enter last name: ").toUpperCase();
         newLearner.setLastName(lastName);
-        String gender = config.stringInput("Enter gender: ");
-        newLearner.setGender(gender);
-        int age = config.intInput("Enter age: ");
-        newLearner.setAge(age);
-        String emergencyContact = config.stringInput("Enter emergency contact number: ");
-        newLearner.setEmergencyContact(emergencyContact);
+
+        //Ask more details to register new user is new
+        if(registerUser){
+            String gender = config.stringInput("Enter gender: ");
+            newLearner.setGender(gender);
+            int age = config.intInput("Enter age: ");
+            newLearner.setAge(age);
+            String emergencyContact = config.stringInput("Enter emergency contact number: ");
+            newLearner.setEmergencyContact(emergencyContact);
+        }
+
 
         return newLearner;
     }
