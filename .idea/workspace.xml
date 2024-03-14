@@ -4,17 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da58d885-6f23-4c35-97e9-d4b6a05f8c99" name="Changes" comment="Implemented MVC Structure, Created Lesson class, Coach class">
-      <change afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/LessonController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/swimlessonapp/repository/CoachRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/swimlessonapp/repository/LessonRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/swimlessonapp/view/LessonView.java" afterDir="false" />
+    <list default="true" id="da58d885-6f23-4c35-97e9-d4b6a05f8c99" name="Changes" comment="Created Coach Repository, Login Functionality(checks if user exist. if user exist it returns the existing user, else prompt user to register), More list of users added, Created functionality to add learner to lesson but not tested, TimeTable Created.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/Config.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/SwimLessonApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/SwimLessonApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/LearnerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/LearnerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/LessonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/LessonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/model/Coach.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/model/Coach.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/model/Lesson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/model/Lesson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/repository/CoachRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/repository/CoachRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/repository/LearnerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/repository/LearnerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/repository/LessonRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/repository/LessonRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/view/LearnerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/view/LearnerView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/view/LessonView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/view/LessonView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,21 +47,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.SwimLessonApp.executor&quot;: &quot;Run&quot;,
-    &quot;Application.SwimLessonSystem.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Tester.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;21&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.SwimLessonApp.executor": "Run",
+    "Application.SwimLessonSystem.executor": "Run",
+    "Application.Tester.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "jdk.selected.JAVA_MODULE": "21",
+    "kotlin-language-version-configured": "true",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/UML DIAGRAM" />
@@ -200,7 +203,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709753770248</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Created Coach Repository, Login Functionality(checks if user exist. if user exist it returns the existing user, else prompt user to register), More list of users added, Created functionality to add learner to lesson but not tested, TimeTable Created.">
+      <option name="closed" value="true" />
+      <created>1710021353565</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1710021353565</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -239,6 +250,17 @@
     <MESSAGE value="Code Refactor, Menu method created, Created constructor for learner class." />
     <MESSAGE value="Check if user exists, fix bugs on invalid format, assign proper user id," />
     <MESSAGE value="Implemented MVC Structure, Created Lesson class, Coach class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented MVC Structure, Created Lesson class, Coach class" />
+    <MESSAGE value="Created Coach Repository, Login Functionality(checks if user exist. if user exist it returns the existing user, else prompt user to register), More list of users added, Created functionality to add learner to lesson but not tested, TimeTable Created." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created Coach Repository, Login Functionality(checks if user exist. if user exist it returns the existing user, else prompt user to register), More list of users added, Created functionality to add learner to lesson but not tested, TimeTable Created." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

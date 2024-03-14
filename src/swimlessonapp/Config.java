@@ -1,8 +1,5 @@
 package swimlessonapp;
 
-import swimlessonapp.model.Learner;
-import swimlessonapp.repository.LearnerRepository;
-
 import java.util.Random;
 import java.util.Scanner;
 
@@ -34,6 +31,17 @@ public class Config {
         } else {
             System.out.println("Invalid Entry!! Try Again");
             return stringInput(displayText);
+        }
+    }
+
+    public char charInput(String displayText) {
+        System.out.println(displayText);
+        String input = scanner.nextLine();
+        if (!input.isEmpty()) {
+            return input.charAt(0);
+        } else {
+            System.out.println("Invalid Entry!! Try Again");
+            return charInput(displayText);
         }
     }
 

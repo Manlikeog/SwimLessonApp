@@ -7,7 +7,16 @@ import java.util.List;
 import java.util.Objects;
 
 public class LearnerRepository {
-    private static final List<Learner> listOfLearners = new ArrayList<>();
+
+    private final static List<Learner> listOfLearners = new ArrayList<>();
+    private static LearnerRepository instance ;
+
+    public static LearnerRepository getInstance() {
+        if (instance == null) {
+            instance = new LearnerRepository();
+        }
+        return instance;
+    }
 
     // Add learners to the list
     static {
@@ -37,14 +46,12 @@ public class LearnerRepository {
 
     // Get a learner by user ID
     public Learner getLearnerByName(Learner newLearner) {
-
         for (Learner learner : listOfLearners) {
             if (Objects.equals(learner.getFirstName(), newLearner.getFirstName()) &&
                     Objects.equals(learner.getLastName(), newLearner.getLastName())) {
                 return learner;
             }
         }
-
         return null;
     }
 
@@ -53,7 +60,14 @@ public class LearnerRepository {
                 Objects.equals(learner.getFirstName(), newlearner.getFirstName()) &&
                         Objects.equals(learner.getLastName(), newlearner.getLastName()));
     }
-
+    public void printRegisteredLearners() {
+        System.out.println("Registered Learners:");
+        listOfLearners.forEach(learner -> System.out.println("User ID: " + learner.getUserId() +
+                ", Name: " + learner.getFirstName() + " " + learner.getLastName() +
+                ", Gender: " + learner.getGender() +
+                ", Age: " + learner.getAge() +
+                ", Emergency Contact Number: " + learner.getEmergencyContact()));
+    }
 
     // Other methods as needed
 }

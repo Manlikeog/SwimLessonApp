@@ -12,14 +12,18 @@ import java.util.Random;
 public class LessonRepository {
     private static final int LESSONS_PER_WEEK = 11; // Assuming 11 lessons per week
     private static final int WEEKS = 4; // Total number of weeks
-    private final CoachRepository coachRepository;
-    private final LearnerRepository learnerRepository;
-    private static List<Lesson> listOfLesson = new ArrayList<>();
+    private final LearnerRepository learnerRepository = LearnerRepository.getInstance();
 
+    private final CoachRepository coachRepository = CoachRepository.getInstance();
+    private static List<Lesson> listOfLesson = new ArrayList<>();
     Random random = new Random();
-    public LessonRepository(CoachRepository coachRepository, LearnerRepository learnerRepository) {
-        this.coachRepository = coachRepository;
-        this.learnerRepository = learnerRepository;
+
+    private static LessonRepository instance;
+    public static LessonRepository  getInstance() {
+        if (instance == null) {
+            instance = new LessonRepository();
+        }
+        return instance;
     }
 
 //    public List<Lesson> generateTimetable(boolean repeatWeekly) {
@@ -83,7 +87,7 @@ public class LessonRepository {
     }
 
     private String generateRandomDay(Random random) {
-        String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
+        String[] days = {"Monday", "Wednesday", "Friday", "Saturday"};
         return days[random.nextInt(days.length)];
     }
 

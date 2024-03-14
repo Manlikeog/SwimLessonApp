@@ -1,18 +1,12 @@
 package swimlessonapp.controllers;
-import swimlessonapp.model.Learner;
-import swimlessonapp.model.Lesson;
 import swimlessonapp.repository.LessonRepository;
 import swimlessonapp.view.LessonView;
 
 
 
 public class LessonController {
-    private final LessonRepository lessonRepository;
+    private final LessonRepository lessonRepository = LessonRepository.getInstance();
 
-
-    public LessonController(LessonRepository lessonRepository) {
-        this.lessonRepository = lessonRepository;
-    }
 
     public void viewAvailableLessons(){
         LessonView.printLessonsForWeek(lessonRepository);

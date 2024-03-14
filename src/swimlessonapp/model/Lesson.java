@@ -59,7 +59,7 @@ public class Lesson {
                 "day='" + day + '\'' +
                 ", time='" + time + '\'' +
                 ", gradeLevel='" + gradeLevel + '\'' +
-                ", coach=" + coach.getName() +
+                ", coach=" + coach.name() +
                 '}';
     }
 

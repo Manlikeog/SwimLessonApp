@@ -11,7 +11,7 @@ public class LessonView {
         System.out.println("Available Lessons:");
         storedLessons.getAllLessons().forEach(lesson -> System.out.println("Day: " + lesson.getDay() +
                 ", Time: " + lesson.getTime() + " "  +
-                ", Coach: " + lesson.getCoach().getName() +
+                ", Coach: " + lesson.getCoach().name() +
                 ", Participants: " + lesson.getLearners().length +
                 ", Class size: " + lesson.getMaxLearners() +
                 ", GradeLevel: " + lesson.getGradeLevel()
