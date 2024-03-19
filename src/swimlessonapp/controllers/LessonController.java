@@ -9,7 +9,7 @@ public class LessonController {
 
 
     public void viewAvailableLessons(){
-        LessonView.printLessonsForWeek(lessonRepository);
+        lessonRepository.printLessonsForWeek();
     }
 
 //    public void addLearnerToLesson(Learner learner, Lesson lesson) {

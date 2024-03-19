@@ -37,8 +37,9 @@ public class Config {
     public char charInput(String displayText) {
         System.out.println(displayText);
         String input = scanner.nextLine();
-        if (!input.isEmpty()) {
-            return input.charAt(0);
+        String charUpper = input.toUpperCase();
+        if (!charUpper.isEmpty()) {
+            return charUpper.charAt(0);
         } else {
             System.out.println("Invalid Entry!! Try Again");
             return charInput(displayText);

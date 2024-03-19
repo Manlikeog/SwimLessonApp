@@ -1,5 +1,6 @@
 package swimlessonapp;
 
+import swimlessonapp.controllers.LessonController;
 import swimlessonapp.view.LearnerView;
 
 /**
@@ -8,6 +9,7 @@ import swimlessonapp.view.LearnerView;
 
 public class SwimLessonApp {
    private static final Config config = new Config();
+    private static final LessonController manageLessons = new LessonController();
     public static void main(String[] args) {
         System.out.println("Welcome to Hatfield Junior Swimming School");
         menu();
@@ -32,6 +34,7 @@ public class SwimLessonApp {
             int choice = config.intInput("Enter your choice: ");
             switch (choice) {
                 case 1: config.stringOutput("Book swimming lesson");
+                    manageLessons.viewAvailableLessons();
                     break;
                 case 2: config.stringOutput("Cancel swimming lesson");
                     break;

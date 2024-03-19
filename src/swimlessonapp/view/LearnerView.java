@@ -6,6 +6,7 @@ import swimlessonapp.Config;
 import swimlessonapp.controllers.LearnerController;
 import swimlessonapp.model.Learner;
 
+
 public class LearnerView {
 
     static Config config = new Config();
@@ -20,7 +21,7 @@ public class LearnerView {
         newLearner.setLastName(lastName);
 
         //Ask more details to register new user is new
-        if(registerUser){
+        if (registerUser) {
             String gender = config.stringInput("Enter gender: ");
             newLearner.setGender(gender);
             int age = config.intInput("Enter age: ");
@@ -33,6 +34,5 @@ public class LearnerView {
         }
 
     }
-
 
 }

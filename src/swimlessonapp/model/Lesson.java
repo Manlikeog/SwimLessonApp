@@ -1,20 +1,24 @@
 package swimlessonapp.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Lesson {
     private String day;
     private String time;
-    private String gradeLevel;
+    private int gradeLevel;
+
     private Coach coach;
-    private Learner[] learners;
+    private List<Learner> learners;
     private int maxLearners;
 
-    public Lesson(String day, String time, String gradeLevel, Coach coach) {
+    public Lesson(String day, String time, int gradeLevel, Coach coach) {
         this.day = day;
         this.time = time;
         this.gradeLevel = gradeLevel;
         this.coach = coach;
-        this.learners = new Learner[maxLearners];
-       this.maxLearners = 4;
+        this.learners = new ArrayList<>();
+        this.maxLearners = 4;
     }
 
     public String getDay() {
@@ -33,11 +37,11 @@ public class Lesson {
         this.time = time;
     }
 
-    public String getGradeLevel() {
+    public int getGradeLevel() {
         return gradeLevel;
     }
 
-    public void setGradeLevel(String gradeLevel) {
+    public void setGradeLevel(int gradeLevel) {
         this.gradeLevel = gradeLevel;
     }
 
@@ -49,7 +53,7 @@ public class Lesson {
         this.coach = coach;
     }
 
-    public Learner[] getLearners() {
+    public List<Learner> getLearners() {
         return learners;
     }
 
@@ -64,32 +68,19 @@ public class Lesson {
     }
 
     public void addLearner(Learner learner) {
-        for (int i = 0; i < learners.length; i++) {
-            if (learners[i] == null) {
-                learners[i] = learner;
-                return;
-            }
+        if (learners.size() < maxLearners && learner.getCurrentGradeLevel() == gradeLevel) {
+            learners.add(learner);
+        } else {
+            System.out.println("Lesson is full. Cannot add more learners.");
         }
     }
 
     public boolean removeLearner(Learner learner) {
-        for (int i = 0; i < learners.length; i++) {
-            if (learners[i] != null && learners[i].equals(learner)) {
-                learners[i] = null;
-                return true;
-            }
-        }
-        return false;
+        return learners.remove(learner);
     }
 
-
     public boolean isLearnerEnrolled(Learner learner) {
-        for (Learner enrolled : learners) {
-            if (enrolled != null && enrolled.equals(learner)) {
-                return true;
-            }
-        }
-        return false;
+        return learners.contains(learner);
     }
 
     public int getMaxLearners() {

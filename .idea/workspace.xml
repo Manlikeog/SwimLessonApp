@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da58d885-6f23-4c35-97e9-d4b6a05f8c99" name="Changes" comment="Created Coach Repository, Login Functionality(checks if user exist. if user exist it returns the existing user, else prompt user to register), More list of users added, Created functionality to add learner to lesson but not tested, TimeTable Created.">
+    <list default="true" id="da58d885-6f23-4c35-97e9-d4b6a05f8c99" name="Changes" comment="implemented design principles">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/Config.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/SwimLessonApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/SwimLessonApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/LearnerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/LearnerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/LessonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/LessonController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/model/Coach.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/model/Coach.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/model/Lesson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/model/Lesson.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/repository/CoachRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/repository/CoachRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/repository/LearnerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/repository/LearnerRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/repository/LessonRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/repository/LessonRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/view/LearnerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/view/LearnerView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/view/LessonView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/view/LessonView.java" afterDir="false" />
@@ -211,7 +207,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710021353565</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="implemented design principles">
+      <option name="closed" value="true" />
+      <created>1710456458037</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1710456458038</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -251,7 +255,8 @@
     <MESSAGE value="Check if user exists, fix bugs on invalid format, assign proper user id," />
     <MESSAGE value="Implemented MVC Structure, Created Lesson class, Coach class" />
     <MESSAGE value="Created Coach Repository, Login Functionality(checks if user exist. if user exist it returns the existing user, else prompt user to register), More list of users added, Created functionality to add learner to lesson but not tested, TimeTable Created." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created Coach Repository, Login Functionality(checks if user exist. if user exist it returns the existing user, else prompt user to register), More list of users added, Created functionality to add learner to lesson but not tested, TimeTable Created." />
+    <MESSAGE value="implemented design principles" />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented design principles" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
