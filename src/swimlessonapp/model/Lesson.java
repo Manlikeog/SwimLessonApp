@@ -68,7 +68,7 @@ public class Lesson {
     }
 
     public void addLearner(Learner learner) {
-        if (learners.size() < maxLearners && learner.getCurrentGradeLevel() == gradeLevel) {
+        if (learners.size() < maxLearners ) {
             learners.add(learner);
         } else {
             System.out.println("Lesson is full. Cannot add more learners.");
