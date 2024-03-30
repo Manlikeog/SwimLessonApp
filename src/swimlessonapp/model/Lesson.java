@@ -4,49 +4,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lesson {
-
-    public TimeTable getTimeTable() {
-        return timeTable;
-    }
-
-    public void setTimeTable(TimeTable timeTable) {
-        this.timeTable = timeTable;
-    }
-
-    private TimeTable timeTable;
-//    private String day;
-//    private String time;
+    private String day;
+    private String time;
     private int gradeLevel;
 
     private Coach coach;
     private List<Learner> learners;
     private int maxLearners;
 
-    public Lesson(TimeTable timeTable, int gradeLevel, Coach coach) {
-//        this.day = day;
-//        this.time = time;
-        this.timeTable = timeTable;
+    public Lesson(String day, String time, int gradeLevel, Coach coach) {
+        this.day = day;
+        this.time = time;
         this.gradeLevel = gradeLevel;
         this.coach = coach;
         this.learners = new ArrayList<>();
         this.maxLearners = 4;
     }
 
-//    public String getDay() {
-//        return day;
-//    }
-//
-//    public void setDay(String day) {
-//        this.day = day;
-//    }
-//
-//    public String getTime() {
-//        return time;
-//    }
-//
-//    public void setTime(String time) {
-//        this.time = time;
-//    }
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public int getGradeLevel() {
         return gradeLevel;
@@ -68,15 +57,15 @@ public class Lesson {
         return learners;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Lesson{" +
-//                "day='" + day + '\'' +
-//                ", time='" + time + '\'' +
-//                ", gradeLevel='" + gradeLevel + '\'' +
-//                ", coach=" + coach.name() +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "Lesson{" +
+                "day='" + day + '\'' +
+                ", time='" + time + '\'' +
+                ", gradeLevel='" + gradeLevel + '\'' +
+                ", coach=" + coach.name() +
+                '}';
+    }
 
     public void addLearner(Learner learner) {
         if (learners.size() < maxLearners ) {

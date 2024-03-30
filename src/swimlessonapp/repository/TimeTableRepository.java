@@ -3,7 +3,6 @@ package swimlessonapp.repository;
 import swimlessonapp.model.Coach;
 import swimlessonapp.model.Learner;
 import swimlessonapp.model.Lesson;
-import swimlessonapp.model.TimeTable;
 
 import java.util.*;
 
@@ -49,7 +48,6 @@ public class TimeTableRepository {
             String time = timeSlots.get("Saturday")[lessonsScheduledPerDay.get("Saturday")];
             Coach coach = coaches.get(random.nextInt(coaches.size()));
             int gradeLevel = random.nextInt(4) + 1;
-            TimeTable timeTable = TimeTable()
             boolean hasClass = lessons.stream()
                     .anyMatch(lesson -> lesson.getDay().equals("Saturday") && lesson.getGradeLevel() == gradeLevel);
             if (!hasClass) {
@@ -63,9 +61,9 @@ public class TimeTableRepository {
         return lessons;
     }
 
-    private Lesson createLesson(TimeTable timeTable, int gradeLevel, Coach coach, Random random) {
+    private Lesson createLesson(String day, String time, int gradeLevel, Coach coach, Random random) {
         List<Learner> learners = learnerRepository.getAllLearners();
-        Lesson lesson = new Lesson(timeTable, gradeLevel, coach);
+        Lesson lesson = new Lesson(day, time, gradeLevel, coach);
         int initialLearners = random.nextInt(3) + 1;
 
         for (Learner learner : learners) {
