@@ -2,7 +2,7 @@ package swimlessonapp.view;
 
 import swimlessonapp.model.Learner;
 import swimlessonapp.model.Lesson;
-import swimlessonapp.repository.TimeTable;
+import swimlessonapp.repository.TimeTableRepository;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -10,7 +10,7 @@ import java.util.List;
 
 public class TimeTableView {
 
-    private static final TimeTable timeTable = new TimeTable();
+    private static final TimeTableRepository timeTable = new TimeTableRepository();
 
     public static void printLessonsForWeek() {
         List<Lesson> lessons = timeTable.getAllLessons();
