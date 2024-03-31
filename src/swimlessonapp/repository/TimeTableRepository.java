@@ -5,6 +5,8 @@ import swimlessonapp.model.Learner;
 import swimlessonapp.model.Lesson;
 
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class TimeTableRepository {
     private final LearnerRepository learnerRepository = LearnerRepository.getInstance();
@@ -12,31 +14,45 @@ public class TimeTableRepository {
     private final LessonRepository lessonRepository = LessonRepository.getInstance();
 
     public List<Lesson> generateWeekTimetable() {
-
         List<Lesson> lessons = new ArrayList<>();
-        List<Coach> coaches = coachRepository.getAllCoaches();
-        Random random = new Random();
+        Map<String, String[]> timeSlots = createTimeSlots();
 
+        Map<String, Integer> lessonsScheduledPerDay = initializeLessonsScheduledPerDay();
+
+        generateLessons(lessons, timeSlots, lessonsScheduledPerDay);
+
+        lessonRepository.setListOfLesson(lessons);
+        return lessons;
+    }
+
+    private Map<String, String[]> createTimeSlots() {
         Map<String, String[]> timeSlots = new HashMap<>();
         timeSlots.put("Monday", new String[]{"4:00 PM - 5:00 PM", "5:00 PM - 6:00 PM", "6:00 PM - 7:00 PM"});
         timeSlots.put("Wednesday", new String[]{"4:00 PM - 5:00 PM", "5:00 PM - 6:00 PM", "6:00 PM - 7:00 PM"});
         timeSlots.put("Friday", new String[]{"4:00 PM - 5:00 PM", "5:00 PM - 6:00 PM", "6:00 PM - 7:00 PM"});
         timeSlots.put("Saturday", new String[]{"2:00 PM - 3:00 PM", "3:00 PM - 4:00 PM"});
+        return timeSlots;
+    }
 
+    private Map<String, Integer> initializeLessonsScheduledPerDay() {
         Map<String, Integer> lessonsScheduledPerDay = new HashMap<>();
         lessonsScheduledPerDay.put("Monday", 0);
         lessonsScheduledPerDay.put("Wednesday", 0);
         lessonsScheduledPerDay.put("Friday", 0);
         lessonsScheduledPerDay.put("Saturday", 0);
+        return lessonsScheduledPerDay;
+    }
+
+    private void generateLessons(List<Lesson> lessons, Map<String, String[]> timeSlots, Map<String, Integer> lessonsScheduledPerDay) {
+        List<Coach> coaches = coachRepository.getAllCoaches();
+        Random random = new Random();
 
         for (String day : new String[]{"Monday", "Wednesday", "Friday"}) {
             while (lessonsScheduledPerDay.get(day) < 3) {
                 String time = timeSlots.get(day)[lessonsScheduledPerDay.get(day)];
                 Coach coach = coaches.get(random.nextInt(coaches.size()));
                 int gradeLevel = random.nextInt(5) + 1;
-                boolean hasClass = lessons.stream()
-                        .anyMatch(lesson -> lesson.getDay().equals(day)  && lesson.getGradeLevel() == gradeLevel);
-                if (!hasClass) {
+                if (isGradeLevelScheduled(lessons, day, gradeLevel)) {
                     Lesson lesson = createLesson(day, time, gradeLevel, coach, random);
                     lessons.add(lesson);
                     lessonsScheduledPerDay.put(day, lessonsScheduledPerDay.get(day) + 1);
@@ -48,17 +64,17 @@ public class TimeTableRepository {
             String time = timeSlots.get("Saturday")[lessonsScheduledPerDay.get("Saturday")];
             Coach coach = coaches.get(random.nextInt(coaches.size()));
             int gradeLevel = random.nextInt(4) + 1;
-            boolean hasClass = lessons.stream()
-                    .anyMatch(lesson -> lesson.getDay().equals("Saturday") && lesson.getGradeLevel() == gradeLevel);
-            if (!hasClass) {
+            if (isGradeLevelScheduled(lessons, "Saturday", gradeLevel)) {
                 Lesson lesson = createLesson("Saturday", time, gradeLevel, coach, random);
                 lessons.add(lesson);
                 lessonsScheduledPerDay.put("Saturday", lessonsScheduledPerDay.get("Saturday") + 1);
             }
         }
+    }
 
-        lessonRepository.setListOfLesson(lessons);
-        return lessons;
+    private boolean isGradeLevelScheduled(List<Lesson> lessons, String day, int gradeLevel) {
+        return lessons.stream()
+                .noneMatch(lesson -> lesson.getDay().equals(day) && lesson.getGradeLevel() == gradeLevel);
     }
 
     private Lesson createLesson(String day, String time, int gradeLevel, Coach coach, Random random) {
@@ -67,14 +83,12 @@ public class TimeTableRepository {
         int initialLearners = random.nextInt(3) + 1;
 
         for (Learner learner : learners) {
-            // Check if the learner's grade matches the lesson's grade or is lower by 1
             if (learner.getCurrentGradeLevel() == gradeLevel || learner.getCurrentGradeLevel() == gradeLevel - 1) {
-                // Add the learner to the lesson if they're not already enrolled
                 if (!lesson.isLearnerEnrolled(learner)) {
                     lesson.addLearner(learner);
-                    initialLearners--; // Decrement the number of initial learners to add
+                    initialLearners--;
                     if (initialLearners == 0) {
-                        break; // Break the loop if all initial learners are added
+                        break;
                     }
                 }
             }
@@ -83,8 +97,25 @@ public class TimeTableRepository {
         return lesson;
     }
 
-    public List<Lesson> getAllLessons() {
+    public List<Lesson> viewFullTimeTable() {
         return lessonRepository.getListOfLesson().isEmpty() ? generateWeekTimetable() : lessonRepository.getListOfLesson();
     }
 
+    public List<Lesson> viewTimeTableByDay(String day) {
+        return filterLessons(lesson -> lesson.getDay().equalsIgnoreCase(day));
+    }
+
+    public List<Lesson> viewTimeTableByGradeLevel(int gradeLevel) {
+        return filterLessons(lesson -> lesson.getGradeLevel() == gradeLevel);
+    }
+
+    public List<Lesson> viewTimeTableByCoach(String coachName) {
+        return filterLessons(lesson -> lesson.getCoach().name().equalsIgnoreCase(coachName));
+    }
+
+    private List<Lesson> filterLessons(Predicate<Lesson> predicate) {
+        return viewFullTimeTable().stream()
+                .filter(predicate)
+                .collect(Collectors.toList());
+    }
 }

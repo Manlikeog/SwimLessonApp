@@ -1,6 +1,4 @@
 package swimlessonapp.controllers;
-import swimlessonapp.repository.LessonRepository;
-import swimlessonapp.view.LessonView;
 import swimlessonapp.view.TimeTableView;
 
 
@@ -10,7 +8,7 @@ public class LessonController {
 
     public void viewAvailableLessons(){
 
-        TimeTableView.printLessonsForWeek();
+        TimeTableView.viewTimeTable();
     }
 
 //    public void addLearnerToLesson(Learner learner, Lesson lesson) {

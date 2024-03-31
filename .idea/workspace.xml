@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da58d885-6f23-4c35-97e9-d4b6a05f8c99" name="Changes" comment="modified timetable">
-      <change afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/TimeTableController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/swimlessonapp/model/TimeTable.java" afterDir="false" />
+    <list default="true" id="da58d885-6f23-4c35-97e9-d4b6a05f8c99" name="Changes" comment="modified timetable 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/model/Lesson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/model/Lesson.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/repository/TimeTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/repository/TimeTableRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/LessonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/LessonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/model/TimeTable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/repository/TimeTableRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/repository/TimeTableRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/view/LessonView.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/view/TimeTableView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/view/TimeTableView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,22 +41,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.SwimLessonApp.executor&quot;: &quot;Run&quot;,
-    &quot;Application.SwimLessonSystem.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Tester.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;21&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.SwimLessonApp.executor": "Run",
+    "Application.SwimLessonSystem.executor": "Run",
+    "Application.Tester.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "jdk.selected.JAVA_MODULE": "21",
+    "kotlin-language-version-configured": "true",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/UML DIAGRAM" />
@@ -229,7 +230,23 @@
       <option name="project" value="LOCAL" />
       <updated>1711496659388</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="modified timetable 2">
+      <option name="closed" value="true" />
+      <created>1711842963244</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1711842963244</updated>
+    </task>
+    <task id="LOCAL-00014" summary="modified timetable 2">
+      <option name="closed" value="true" />
+      <created>1711843043243</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1711843043243</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -271,7 +288,8 @@
     <MESSAGE value="Created Coach Repository, Login Functionality(checks if user exist. if user exist it returns the existing user, else prompt user to register), More list of users added, Created functionality to add learner to lesson but not tested, TimeTable Created." />
     <MESSAGE value="implemented design principles" />
     <MESSAGE value="modified timetable" />
-    <option name="LAST_COMMIT_MESSAGE" value="modified timetable" />
+    <MESSAGE value="modified timetable 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="modified timetable 2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
