@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lesson {
+
+    private static int lastId = 0;
+    private int id;
     private String day;
     private String time;
     private int gradeLevel;
@@ -13,6 +16,7 @@ public class Lesson {
     private int maxLearners;
 
     public Lesson(String day, String time, int gradeLevel, Coach coach) {
+        this.id = ++lastId;
         this.day = day;
         this.time = time;
         this.gradeLevel = gradeLevel;
@@ -21,6 +25,13 @@ public class Lesson {
         this.maxLearners = 4;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     public String getDay() {
         return day;
     }
@@ -76,11 +87,12 @@ public class Lesson {
     }
 
     public boolean removeLearner(Learner learner) {
+
         return learners.remove(learner);
     }
 
     public boolean isLearnerEnrolled(Learner learner) {
-        return learners.contains(learner);
+        return !learners.contains(learner);
     }
 
     public int getMaxLearners() {

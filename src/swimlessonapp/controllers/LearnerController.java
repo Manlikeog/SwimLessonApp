@@ -4,6 +4,7 @@ import swimlessonapp.Config;
 
 import swimlessonapp.model.Learner;
 import swimlessonapp.repository.LearnerRepository;
+import swimlessonapp.view.LearnerView;
 
 
 public class LearnerController {
@@ -52,9 +53,10 @@ public class LearnerController {
             int option = config.intInput("1. Try Again, 2. Register Learner, 3. Exit");
             switch (option) {
                 case 1:
-                    existingLearner(learner);
+                    LearnerView.learnerDetailsInput(false);
                     break;
                 case 2:
+                    LearnerView.learnerDetailsInput(true);
                     break;
                 case 3:
                     System.exit(0);

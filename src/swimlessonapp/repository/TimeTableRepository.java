@@ -84,7 +84,7 @@ public class TimeTableRepository {
 
         for (Learner learner : learners) {
             if (learner.getCurrentGradeLevel() == gradeLevel || learner.getCurrentGradeLevel() == gradeLevel - 1) {
-                if (!lesson.isLearnerEnrolled(learner)) {
+                if (lesson.isLearnerEnrolled(learner)) {
                     lesson.addLearner(learner);
                     initialLearners--;
                     if (initialLearners == 0) {

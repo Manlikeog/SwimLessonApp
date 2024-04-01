@@ -73,6 +73,8 @@ public class SwimLessonApp {
                     1. Login\s
                     2. SignUp\s
                     3. Exit\s
+                    
+                    Enter your choice:
                     """);
         switch (choice) {
             case 1: LearnerView.learnerDetailsInput(false);

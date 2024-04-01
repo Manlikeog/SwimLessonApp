@@ -5,6 +5,7 @@ import swimlessonapp.model.Lesson;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 public class LessonRepository {
@@ -25,12 +26,14 @@ public class LessonRepository {
         LessonRepository.listOfLesson = listOfLesson;
     }
 
-    public boolean hasLesson(String day, String time, int gradeLevel) {
-        for (Lesson lesson : listOfLesson) {
-            if (lesson.getDay().equals(day) && lesson.getTime().equals(time) && lesson.getGradeLevel() == gradeLevel) {
-                return false;
-            }
-        }
-        return true;
+    public boolean hasLesson(Lesson lesson) {
+      return   !listOfLesson.contains(lesson);
+
+    }
+    public Lesson getLessonById(int lessonId) {
+        Optional<Lesson> optionalLesson = listOfLesson.stream()
+                .filter(lesson -> lesson.getId() == lessonId)
+                .findFirst();
+        return optionalLesson.orElse(null);
     }
 }

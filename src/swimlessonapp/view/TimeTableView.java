@@ -30,7 +30,6 @@ public class TimeTableView {
                 break;
             case 2:
                 String day = config.stringInput("Enter the day (e.g., Monday): ");
-                ;
                 TimeTableView.printLessonsForDay(day);
                 break;
             case 3:
@@ -38,7 +37,6 @@ public class TimeTableView {
                 TimeTableView.printLessonsForGradeLevel(gradeLevel);
                 break;
             case 4:
-
                 String coachName = config.stringInput("Enter the coach's name: ");
                 TimeTableView.printLessonsForCoach(coachName);
                 break;
@@ -68,12 +66,13 @@ public class TimeTableView {
 
         lessons.sort(Comparator.comparing(lesson -> Arrays.asList("Monday", "Wednesday", "Friday", "Saturday").indexOf(lesson.getDay())));
 
-        System.out.printf("%-10s%-20s%-20s%-15s%-50s%-15s%s%n",
+        System.out.printf("%-10s%-10s%-20s%-20s%-15s%-50s%-15s%s%n", "LessonID",
                 "Day", "Time", "Coach", "Participants", "Learners", "Class Size", "Grade Level");
+
 
         for (Lesson lesson : lessons) {
             String learners = getLearnersString(lesson.getLearners());
-            System.out.printf("%-10s%-20s%-20s%-15s%-50s%-15s%s%n",
+            System.out.printf("%-10s%-10s%-20s%-20s%-15s%-50s%-15s%s%n", lesson.getId(),
                     lesson.getDay(), lesson.getTime(), lesson.getCoach().name(),
                     lesson.getLearners().size(), learners,
                     lesson.getMaxLearners(), lesson.getGradeLevel());
