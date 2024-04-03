@@ -1,6 +1,7 @@
 package swimlessonapp.view;
 
 import swimlessonapp.Config;
+import swimlessonapp.controllers.BookingController;
 import swimlessonapp.model.Learner;
 import swimlessonapp.model.Lesson;
 import swimlessonapp.repository.TimeTableRepository;
@@ -12,6 +13,8 @@ import java.util.List;
 public class TimeTableView {
 
     static Config config = new Config();
+
+    static BookingController manageBooking = new BookingController();
     private static final TimeTableRepository timeTable = new TimeTableRepository();
 
     public static void viewTimeTable() {
@@ -77,6 +80,8 @@ public class TimeTableView {
                     lesson.getLearners().size(), learners,
                     lesson.getMaxLearners(), lesson.getGradeLevel());
         }
+
+        manageBooking.bookLesson();
     }
 
     private static String getLearnersString(List<Learner> learners) {
