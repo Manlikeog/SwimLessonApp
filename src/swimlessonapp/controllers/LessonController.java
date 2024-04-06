@@ -5,11 +5,12 @@ import swimlessonapp.model.Lesson;
 import swimlessonapp.repository.LessonRepository;
 import swimlessonapp.view.TimeTableView;
 
-import java.util.List;
+
 
 
 public class LessonController {
-
+    private final LessonRepository lessonRepository = LessonRepository.getInstance();
+    static Config config = new Config();
     private static LessonController instance;
 
     public static LessonController getInstance() {
@@ -47,7 +48,23 @@ public class LessonController {
         }
     }
 
+    public boolean checkGradeLevel(Learner learner, Lesson lesson){
+        return learner.getCurrentGradeLevel() == lesson.getGradeLevel() || learner.getCurrentGradeLevel() == lesson.getGradeLevel() - 1;
+    }
 
+    public Lesson getLessonById(){
+      int  lessonIndex = config.intInput(""" 
+                Select Lesson to book above!!
+                Input Lesson ID:""");
+      Lesson selectedLesson = lessonRepository.getLessonById(lessonIndex);
+       if(selectedLesson == null){
+            System.out.println("Invalid lesson index!");
+            getLessonById();
+        } else {
+           selectedLesson;
+        }
+
+    }
 
 //
 //    // Method to mark attendance for a lesson

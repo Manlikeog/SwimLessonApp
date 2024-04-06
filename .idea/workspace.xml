@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da58d885-6f23-4c35-97e9-d4b6a05f8c99" name="Changes" comment="Created lesson id in the lesson model, Booking structure created.">
+    <list default="true" id="da58d885-6f23-4c35-97e9-d4b6a05f8c99" name="Changes" comment="Tested the functionality book lesson.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/BookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/BookingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/model/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/model/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/repository/BookingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/repository/BookingRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/view/TimeTableView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/view/TimeTableView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/LessonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/LessonController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -261,7 +259,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712012167099</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Tested the functionality book lesson.">
+      <option name="closed" value="true" />
+      <created>1712151203492</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1712151203492</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -307,7 +313,8 @@
     <MESSAGE value="view timetable by dsy, grade, coach" />
     <MESSAGE value="Created lesson id in the model, Booking structure created." />
     <MESSAGE value="Created lesson id in the lesson model, Booking structure created." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created lesson id in the lesson model, Booking structure created." />
+    <MESSAGE value="Tested the functionality book lesson." />
+    <option name="LAST_COMMIT_MESSAGE" value="Tested the functionality book lesson." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

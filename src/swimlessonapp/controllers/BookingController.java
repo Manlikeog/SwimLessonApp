@@ -12,7 +12,7 @@ import java.util.List;
 
 public class BookingController {
 
-    private final LessonRepository lessonRepository = LessonRepository.getInstance();
+
     private final BookingRepository bookingRepository = BookingRepository.getInstance();
     private static final LessonController manageLesson = LessonController.getInstance();
     private static final LearnerController manageLearner = LearnerController.getInstance();
@@ -20,16 +20,12 @@ public class BookingController {
     static Config config = new Config();
 
     public void bookLesson() {
-        int lessonIndex = config.intInput(""" 
-                Select Lesson to book above!!
-                Input Lesson ID:""");
-        Lesson selectedLesson = lessonRepository.getLessonById(lessonIndex);
 
+        Lesson selectedLesson = manageLesson.getLessonById();
         if (selectedLesson != null) {
             manageLesson.addLearnerToLesson(user, selectedLesson);
             Book newBooking = new Book(user, selectedLesson);
             System.out.println("You have selected the lesson: " + selectedLesson.getDay() + " " + selectedLesson.getTime());
-            TimeTableView.printLessonsForWeek();
             // Proceed with any further actions related to the selected lesson
         } else {
             System.out.println("Invalid lesson index!");
@@ -37,12 +33,18 @@ public class BookingController {
     }
 
 
-    public  void  attendLesson(){
+    public  void  attendLesson(Lesson lesson) {
         if(bookingRepository.getAllBookings().isEmpty()){
             bookingRepository.addBookingsForLearner(user);
-            attendLesson();
+            attendLesson(lesson);
         } else {
+            if (manageLesson.checkGradeLevel(user, lesson)) {
+                int lessonIndex = config.intInput(""" 
+                Select Lesson to book above!!
+                Input Lesson ID:""");
 
+            }
         }
     }
+
 }
