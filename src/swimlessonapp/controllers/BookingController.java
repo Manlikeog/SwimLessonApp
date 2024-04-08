@@ -18,11 +18,15 @@ public class BookingController {
         Lesson selectedLesson = manageLesson.getLessonById(""" 
                 Select Lesson to book above!!
                 Input Lesson ID:""");
-
-        manageLesson.addLearnerToLesson(user, selectedLesson);
+        if (manageLesson.checkGradeLevel(user, selectedLesson)) {
+            manageLesson.addLearnerToLesson(user, selectedLesson);
 //        Book newBooking = new Book(user, selectedLesson);
-        System.out.println(user.getFirstName());
-        System.out.println("You have selected the lesson: " + selectedLesson.getDay() + " " + selectedLesson.getTime());
+            System.out.println(user.getFirstName());
+            System.out.println("You have selected the lesson: " + selectedLesson.getDay() + " " + selectedLesson.getTime());
+        } else {
+            System.out.println("Can't attend Grade Lesson as your grade doesn't match the lesson grade");
+        }
+
         // Proceed with any further actions related to the selected lesson
 
     }
@@ -30,9 +34,12 @@ public class BookingController {
     public void attendLesson() {
         Learner user = manageLearner.getLearner();
         if (bookingRepository.getAllBookings().isEmpty()) {
-            bookingRepository.addBookingsForLearner(user);
+            if(!bookingRepository.addBookingsForLearner(user)){
+                return;
+            }
             attendLesson();
-        } else {viewBookings();
+        } else {
+            viewBookings();
             int lessonIndex = config.intInput("""
                     Select Lesson to attend above!!
                     Input Booking ID:""");
@@ -43,6 +50,8 @@ public class BookingController {
             } else {
                 if (manageLesson.checkGradeLevel(user, selectedBook.getLesson())) {
                     selectedBook.setStatus("attended");
+                } else {
+                    System.out.println("Can't attend Grade Lesson as your grade doesn't match the lesson grade");
                 }
             }
         }

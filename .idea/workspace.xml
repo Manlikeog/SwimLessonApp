@@ -4,19 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da58d885-6f23-4c35-97e9-d4b6a05f8c99" name="Changes" comment="code restructure">
-      <change afterPath="$PROJECT_DIR$/src/swimlessonapp/view/MenuView.java" afterDir="false" />
+    <list default="true" id="da58d885-6f23-4c35-97e9-d4b6a05f8c99" name="Changes" comment="attend lesson functionality partially implemented">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/SwimLessonApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/SwimLessonApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/BookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/BookingController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/LearnerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/LearnerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/LessonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/LessonController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/model/Learner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/model/Learner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/repository/BookingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/repository/BookingRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/repository/LearnerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/repository/LearnerRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/repository/LessonRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/repository/LessonRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/repository/TimeTableRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/TimeTableController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/view/LearnerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/view/AuthenticationView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/view/MenuView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/view/MenuView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/view/TimeTableView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/view/TimeTableView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -285,7 +279,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712444344108</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="attend lesson functionality partially implemented">
+      <option name="closed" value="true" />
+      <created>1712545992156</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1712545992156</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -333,7 +335,8 @@
     <MESSAGE value="Created lesson id in the lesson model, Booking structure created." />
     <MESSAGE value="Tested the functionality book lesson." />
     <MESSAGE value="code restructure" />
-    <option name="LAST_COMMIT_MESSAGE" value="code restructure" />
+    <MESSAGE value="attend lesson functionality partially implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="attend lesson functionality partially implemented" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

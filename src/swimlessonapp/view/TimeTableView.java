@@ -28,19 +28,18 @@ public class TimeTableView {
                 printLessonsForWeek();
                 break;
             case 2:
-                String day = config.stringInput("Enter the day (e.g., Monday): ");
-                printLessonsForDay(day);
+                printLessonsForDay();
                 break;
             case 3:
-                int gradeLevel = config.intInput("Enter the grade level: ");
-                printLessonsForGradeLevel(gradeLevel);
+
+                printLessonsForGradeLevel();
                 break;
             case 4:
-                String coachName = config.stringInput("Enter the coach's name: ");
-                printLessonsForCoach(coachName);
+                printLessonsForCoach();
                 break;
             default:
                 config.stringOutput("Invalid choice!");
+                viewTimeTable();
         }
     }
 
@@ -48,16 +47,38 @@ public class TimeTableView {
         printLessons("Week", timeTable.viewFullTimeTable());
     }
 
-    public void printLessonsForDay(String day) {
-        printLessons("Day: " + day, timeTable.viewTimeTableByDay(day));
+    public void printLessonsForDay() {
+        String day = config.stringInput("Enter the day (e.g., Monday): ");
+        if (timeTable.viewTimeTableByDay(day).isEmpty()) {
+            config.stringOutput("There is no available lesson for " + day + " this week");
+            config.stringOutput("Below is the Full TimeTable");
+            printLessonsForWeek();
+        } else {
+            printLessons("Day: " + day, timeTable.viewTimeTableByDay(day));
+        }
     }
 
-    public void printLessonsForGradeLevel(int gradeLevel) {
-        printLessons("Grade " + gradeLevel, timeTable.viewTimeTableByGradeLevel(gradeLevel));
+    public void printLessonsForGradeLevel() {
+        int gradeLevel = config.intInput("Enter the grade level: ");
+        if(timeTable.viewTimeTableByGradeLevel(gradeLevel).isEmpty()){
+            config.stringOutput("There is no available lesson for " + gradeLevel + " this week");
+            config.stringOutput("Below is the Full TimeTable");
+            printLessonsForWeek();
+        } else {
+            printLessons("Grade " + gradeLevel, timeTable.viewTimeTableByGradeLevel(gradeLevel));
+        }
     }
 
-    public void printLessonsForCoach(String coachName) {
+    public void printLessonsForCoach() {
+        String coachName = config.stringInput("Enter the coach's name: ");
         printLessons("Coach: " + coachName, timeTable.viewTimeTableByCoach(coachName));
+        if(timeTable.viewTimeTableByCoach(coachName).isEmpty()){
+            config.stringOutput("There is no available lesson for " + coachName + " this week");
+            config.stringOutput("Below is the Full TimeTable");
+            printLessonsForWeek();
+        } else {
+            printLessons("Coach: " + coachName, timeTable.viewTimeTableByCoach(coachName));
+        }
     }
 
     private void printLessons(String title, List<Lesson> lessons) {

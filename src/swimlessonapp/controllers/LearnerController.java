@@ -33,9 +33,13 @@ public class LearnerController {
     public void registerNewLearner(Learner newLearner) {
         if (!checkAge(newLearner)) {
             config.stringOutput("Age must be between 4 and 11 years old.");
+            System.exit(0);
+            return;
         }
         if (checkEmergencyContact(newLearner)) {
             config.stringOutput("Invalid emergency contact number format. It must be a 10-digit number.");
+            System.exit(0);
+            return;
         }
         // Check if the learner already exists
         if (storedLearners.isLearnerRegistered(newLearner)) {
