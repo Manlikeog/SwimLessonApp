@@ -1,17 +1,20 @@
-package swimlessonapp.repository;
+package swimlessonapp.controllers;
 
 import swimlessonapp.model.Coach;
 import swimlessonapp.model.Learner;
 import swimlessonapp.model.Lesson;
+import swimlessonapp.repository.CoachRepository;
+import swimlessonapp.repository.LearnerRepository;
+import swimlessonapp.repository.LessonRepository;
 
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class TimeTableRepository {
-    private final LearnerRepository learnerRepository = LearnerRepository.getInstance();
-    private final CoachRepository coachRepository = CoachRepository.getInstance();
-    private final LessonRepository lessonRepository = LessonRepository.getInstance();
+public class TimeTableController {
+     LearnerRepository learnerRepository = LearnerRepository.getInstance();
+  CoachRepository coachRepository = CoachRepository.getInstance();
+    LessonRepository lessonRepository = LessonRepository.getInstance();
 
     public List<Lesson> generateWeekTimetable() {
         List<Lesson> lessons = new ArrayList<>();
@@ -81,7 +84,7 @@ public class TimeTableRepository {
         List<Learner> learners = learnerRepository.getAllLearners();
         Lesson lesson = new Lesson(day, time, gradeLevel, coach);
         int initialLearners = random.nextInt(3) + 1;
-
+        Collections.shuffle(learners);
         for (Learner learner : learners) {
             if (learner.getCurrentGradeLevel() == gradeLevel || learner.getCurrentGradeLevel() == gradeLevel - 1) {
                 if (lesson.isLearnerEnrolled(learner)) {

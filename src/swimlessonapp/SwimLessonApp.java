@@ -1,15 +1,18 @@
 package swimlessonapp;
 
 import swimlessonapp.controllers.LessonController;
-import swimlessonapp.view.LearnerView;
+import swimlessonapp.view.AuthenticationView;
+import swimlessonapp.view.MenuView;
 
 /**
  * @author OG
  */
 
 public class SwimLessonApp {
-   private static final Config config = new Config();
-    private static final LessonController manageLessons = new LessonController();
+    private static final Config config = new Config();
+    private static final MenuView menu = new MenuView();
+
+    private static final AuthenticationView authentication = new AuthenticationView();
     public static void main(String[] args) {
         System.out.println("Welcome to Hatfield Junior Swimming School");
         menu();
@@ -33,21 +36,27 @@ public class SwimLessonApp {
             //Select option
             int choice = config.intInput("Enter your choice: ");
             switch (choice) {
-                case 1: config.stringOutput("Book swimming lesson");
-                    manageLessons.viewAvailableLessons();
+                case 1:
+                    menu.bookLesson();
                     break;
-                case 2: config.stringOutput("Cancel swimming lesson");
+                case 2:
+                    config.stringOutput("Cancel swimming lesson");
                     break;
-                case 3: config.stringOutput("Attend swimming lesson");
+                case 3:
+                    menu.attendLesson();
                     break;
-                case 4: config.stringOutput("Generate monthly learner");
+                case 4:
+                    config.stringOutput("Generate monthly learner");
                     break;
-                case 5: config.stringOutput("Generate monthly coach");
+                case 5:
+                    config.stringOutput("Generate monthly coach");
                     break;
-                case 6: config.stringOutput("Exiting...");
+                case 6:
+                    config.stringOutput("Exiting...");
                     System.exit(0);
                     break;
-                default: config.stringOutput("Invalid choice. Please try again.");
+                default:
+                    config.stringOutput("Invalid choice. Please try again.");
             }
 
             //Recursion for selecting another option
@@ -61,29 +70,34 @@ public class SwimLessonApp {
                         break;
                     case 'Y':
                         continue;
-                    default: config.stringOutput("Invalid choice. Please try again.");
+                    default:
+                        config.stringOutput("Invalid choice. Please try again.");
                 }
             }
         } while (bookLesson);
     }
 
-    public static void existingUser(){
+    public static void existingUser() {
         int choice = config.intInput("""
-                    +-----------------------------------------------------+
-                    1. Login\s
-                    2. SignUp\s
-                    3. Exit\s
-                    
-                    Enter your choice:
-                    """);
+                +-----------------------------------------------------+
+                1. Login\s
+                2. SignUp\s
+                3. Exit\s
+                                    
+                Enter your choice:
+                """);
         switch (choice) {
-            case 1: LearnerView.learnerDetailsInput(false);
-                    break;
-                case 2: LearnerView.learnerDetailsInput(true);
-                    break;
-                case 3: System.exit(0);
-                    break;
-                default: System.out.println("Invalid choice");
-            }
+            case 1:
+                authentication.learnerDetailsInput(false);
+                break;
+            case 2:
+                authentication.learnerDetailsInput(true);
+                break;
+            case 3:
+                System.exit(0);
+                break;
+            default:
+                System.out.println("Invalid choice");
+        }
     }
 }

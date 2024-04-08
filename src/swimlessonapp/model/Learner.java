@@ -13,7 +13,7 @@ public class Learner {
 
     public Learner(int userId, String firstName, String lastName, String gender, int age, String emergencyContact, int currentGradeLevel) {
         this.userId = userId;
-        this.setFirstName(firstName);
+        this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.age = age;

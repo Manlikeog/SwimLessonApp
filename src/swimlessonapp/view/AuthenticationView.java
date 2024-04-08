@@ -7,13 +7,13 @@ import swimlessonapp.controllers.LearnerController;
 import swimlessonapp.model.Learner;
 
 
-public class LearnerView {
+public class AuthenticationView {
 
     static Config config = new Config();
 
-    private static final LearnerController manageLearner = LearnerController.getInstance();
+    LearnerController manageLearner = LearnerController.getInstance();
 
-    public static void learnerDetailsInput(boolean registerUser) {
+    public void learnerDetailsInput(boolean registerUser) {
         Learner newLearner = new Learner();
         String firstName = config.stringInput("Enter first name: ").toUpperCase();
         newLearner.setFirstName(firstName);

@@ -1,4 +1,5 @@
 package swimlessonapp.controllers;
+
 import swimlessonapp.Config;
 import swimlessonapp.model.Learner;
 import swimlessonapp.model.Lesson;
@@ -6,11 +7,9 @@ import swimlessonapp.repository.LessonRepository;
 import swimlessonapp.view.TimeTableView;
 
 
-
-
 public class LessonController {
-    private final LessonRepository lessonRepository = LessonRepository.getInstance();
-    static Config config = new Config();
+    LessonRepository lessonRepository = LessonRepository.getInstance();
+    Config config = new Config();
     private static LessonController instance;
 
     public static LessonController getInstance() {
@@ -18,11 +17,6 @@ public class LessonController {
             instance = new LessonController();
         }
         return instance;
-    }
-
-    // Method to get all lessons for a given week
-    public void viewAvailableLessons(){
-        TimeTableView.viewTimeTable();
     }
 
     public void addLearnerToLesson(Learner learner, Lesson lesson) {
@@ -48,20 +42,18 @@ public class LessonController {
         }
     }
 
-    public boolean checkGradeLevel(Learner learner, Lesson lesson){
+    public boolean checkGradeLevel(Learner learner, Lesson lesson) {
         return learner.getCurrentGradeLevel() == lesson.getGradeLevel() || learner.getCurrentGradeLevel() == lesson.getGradeLevel() - 1;
     }
 
-    public Lesson getLessonById(){
-      int  lessonIndex = config.intInput(""" 
-                Select Lesson to book above!!
-                Input Lesson ID:""");
-      Lesson selectedLesson = lessonRepository.getLessonById(lessonIndex);
-       if(selectedLesson == null){
+    public Lesson getLessonById(String text) {
+        int lessonIndex = config.intInput(text);
+        Lesson selectedLesson = lessonRepository.getLessonById(lessonIndex);
+        if (selectedLesson == null) {
             System.out.println("Invalid lesson index!");
-            getLessonById();
+            return getLessonById(text);
         } else {
-           selectedLesson;
+            return selectedLesson;
         }
 
     }

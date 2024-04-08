@@ -4,7 +4,7 @@ import swimlessonapp.Config;
 
 import swimlessonapp.model.Learner;
 import swimlessonapp.repository.LearnerRepository;
-import swimlessonapp.view.LearnerView;
+import swimlessonapp.view.AuthenticationView;
 
 
 public class LearnerController {
@@ -18,8 +18,9 @@ public class LearnerController {
         return instance;
     }
 
-    private final LearnerRepository storedLearners = LearnerRepository.getInstance();
-    private final static Config config = new Config();
+    LearnerRepository storedLearners = LearnerRepository.getInstance();
+    Config config = new Config();
+    private static final AuthenticationView authentication = new AuthenticationView();
 
     public boolean checkAge(Learner newLearner) {
         return (newLearner.getAge() >= 4 && newLearner.getAge() <= 11);
@@ -53,10 +54,10 @@ public class LearnerController {
             int option = config.intInput("1. Try Again, 2. Register Learner, 3. Exit");
             switch (option) {
                 case 1:
-                    LearnerView.learnerDetailsInput(false);
+                    authentication.learnerDetailsInput(false);
                     break;
                 case 2:
-                    LearnerView.learnerDetailsInput(true);
+                    authentication.learnerDetailsInput(true);
                     break;
                 case 3:
                     System.exit(0);
