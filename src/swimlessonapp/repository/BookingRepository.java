@@ -28,7 +28,7 @@ public class BookingRepository {
         return availableBookings;
     }
 
-    public boolean addBookingsForLearner(Learner learner) {
+    public boolean generateBookingForLearner(Learner learner) {
         List<Lesson> lessons = lessonRepository.getListOfLessonsForLearner(learner); // Assuming you have a method in LessonRepository to get lessons for a particular learner
         if(lessons.isEmpty()){
             System.out.println("There is currently no lessons booked for this user");
@@ -43,6 +43,9 @@ public class BookingRepository {
 
     }
 
+    public  void addBooking(Book book) {
+        availableBookings.add(book);
+    }
     public Book getBookingById(int bookId) {
         Optional<Book> optionalBook = availableBookings.stream()
                 .filter(book -> book.getId() == bookId)
@@ -52,12 +55,12 @@ public class BookingRepository {
 
     public void printAvailableBookings() {
         System.out.println("Available Bookings:");
-        System.out.printf("%-10s%-15s%-10s%-15s%-15s%-10s%-15s%-10s%-10s%n",
-                "Booking", "Name", "Day", "Time", "Coach", "Grade", "Status", "Review", "Rating");
+        System.out.printf("%-12s%-15s%-10s%-20s%-20s%-10s%-10s%-10s%-10s%n",
+                "BookingID", "User", "Day", "Time", "Coach", "Grade", "Status", "Review", "Rating");
 
-        availableBookings.forEach(book -> System.out.printf("%-10s%-15s%-10s%-15s%-15s%-10s%-15s%-10s%-10s%n",
+        availableBookings.forEach(book -> System.out.printf("%-12s%-15s%-10s%-20s%-20s%-10s%-10s%-10s%-10s%n",
                 book.getId(),
-                book.getLearner().getFirstName(),
+                book.getLearner().getFirstName() + " " + book.getLearner().getLastName(),
                 book.getLesson().getDay(),
                 book.getLesson().getTime(),
                 book.getLesson().getCoach().name(),

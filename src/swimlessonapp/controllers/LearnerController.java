@@ -30,6 +30,10 @@ public class LearnerController {
         return !newLearner.getEmergencyContact().matches("\\d{10}") || !newLearner.getEmergencyContact().matches("[0-9]+");
     }
 
+    public boolean checkGradeLevel(Learner newLearner){
+        return (newLearner.getCurrentGradeLevel() >= 1 && newLearner.getCurrentGradeLevel() <= 5);
+    }
+
     public void registerNewLearner(Learner newLearner) {
         if (!checkAge(newLearner)) {
             config.stringOutput("Age must be between 4 and 11 years old.");
@@ -41,13 +45,18 @@ public class LearnerController {
             System.exit(0);
             return;
         }
+
+        if(!checkGradeLevel(newLearner)){
+            config.stringOutput("Check Grade Level.");
+            System.exit(0);
+            return;
+        }
         // Check if the learner already exists
         if (storedLearners.isLearnerRegistered(newLearner)) {
             config.stringOutput("User Exists");
         } else {
             storedLearners.addLearner(newLearner);
             setLearner(newLearner);
-            storedLearners.printRegisteredLearners();
         }
     }
 

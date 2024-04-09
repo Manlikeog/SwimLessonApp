@@ -73,7 +73,7 @@ public class SwimLessonApp {
                     menu.bookLesson();
                     break;
                 case 2:
-                    config.stringOutput("Cancel swimming lesson");
+                    menu.cancelOrChangeBooking();
                     break;
                 case 3:
                     menu.attendLesson();

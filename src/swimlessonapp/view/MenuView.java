@@ -17,11 +17,10 @@ public class MenuView {
     }
 
     public void attendLesson(){
-
-
         manageBooking.attendLesson();
-
     }
 
-
+    public void cancelOrChangeBooking(){
+        manageBooking.changeOrCancelBooking();
+    }
 }

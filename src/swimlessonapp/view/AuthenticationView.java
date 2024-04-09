@@ -28,6 +28,8 @@ public class AuthenticationView {
             newLearner.setAge(age);
             String emergencyContact = config.stringInput("Enter emergency contact number: ");
             newLearner.setEmergencyContact(emergencyContact);
+            int gradeLevel = config.intInput("Enter GradeLevel: ");
+            newLearner.setCurrentGradeLevel(gradeLevel);
             manageLearner.registerNewLearner(newLearner);
         } else {
             manageLearner.existingLearner(newLearner);

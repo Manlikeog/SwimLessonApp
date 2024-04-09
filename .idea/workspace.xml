@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da58d885-6f23-4c35-97e9-d4b6a05f8c99" name="Changes" comment="attend lesson functionality partially implemented">
+    <list default="true" id="da58d885-6f23-4c35-97e9-d4b6a05f8c99" name="Changes" comment="restructure booking and attending functionality">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/SwimLessonApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/SwimLessonApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/BookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/BookingController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/LearnerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/LearnerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/repository/BookingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/repository/BookingRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/view/AuthenticationView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/view/AuthenticationView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/view/MenuView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/view/MenuView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/view/TimeTableView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/view/TimeTableView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -287,7 +287,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712545992156</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="restructure booking and attending functionality">
+      <option name="closed" value="true" />
+      <created>1712598262972</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1712598262972</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -336,7 +344,8 @@
     <MESSAGE value="Tested the functionality book lesson." />
     <MESSAGE value="code restructure" />
     <MESSAGE value="attend lesson functionality partially implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="attend lesson functionality partially implemented" />
+    <MESSAGE value="restructure booking and attending functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="restructure booking and attending functionality" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
