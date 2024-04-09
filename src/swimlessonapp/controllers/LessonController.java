@@ -34,7 +34,7 @@ public class LessonController {
 
     // Method to cancel a lesson for a learner
     public void cancelLesson(Learner learner, Lesson lesson) {
-        if (lesson.isLearnerEnrolled(learner)) {
+        if (!lesson.isLearnerEnrolled(learner)) {
             lesson.removeLearner(learner);
             System.out.println(learner.getFirstName() + " canceled the lesson on " + lesson.getDay() + " at " + lesson.getTime());
         } else {
