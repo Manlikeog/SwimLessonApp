@@ -6,17 +6,19 @@ import swimlessonapp.model.Lesson;
 import swimlessonapp.repository.CoachRepository;
 import swimlessonapp.repository.LearnerRepository;
 import swimlessonapp.repository.LessonRepository;
+import swimlessonapp.view.TimeTableView;
 
 import java.util.*;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
+
+import static swimlessonapp.Config.*;
 
 public class TimeTableController {
-     LearnerRepository learnerRepository = LearnerRepository.getInstance();
-  CoachRepository coachRepository = CoachRepository.getInstance();
+    LearnerRepository learnerRepository = LearnerRepository.getInstance();
+    CoachRepository coachRepository = CoachRepository.getInstance();
     LessonRepository lessonRepository = LessonRepository.getInstance();
+    TimeTableView view = new TimeTableView();
 
-    public List<Lesson> generateWeekTimetable() {
+    public void generateWeekTimetable() {
         List<Lesson> lessons = new ArrayList<>();
         Map<String, String[]> timeSlots = createTimeSlots();
 
@@ -25,7 +27,7 @@ public class TimeTableController {
         generateLessons(lessons, timeSlots, lessonsScheduledPerDay);
 
         lessonRepository.setListOfLesson(lessons);
-        return lessons;
+
     }
 
     private Map<String, String[]> createTimeSlots() {
@@ -100,25 +102,41 @@ public class TimeTableController {
         return lesson;
     }
 
-    public List<Lesson> viewFullTimeTable() {
-        return lessonRepository.getListOfLesson().isEmpty() ? generateWeekTimetable() : lessonRepository.getListOfLesson();
+    public boolean viewTimeTable() {
+        if (lessonRepository.getListOfLesson().isEmpty()) {
+            generateWeekTimetable();
+            viewTimeTable();
+        } else {
+            printTimeTable();
+            return true;
+        }
+        return false;
     }
 
-    public List<Lesson> viewTimeTableByDay(String day) {
-        return filterLessons(lesson -> lesson.getDay().equalsIgnoreCase(day));
+    public void printTimeTable() {
+        List<Lesson> lessons = lessonRepository.getListOfLesson();
+        stringOutput("""
+                Select an option to view the timetable:
+                1. View timetable for a specific day
+                2. View timetable for a specific grade level
+                3. View timetable for a specific coach
+                """);
+
+        int choice = intInput("Enter your choice: ");
+        switch (choice) {
+            case 1:
+                view.viewTimeTableByCriteria("Enter the day (e.g., Monday): ", Lesson::getDay, lessons);
+                break;
+            case 2:
+                view.viewTimeTableByCriteria("Enter the grade level: ", Lesson::getGradeLevel, lessons);
+                break;
+            case 3:
+                view.viewTimeTableByCriteria("Enter the coach's name: ", lesson -> lesson.getCoach().name(), lessons);
+                break;
+            default:
+                stringOutput("Invalid choice!");
+        }
     }
 
-    public List<Lesson> viewTimeTableByGradeLevel(int gradeLevel) {
-        return filterLessons(lesson -> lesson.getGradeLevel() == gradeLevel);
-    }
 
-    public List<Lesson> viewTimeTableByCoach(String coachName) {
-        return filterLessons(lesson -> lesson.getCoach().name().equalsIgnoreCase(coachName));
-    }
-
-    private List<Lesson> filterLessons(Predicate<Lesson> predicate) {
-        return viewFullTimeTable().stream()
-                .filter(predicate)
-                .collect(Collectors.toList());
-    }
 }
