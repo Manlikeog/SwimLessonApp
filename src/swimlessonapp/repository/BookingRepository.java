@@ -13,6 +13,7 @@ public class BookingRepository {
     private static final List<Book> availableBookings = new ArrayList<>();
 
     LessonRepository lessonRepository = LessonRepository.getInstance();
+    LearnerRepository learnerRepository = LearnerRepository.getInstance();
 
     private static BookingRepository instance;
 
@@ -28,19 +29,23 @@ public class BookingRepository {
         return availableBookings;
     }
 
-    public boolean generateBookingForLearner(Learner learner) {
-        List<Lesson> lessons = lessonRepository.getListOfLessonsForLearner(learner); // Assuming you have a method in LessonRepository to get lessons for a particular learner
-        if(lessons.isEmpty()){
-            System.out.println("There is currently no lessons booked for this user");
-            return false;
-        } else {
-            for (Lesson lesson : lessons) {
-                Book booking = new Book(learner, lesson);
-                availableBookings.add(booking);
-            }
-            return true;
-        }
 
+    public void generateBookingsForAllLearners() {
+        List<Learner> learners = learnerRepository.getAllLearners();
+        boolean bookingsGenerated = false;
+        for (Learner learner : learners) { // Assuming you have a method to get all learners
+            List<Lesson> lessons = lessonRepository.getListOfLessonsForLearner(learner);
+            if (!lessons.isEmpty()) {
+                for (Lesson lesson : lessons) {
+                    Book booking = new Book(learner, lesson);
+                    availableBookings.add(booking);
+                }
+                bookingsGenerated = true;
+            }
+        }
+        if (!bookingsGenerated) {
+            System.out.println("There are currently no lessons booked for any user");
+        }
     }
 
     public  void addBooking(Book book) {
@@ -53,20 +58,17 @@ public class BookingRepository {
         return optionalBook.orElse(null);
     }
 
-    public void printAvailableBookings() {
-        System.out.println("Available Bookings:");
-        System.out.printf("%-12s%-15s%-10s%-20s%-20s%-10s%-10s%-10s%-10s%n",
-                "BookingID", "User", "Day", "Time", "Coach", "Grade", "Status", "Review", "Rating");
-
-        availableBookings.forEach(book -> System.out.printf("%-12s%-15s%-10s%-20s%-20s%-10s%-10s%-10s%-10s%n",
-                book.getId(),
-                book.getLearner().getFirstName() + " " + book.getLearner().getLastName(),
-                book.getLesson().getDay(),
-                book.getLesson().getTime(),
-                book.getLesson().getCoach().name(),
-                book.getLesson().getGradeLevel(),
-                book.getStatus(),
-                book.getReview(),
-                book.getRating()));
+    public List<Book> getAvailableBookingsForLearner(Learner learner) {
+        if(availableBookings.isEmpty()){
+            generateBookingsForAllLearners();
+        }
+        List<Book> learnerBookings = new ArrayList<>();
+        for (Book book : availableBookings) {
+            if (book.getLearner().equals(learner)) {
+                learnerBookings.add(book);
+            }
+        }
+        return learnerBookings;
     }
+
 }

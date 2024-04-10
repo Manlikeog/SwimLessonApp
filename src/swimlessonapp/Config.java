@@ -1,13 +1,18 @@
 package swimlessonapp;
 
+import swimlessonapp.controllers.LearnerController;
+import swimlessonapp.model.Learner;
+
 import java.util.Random;
 import java.util.Scanner;
 
 public class Config {
 
-    Scanner scanner = new Scanner(System.in);
+    static Scanner scanner = new Scanner(System.in);
+    static LearnerController manageLearner = LearnerController.getInstance();
 
-    public  int intInput(String displayText) {
+
+    public static int intInput(String displayText) {
         System.out.println(displayText);
         String input = scanner.nextLine();
         if (!input.isEmpty()) {
@@ -23,7 +28,7 @@ public class Config {
         }
     }
 
-    public String stringInput(String displayText) {
+    public static String stringInput(String displayText) {
         System.out.println(displayText);
         String input = scanner.nextLine();
         if (!input.isEmpty()) {
@@ -46,7 +51,24 @@ public class Config {
         }
     }
 
-    public void stringOutput(String displayText) {
+    public static Learner getUser() {
+        Learner learner;
+        boolean userExists = false;
+        do {
+            String firstName = stringInput("Enter first name: ");
+            String lastName = stringInput("Enter last name: ");
+            learner = manageLearner.existingLearner(firstName, lastName);
+
+            if (learner != null) {
+                userExists = true;
+            } else {
+                System.out.println("User not found. Please try again.");
+            }
+        } while (!userExists);
+        return learner;
+    }
+
+    public static void stringOutput(String displayText) {
         System.out.println("\n" + displayText);
     }
 

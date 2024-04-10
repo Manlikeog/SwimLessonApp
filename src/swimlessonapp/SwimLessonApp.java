@@ -1,12 +1,11 @@
 package swimlessonapp;
 
-import swimlessonapp.controllers.LearnerController;
-import swimlessonapp.controllers.LessonController;
 import swimlessonapp.controllers.TimeTableController;
-import swimlessonapp.model.Learner;
-import swimlessonapp.view.AuthenticationView;
 import swimlessonapp.view.MenuView;
-import swimlessonapp.view.TimeTableView;
+
+
+import static swimlessonapp.Config.intInput;
+import static swimlessonapp.Config.stringOutput;
 
 /**
  * @author OG
@@ -16,58 +15,34 @@ public class SwimLessonApp {
     private static final Config config = new Config();
     private static final MenuView menu = new MenuView();
 
-    private static final AuthenticationView authentication = new AuthenticationView();
-    static final TimeTableController timeTable = new TimeTableController();
-
     public static void main(String[] args) {
         menu();
     }
 
     //Method to select menu
     public static void menu() {
-        timeTable.generateWeekTimetable();
-        do {
-            int choice = config.intInput("""
-                    Welcome to Hatfield Junior Swimming School
-                    +-----------------------------------------------------+
-                    1. Login\s
-                    2. SignUp\s
-                    3. Exit\s
-                                        
-                    Please input number to proceed:""");
-            switch (choice) {
-                case 1:
-                    authentication.learnerDetailsInput(false);
-                    break;
-                case 2:
-                    authentication.learnerDetailsInput(true);
-                    break;
-                case 3:
-                    System.exit(0);
-                    break;
-                default:
-                    System.out.println("Invalid choice, Please Try Again");
-                    continue;
-            }
-            lessonApp();
-        } while (true);
+        lessonApp();
     }
 
     public static void lessonApp() {
         boolean bookLesson = true;
         do {
             System.out.println("""
+                    Welcome to Hatfield Junior Swimming School
+                    +-----------------------------------------------------+
                     Select an option:
                     1. Book a swimming lesson
-                    2. Change/Cancel a booking
-                    3. Attend a swimming lesson
-                    4. Monthly learner report
-                    5. Monthly coach report
-                    6. LogOut
+                    2. Cancel booked lesson
+                    3. Edit booked Lesson
+                    4. Attend a swimming lesson
+                    5. Monthly learner report
+                    6. Monthly coach report
+                    7. Register Learner
+                    7. Exit
                     """);
 
             //Select option
-            int choice = config.intInput("Enter your choice: ");
+            int choice = intInput("Enter your choice: ");
             switch (choice) {
                 case 1:
                     menu.bookLesson();
@@ -76,20 +51,23 @@ public class SwimLessonApp {
                     menu.cancelOrChangeBooking();
                     break;
                 case 3:
-                    menu.attendLesson();
+                    stringOutput("Edit Booked Lesson");
                     break;
                 case 4:
-                    config.stringOutput("Generate monthly learner");
+                    menu.attendLesson();
                     break;
                 case 5:
-                    config.stringOutput("Generate monthly coach");
+                   stringOutput("Generate monthly learner");
                     break;
                 case 6:
-                    config.stringOutput("Logging Out...");
+                    stringOutput("Generate monthly coach");
+                    break;
+                case 7:
+                    stringOutput("Exit");
                     bookLesson = false;
                     break;
                 default:
-                    config.stringOutput("Invalid choice. Please try again.");
+                    stringOutput("Invalid choice. Please try again.");
                     continue;
             }
 
@@ -100,13 +78,13 @@ public class SwimLessonApp {
                     bookAgain = config.charInput("\nWould you like to perform another action? (Y / N)");
                     switch (bookAgain) {
                         case 'N':
-                            config.stringOutput("Logging Out.....!");
+                            stringOutput("Exit.....!");
                             bookLesson = false;
                             break;
                         case 'Y':
                             continue;
                         default:
-                            config.stringOutput("Invalid choice. Please try again.");
+                            stringOutput("Invalid choice. Please try again.");
                     }
                 }
             }

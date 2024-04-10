@@ -1,8 +1,9 @@
 package swimlessonapp.model;
 
-import static swimlessonapp.Config.generateUserId;
 
 public class Learner {
+
+    private static int lastId = 20; // 20 pre-registered learners
     private  int userId;
     private String firstName;
     private String lastName;
@@ -11,8 +12,8 @@ public class Learner {
     private String emergencyContact;
     private int currentGradeLevel;
 
-    public Learner(int userId, String firstName, String lastName, String gender, int age, String emergencyContact, int currentGradeLevel) {
-        this.userId = userId;
+    public Learner(String firstName, String lastName, String gender, int age, String emergencyContact, int currentGradeLevel) {
+        this.userId = ++lastId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -21,15 +22,6 @@ public class Learner {
         this.currentGradeLevel = currentGradeLevel;
     }
 
-    public Learner() {
-        this.userId = generateUserId();
-        this.firstName = "timi";
-        this.lastName = "oguntade";
-        this.age = 6;
-        this.emergencyContact = "0000000000";
-        this.gender = "Male";
-        this.currentGradeLevel = 8;
-    }
     // Getters and setters
     public int getUserId() {
         return userId;
