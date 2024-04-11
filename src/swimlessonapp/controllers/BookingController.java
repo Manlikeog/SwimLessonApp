@@ -39,44 +39,58 @@ public class BookingController {
         Learner user = getUser();
         if (viewBookingsForLearner(user)) {
             Book selectedBook = selectBook();
-            if (manageLesson.checkGradeLevel(user, selectedBook.getLesson())) {
-                if (Objects.equals(selectedBook.getStatus(), "attended")) {
-                    System.out.println("Can't attend this lesson has it has been attended");
-                } else if (Objects.equals(selectedBook.getStatus(), "canceled")) {
-                    System.out.println("Can't attend this lesson has it has been canceled already");
-                } else {
+            if(checkAction(selectedBook, "attend")){
+                if (manageLesson.checkGradeLevel(user, selectedBook.getLesson())) {
                     selectedBook.setStatus("attended");
                     System.out.println("You have attended Lesson for Grade " + selectedBook.getLesson().getGradeLevel() + " on " + selectedBook.getLesson().getDay() + " at " + selectedBook.getLesson().getTime());
                     if (selectedBook.getLesson().getGradeLevel() > selectedBook.getLearner().getCurrentGradeLevel()) {
                         user.setCurrentGradeLevel(selectedBook.getLesson().getGradeLevel());
                         System.out.println("You have been promoted to " + "Grade " + user.getCurrentGradeLevel());
                     }
-
+                } else {
+                    System.out.println("Can't attend Grade Lesson as your grade doesn't match the lesson requirements grade");
                 }
-
-            } else {
-                System.out.println("Can't attend Grade Lesson as your grade doesn't match the lesson requirements grade");
             }
-
         }
     }
 
     public void cancelBooking() {
         Learner user = getUser();
-
-        if(viewBookingsForLearner(user)){
+        if (viewBookingsForLearner(user)){
             Book selectedBook = selectBook();
-            if (Objects.equals(selectedBook.getStatus(), "attended")) {
-                System.out.println("This Lesson can't be canceled as it has been attended");
-            } else if (Objects.equals(selectedBook.getStatus(), "canceled")) {
-                System.out.println("Can't cancel lesson has it has been canceled already");
-            } else {
-                manageLesson.cancelLesson(user, selectedBook.getLesson());
-                selectedBook.setStatus("canceled");
+            if(checkAction(selectedBook, "cancel")){
+                if(manageLesson.cancelLesson(user, selectedBook.getLesson())){
+                    selectedBook.setStatus("canceled");
+                }
             }
         }
-
     }
+
+    public void editBooking() {
+        Learner user = getUser();
+        if(viewBookingsForLearner(user)){
+            Book selectedBook = selectBook();
+            if(checkAction(selectedBook, "Edit")){
+                System.out.println("To edit booking please choose new lesson");
+                if(timeTable.printTimeTable()){
+                    Lesson selectedLesson = manageLesson.getLessonById(""" 
+                Select Lesson to book above!!
+                Input Lesson ID:""");
+                    if (manageLesson.checkGradeLevel(user, selectedLesson)) {
+                        manageLesson.addLearnerToLesson(user, selectedLesson);
+                        if(manageLesson.cancelLesson(user, selectedBook.getLesson())){
+                            selectedBook.setLesson(selectedLesson);
+                        }
+                    } else {
+                        System.out.println("Can't attend Grade Lesson as your grade doesn't match the lesson grade");
+                    }
+                }
+
+
+            }
+        }
+    }
+
     public Book selectBook() {
         int lessonIndex = intInput("""
                 To select lesson, Input ID:""");
@@ -94,8 +108,19 @@ public class BookingController {
         if (learnerBookings.isEmpty()) {
             System.out.println("No available bookings for " + learner.getFirstName() + " " + learner.getLastName() + ".");
             return false;
-        } else {
-            view. displayBookings(learnerBookings);
+        }  else {
+            view.displayBookings(learnerBookings);
+        }
+        return true;
+    }
+
+    public boolean checkAction(Book selectedBook, String prompt){
+        if (Objects.equals(selectedBook.getStatus(), "attended")) {
+            System.out.println("Can't " + prompt + " this lesson has it has been attended");
+            return false;
+        } else if (Objects.equals(selectedBook.getStatus(), "canceled")) {
+            System.out.println("Can't " + prompt + " this lesson has it has been canceled already");
+            return false;
         }
 
         return true;

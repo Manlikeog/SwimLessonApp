@@ -10,7 +10,6 @@ public class MenuView {
    BookingController manageBooking = new BookingController();
 
     public  void bookLesson(){
-
         manageBooking.bookLesson();
     }
 
@@ -20,5 +19,9 @@ public class MenuView {
 
     public void cancelOrChangeBooking(){
         manageBooking.cancelBooking();
+    }
+
+    public void editBooking(){
+        manageBooking.editBooking();
     }
 }

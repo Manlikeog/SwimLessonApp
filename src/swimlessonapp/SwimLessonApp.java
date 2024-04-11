@@ -14,8 +14,10 @@ import static swimlessonapp.Config.stringOutput;
 public class SwimLessonApp {
     private static final Config config = new Config();
     private static final MenuView menu = new MenuView();
+   private static TimeTableController timeTable = new TimeTableController();
 
     public static void main(String[] args) {
+        timeTable.generateWeekTimetable();
         menu();
     }
 
@@ -51,7 +53,7 @@ public class SwimLessonApp {
                     menu.cancelOrChangeBooking();
                     break;
                 case 3:
-                    stringOutput("Edit Booked Lesson");
+                    menu.editBooking();
                     break;
                 case 4:
                     menu.attendLesson();

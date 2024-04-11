@@ -17,14 +17,16 @@ import static swimlessonapp.Config.stringOutput;
 
 public class TimeTableView {
 
-    public void viewTimeTableByCriteria(String prompt, Function<Lesson, ?> criteriaExtractor, List<Lesson> lessons) {
+    public boolean viewTimeTableByCriteria(String prompt, Function<Lesson, ?> criteriaExtractor, List<Lesson> lessons) {
         String userInput = stringInput(prompt);
         List<Lesson> filteredLessons = filterLessons(lesson -> criteriaExtractor.apply(lesson).toString().equalsIgnoreCase(userInput), lessons);
         if (filteredLessons.isEmpty()) {
             stringOutput("There is no available lesson for " + userInput + " this week");
+            return false;
         } else {
            viewLessons(prompt.substring(6), filteredLessons); // Displaying based on the provided criteria
         }
+        return true;
     }
 
     private List<Lesson> filterLessons(Predicate<Lesson> predicate, List<Lesson> lessons) {

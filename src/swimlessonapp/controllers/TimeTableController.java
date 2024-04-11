@@ -107,13 +107,12 @@ public class TimeTableController {
             generateWeekTimetable();
             viewTimeTable();
         } else {
-            printTimeTable();
-            return true;
+           return printTimeTable();
         }
         return false;
     }
 
-    public void printTimeTable() {
+    public boolean printTimeTable() {
         List<Lesson> lessons = lessonRepository.getListOfLesson();
         stringOutput("""
                 Select an option to view the timetable:
@@ -123,19 +122,17 @@ public class TimeTableController {
                 """);
 
         int choice = intInput("Enter your choice: ");
-        switch (choice) {
-            case 1:
-                view.viewTimeTableByCriteria("Enter the day (e.g., Monday): ", Lesson::getDay, lessons);
-                break;
-            case 2:
-                view.viewTimeTableByCriteria("Enter the grade level: ", Lesson::getGradeLevel, lessons);
-                break;
-            case 3:
-                view.viewTimeTableByCriteria("Enter the coach's name: ", lesson -> lesson.getCoach().name(), lessons);
-                break;
-            default:
+        return switch (choice) {
+            case 1 -> view.viewTimeTableByCriteria("Enter the day (e.g., Monday): ", Lesson::getDay, lessons);
+            case 2 -> view.viewTimeTableByCriteria("Enter the grade level: ", Lesson::getGradeLevel, lessons);
+            case 3 ->
+                    view.viewTimeTableByCriteria("Enter the coach's name: ", lesson -> lesson.getCoach().name(), lessons);
+            default -> {
                 stringOutput("Invalid choice!");
-        }
+                yield false;
+            }
+        };
+
     }
 
 

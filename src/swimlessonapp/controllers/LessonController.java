@@ -19,27 +19,32 @@ public class LessonController {
         return instance;
     }
 
-    public void addLearnerToLesson(Learner learner, Lesson lesson) {
+    public boolean addLearnerToLesson(Learner learner, Lesson lesson) {
         if (lesson.getLearners().size() < lesson.getMaxLearners()) {
             if (lesson.isLearnerEnrolled(learner)) {
                 lesson.addLearner(learner);
                 System.out.println(learner.getFirstName() + " added to lesson on " + lesson.getDay() + " at " + lesson.getTime());
             } else {
                 System.out.println(learner.getFirstName() + " is already enrolled in this lesson.");
+                return false;
             }
         } else {
             System.out.println("The lesson is already full. Cannot add more learners.");
+            return false;
         }
+        return true;
     }
 
     // Method to cancel a lesson for a learner
-    public void cancelLesson(Learner learner, Lesson lesson) {
+    public boolean cancelLesson(Learner learner, Lesson lesson) {
         if (!lesson.isLearnerEnrolled(learner)) {
             lesson.removeLearner(learner);
             System.out.println(learner.getFirstName() + " canceled the lesson on " + lesson.getDay() + " at " + lesson.getTime());
         } else {
             System.out.println("You are not booked for this lesson.");
+            return false;
         }
+        return true;
     }
 
     public boolean checkGradeLevel(Learner learner, Lesson lesson) {
