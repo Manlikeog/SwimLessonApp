@@ -1,16 +1,18 @@
 package swimlessonapp.controllers;
 
-import swimlessonapp.Config;
+
 import swimlessonapp.model.Learner;
 import swimlessonapp.model.Lesson;
 import swimlessonapp.repository.LessonRepository;
-import swimlessonapp.view.TimeTableView;
+
+import java.util.List;
+
+import static swimlessonapp.Config.*;
 
 
 public class LessonController {
-    LessonRepository lessonRepository = LessonRepository.getInstance();
-    Config config = new Config();
     private static LessonController instance;
+    LessonRepository lessonRepository = LessonRepository.getInstance();
 
     public static LessonController getInstance() {
         if (instance == null) {
@@ -23,13 +25,13 @@ public class LessonController {
         if (lesson.getLearners().size() < lesson.getMaxLearners()) {
             if (lesson.isLearnerEnrolled(learner)) {
                 lesson.addLearner(learner);
-                System.out.println(learner.getFirstName() + " added to lesson on " + lesson.getDay() + " at " + lesson.getTime());
+                stringOutput(learner.getFirstName() + " added to lesson on " + lesson.getDay() + " at " + lesson.getTime());
             } else {
-                System.out.println(learner.getFirstName() + " is already enrolled in this lesson.");
+                stringOutput( "Can't book lesson as learner has been enrolled in the lesson ");
                 return false;
             }
         } else {
-            System.out.println("The lesson is already full. Cannot add more learners.");
+            stringOutput("The lesson is full. Cannot add more learners.");
             return false;
         }
         return true;
@@ -39,9 +41,9 @@ public class LessonController {
     public boolean cancelLesson(Learner learner, Lesson lesson) {
         if (!lesson.isLearnerEnrolled(learner)) {
             lesson.removeLearner(learner);
-            System.out.println(learner.getFirstName() + " canceled the lesson on " + lesson.getDay() + " at " + lesson.getTime());
+            stringOutput(learner.getFirstName() + " canceled the lesson on " + lesson.getDay() + " at " + lesson.getTime());
         } else {
-            System.out.println("You are not booked for this lesson.");
+           stringOutput("You are not booked for this lesson.");
             return false;
         }
         return true;
@@ -52,10 +54,10 @@ public class LessonController {
     }
 
     public Lesson getLessonById(String text) {
-        int lessonIndex = config.intInput(text);
+        int lessonIndex = intInput(text);
         Lesson selectedLesson = lessonRepository.getLessonById(lessonIndex);
         if (selectedLesson == null) {
-            System.out.println("Invalid lesson index!");
+            stringOutput("Invalid lesson index!");
             return getLessonById(text);
         } else {
             return selectedLesson;
@@ -63,20 +65,7 @@ public class LessonController {
 
     }
 
-//
-//    // Method to mark attendance for a lesson
-//    public void markAttendance(Lesson lesson, Learner learner) {
-//        if (lesson.isLearnerEnrolled(learner)) {
-//            lesson.markAttendance(learner);
-//            lessonRepository.updateLesson(lesson);
-//            System.out.println(learner.getFirstName() + " attended the lesson on " + lesson.getDay() + " at " + lesson.getTime());
-//        } else {
-//            System.out.println("You are not enrolled for this lesson.");
-//        }
-//    }
-//
-//    // Method to get all lessons for a given week
-//    public List<Lesson> getLessonsForWeek(int weekNumber) {
-//        return lessonRepository.getLessonsForWeek(weekNumber);
-//    }
+    public List<Lesson> getAvailableLessons (){
+        return lessonRepository.getListOfLesson();
+    }
 }

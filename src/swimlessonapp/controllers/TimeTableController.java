@@ -1,8 +1,10 @@
 package swimlessonapp.controllers;
 
+import swimlessonapp.model.Book;
 import swimlessonapp.model.Coach;
 import swimlessonapp.model.Learner;
 import swimlessonapp.model.Lesson;
+import swimlessonapp.repository.BookingRepository;
 import swimlessonapp.repository.CoachRepository;
 import swimlessonapp.repository.LearnerRepository;
 import swimlessonapp.repository.LessonRepository;
@@ -101,39 +103,5 @@ public class TimeTableController {
 
         return lesson;
     }
-
-    public boolean viewTimeTable() {
-        if (lessonRepository.getListOfLesson().isEmpty()) {
-            generateWeekTimetable();
-            viewTimeTable();
-        } else {
-           return printTimeTable();
-        }
-        return false;
-    }
-
-    public boolean printTimeTable() {
-        List<Lesson> lessons = lessonRepository.getListOfLesson();
-        stringOutput("""
-                Select an option to view the timetable:
-                1. View timetable for a specific day
-                2. View timetable for a specific grade level
-                3. View timetable for a specific coach
-                """);
-
-        int choice = intInput("Enter your choice: ");
-        return switch (choice) {
-            case 1 -> view.viewTimeTableByCriteria("Enter the day (e.g., Monday): ", Lesson::getDay, lessons);
-            case 2 -> view.viewTimeTableByCriteria("Enter the grade level: ", Lesson::getGradeLevel, lessons);
-            case 3 ->
-                    view.viewTimeTableByCriteria("Enter the coach's name: ", lesson -> lesson.getCoach().name(), lessons);
-            default -> {
-                stringOutput("Invalid choice!");
-                yield false;
-            }
-        };
-
-    }
-
 
 }

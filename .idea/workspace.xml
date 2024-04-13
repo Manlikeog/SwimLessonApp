@@ -4,12 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da58d885-6f23-4c35-97e9-d4b6a05f8c99" name="Changes" comment="attend lesson functionality completed, cancel lesson functionality added">
+    <list default="true" id="da58d885-6f23-4c35-97e9-d4b6a05f8c99" name="Changes" comment="edit functionality added..">
+      <change afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/ActionController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/AttendController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/BookController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/CancelBookingController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/EditBookingController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/Config.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/SwimLessonApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/SwimLessonApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/BookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/BookingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/BookingController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/LearnerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/RegisterController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/LessonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/LessonController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/TimeTableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/TimeTableController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/model/Learner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/model/Learner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/repository/LearnerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/repository/LearnerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/view/AuthenticationView.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/view/MenuView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/view/MenuView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/view/TimeTableView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/view/TimeTableView.java" afterDir="false" />
     </list>
@@ -53,23 +63,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.SwimLessonApp.executor": "Run",
-    "Application.SwimLessonSystem.executor": "Run",
-    "Application.Tester.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "version-1",
-    "jdk.selected.JAVA_MODULE": "21",
-    "kotlin-language-version-configured": "true",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.SwimLessonApp.executor&quot;: &quot;Run&quot;,
+    &quot;Application.SwimLessonSystem.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Tester.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;version-1&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;21&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/UML DIAGRAM" />
@@ -332,7 +342,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712715382103</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="edit functionality added..">
+      <option name="closed" value="true" />
+      <created>1712857692254</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1712857692254</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -402,7 +420,8 @@
     <MESSAGE value="restructure booking and attending functionality" />
     <MESSAGE value="attend lesson functionality completed, cancel lesson functionality added" />
     <MESSAGE value="separate user from learner, identifying code bad smell, restructure the authentication flow" />
-    <option name="LAST_COMMIT_MESSAGE" value="separate user from learner, identifying code bad smell, restructure the authentication flow" />
+    <MESSAGE value="edit functionality added.." />
+    <option name="LAST_COMMIT_MESSAGE" value="edit functionality added.." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

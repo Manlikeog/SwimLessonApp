@@ -4,32 +4,30 @@ import swimlessonapp.controllers.TimeTableController;
 import swimlessonapp.view.MenuView;
 
 
-import static swimlessonapp.Config.intInput;
-import static swimlessonapp.Config.stringOutput;
+import static swimlessonapp.Config.*;
+
 
 /**
  * @author OG
  */
 
 public class SwimLessonApp {
-    private static final Config config = new Config();
     private static final MenuView menu = new MenuView();
-   private static TimeTableController timeTable = new TimeTableController();
+   private static final TimeTableController timeTable = new TimeTableController();
+
 
     public static void main(String[] args) {
         timeTable.generateWeekTimetable();
-        menu();
+        lessonApp();
     }
 
     //Method to select menu
-    public static void menu() {
-        lessonApp();
-    }
+
 
     public static void lessonApp() {
         boolean bookLesson = true;
         do {
-            System.out.println("""
+            stringOutput("""
                     Welcome to Hatfield Junior Swimming School
                     +-----------------------------------------------------+
                     Select an option:
@@ -40,11 +38,11 @@ public class SwimLessonApp {
                     5. Monthly learner report
                     6. Monthly coach report
                     7. Register Learner
-                    7. Exit
+                    8. Exit
                     """);
 
             //Select option
-            int choice = intInput("Enter your choice: ");
+            int choice = intInput("Enter your choice");
             switch (choice) {
                 case 1:
                     menu.bookLesson();
@@ -65,6 +63,9 @@ public class SwimLessonApp {
                     stringOutput("Generate monthly coach");
                     break;
                 case 7:
+                    menu.registerUser();
+                    break;
+                case 8:
                     stringOutput("Exit");
                     bookLesson = false;
                     break;
@@ -77,7 +78,7 @@ public class SwimLessonApp {
             if (bookLesson) {
                 char bookAgain = '0';
                 while (bookAgain != 'Y' && bookAgain != 'N') {
-                    bookAgain = config.charInput("\nWould you like to perform another action? (Y / N)");
+                    bookAgain = charInput("\nWould you like to return main menu? (Y / N / E(EXIT)");
                     switch (bookAgain) {
                         case 'N':
                             stringOutput("Exit.....!");
