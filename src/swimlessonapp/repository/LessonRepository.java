@@ -1,7 +1,6 @@
 package swimlessonapp.repository;
 
 
-import swimlessonapp.model.Learner;
 import swimlessonapp.model.Lesson;
 
 import java.util.ArrayList;
@@ -27,10 +26,6 @@ public class LessonRepository {
         LessonRepository.listOfLesson = listOfLesson;
     }
 
-    public boolean hasLesson(Lesson lesson) {
-      return   !listOfLesson.contains(lesson);
-
-    }
     public Lesson getLessonById(int lessonId) {
         Optional<Lesson> optionalLesson = listOfLesson.stream()
                 .filter(lesson -> lesson.getId() == lessonId)
@@ -38,14 +33,4 @@ public class LessonRepository {
         return optionalLesson.orElse(null);
     }
 
-    public List<Lesson> getListOfLessonsForLearner(Learner learner) {
-        List<Lesson> lessonsForLearner = new ArrayList<>();
-        // Assuming lesson has a list of learners, and we're checking if the learner is enrolled in the lesson
-        for (Lesson lesson : listOfLesson) {
-            if (lesson.getLearners().contains(learner)) {
-                lessonsForLearner.add(lesson);
-            }
-        }
-        return lessonsForLearner;
-    }
 }

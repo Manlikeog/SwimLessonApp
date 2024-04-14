@@ -1,6 +1,5 @@
 package swimlessonapp.controllers;
 
-import swimlessonapp.Config;
 import swimlessonapp.model.Book;
 import swimlessonapp.model.Learner;
 import swimlessonapp.model.Lesson;
@@ -9,9 +8,12 @@ import swimlessonapp.repository.LearnerRepository;
 import swimlessonapp.view.TimeTableView;
 
 public class EditBookingController extends ActionController {
-
+    private final TimeTableView timeTableView;
+    private final LessonController lessonController;
     public EditBookingController(BookingRepository bookingRepository, TimeTableView timeTableView, LessonController lessonController, LearnerRepository learnerRepository) {
-        super(bookingRepository, timeTableView, lessonController, learnerRepository);
+        super(bookingRepository, timeTableView, lessonController, learnerRepository, null, null);
+        this.lessonController = lessonController;
+        this.timeTableView = timeTableView;
     }
 
     @Override
@@ -30,7 +32,7 @@ public class EditBookingController extends ActionController {
                     handleEdit(selectedBook, selectedLesson, user);
                 }
             }
-            redoAction("Edit another lesson", user);
+            redoAction("Edit another lesson");
         }
     }
 

@@ -11,7 +11,7 @@ public class CancelBookingController extends ActionController {
     private final LessonController lessonController;
 
     public CancelBookingController(BookingRepository bookingRepository, TimeTableView timeTableView, LessonController lessonController, LearnerRepository learnerRepository) {
-        super(bookingRepository, timeTableView, lessonController, learnerRepository);
+        super(bookingRepository, timeTableView, lessonController, learnerRepository, null, null);
         this.lessonController = lessonController;
     }
 
@@ -27,7 +27,7 @@ public class CancelBookingController extends ActionController {
                     selectedBook.setStatus("canceled");
                 }
             }
-            redoAction("Cancel another Lesson", user);
+            redoAction("Cancel another Lesson");
         }
     }
 }

@@ -35,7 +35,7 @@ public class Config {
     public static char charInput(String displayText) {
         System.out.println(displayText);
         String input = scanner.nextLine().trim().toUpperCase(); // Trim and convert to upper case
-        if (input.equals("E")) {
+        if (input.equalsIgnoreCase("E")) {
             System.exit(0); // Exiting the program
         }
         if (input.isEmpty()) {

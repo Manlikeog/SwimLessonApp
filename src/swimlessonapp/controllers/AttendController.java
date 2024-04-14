@@ -12,8 +12,8 @@ import java.util.Scanner;
 public class AttendController extends ActionController {
     private final LessonController lessonController;
 
-    public AttendController(BookingRepository bookingRepository, TimeTableView timeTableView, LessonController lessonController, LearnerRepository learnerRepository) {
-        super(bookingRepository, timeTableView, lessonController, learnerRepository);
+    public AttendController(LessonController lessonController,TimeTableView timeTableView, LearnerRepository learnerRepository, BookingRepository bookingRepository) {
+        super(bookingRepository, timeTableView, lessonController, learnerRepository, null, null);
         this.lessonController = lessonController;
     }
 
@@ -36,7 +36,7 @@ public class AttendController extends ActionController {
                     System.out.println("Can't attend Grade Lesson as your grade doesn't match the lesson requirements grade");
                 }
             }
-            redoAction("Attend another Lesson", user);
+            redoAction("Attend another Lesson");
         }
     }
 
@@ -44,7 +44,7 @@ public class AttendController extends ActionController {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please provide a review for the lesson:");
         String review = scanner.nextLine();
-        int rating = 0;
+        int rating;
         do{
             System.out.println("Please provide a numerical rating (1 to 5) for the coach:");
           rating = scanner.nextInt();

@@ -1,9 +1,7 @@
 package swimlessonapp.controllers;
 
 import swimlessonapp.model.Learner;
-import swimlessonapp.repository.BookingRepository;
 import swimlessonapp.repository.LearnerRepository;
-import swimlessonapp.view.TimeTableView;
 
 import static swimlessonapp.Config.*;
 
@@ -12,8 +10,8 @@ public class RegisterController extends ActionController {
 
     private final LearnerRepository storedLearners;
 
-    public RegisterController(BookingRepository bookingRepository, TimeTableView timeTableView, LessonController lessonController, LearnerRepository learnerRepository) {
-        super(bookingRepository, timeTableView, lessonController, learnerRepository);
+    public RegisterController( LearnerRepository learnerRepository) {
+        super(null, null, null, learnerRepository, null, null);
         this.storedLearners = learnerRepository;
     }
 
@@ -21,7 +19,7 @@ public class RegisterController extends ActionController {
     public void performAction() {
         Learner newLearner = timeTableView.learnerDetailsInput();
         registerNewLearner(newLearner);
-        redoAction("Register another learner", newLearner);
+        redoAction("Register another learner");
     }
 
     private boolean checkAge(Learner newLearner) {

@@ -1,6 +1,5 @@
 package swimlessonapp.view;
 
-import swimlessonapp.Config;
 import swimlessonapp.model.Book;
 import swimlessonapp.model.Learner;
 import swimlessonapp.model.Lesson;
@@ -37,7 +36,7 @@ public class TimeTableView {
         printLessons(option, lessons);
     }
 
-    private void printLessons(String title, List<Lesson> lessons) {
+    public void printLessons(String title, List<Lesson> lessons) {
        stringOutput("Available Lessons for " + title + ":");
 
         lessons.sort(Comparator.comparing(lesson -> Arrays.asList("Monday", "Wednesday", "Friday", "Saturday").indexOf(lesson.getDay())));
@@ -48,7 +47,7 @@ public class TimeTableView {
         for (Lesson lesson : lessons) {
             String learners = getLearnersString(lesson.getLearners());
             System.out.printf("%-10s%-10s%-20s%-20s%-15s%-70s%-15s%s%n", lesson.getId(),
-                    lesson.getDay(), lesson.getTime(), lesson.getCoach().name(),
+                    lesson.getDay(), lesson.getTime(), lesson.getCoach().getName(),
                     lesson.getLearners().size(), learners,
                     lesson.getMaxLearners(), lesson.getGradeLevel());
         }
@@ -69,17 +68,17 @@ public class TimeTableView {
     public void displayBookings(List<Book> bookings) {
         stringOutput("Available Bookings:");
         System.out.printf("%-12s%-15s%-10s%-20s%-20s%-10s%-10s%-10s%-10s%n",
-                "BookingID", "User", "Day", "Time", "Coach", "Grade", "Status", "Review", "Rating");
+                "BookingID", "User", "Day", "Time", "Coach", "Month", "Grade", "Status",  "Rating");
         for (Book book : bookings) {
             System.out.printf("%-12s%-15s%-10s%-20s%-20s%-10s%-10s%-10s%-10s%n",
                     book.getId(),
                     book.getLearner().getFirstName() + " " + book.getLearner().getLastName(),
                     book.getLesson().getDay(),
                     book.getLesson().getTime(),
-                    book.getLesson().getCoach().name(),
+                    book.getLesson().getCoach().getName(),
+                    book.getMonth(),
                     book.getLesson().getGradeLevel(),
                     book.getStatus(),
-                    book.getReview(),
                     book.getRating());
         }
     }
@@ -98,7 +97,7 @@ public class TimeTableView {
             case 1 -> viewTimeTableByCriteria("Enter the day (e.g., Monday)", Lesson::getDay, lessons);
             case 2 -> viewTimeTableByCriteria("Enter the grade level", Lesson::getGradeLevel, lessons);
             case 3 ->
-                    viewTimeTableByCriteria("Enter the coach's name", lesson -> lesson.getCoach().name(), lessons);
+                    viewTimeTableByCriteria("Enter the coach's name", lesson -> lesson.getCoach().getName(), lessons);
             default -> {
                 stringOutput("Invalid choice!");
                 yield false;
@@ -110,7 +109,7 @@ public class TimeTableView {
     public Learner learnerDetailsInput() {
         String firstName = stringInput("Enter first name").toUpperCase();
         String lastName = stringInput("Enter last name").toUpperCase();
-        char gender = charInput("Enter gender (M/F/E(EXIT)");
+        char gender = charInput("Enter gender (M/F/E(EXIT))");
         int age = intInput("Enter age");
         String emergencyContact = stringInput("Enter emergency contact number");
         int gradeLevel = intInput("Enter GradeLevel");

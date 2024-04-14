@@ -6,14 +6,14 @@ import java.util.List;
 public class Lesson {
 
     private static int lastId = 0;
-    private int id;
-    private String day;
-    private String time;
-    private int gradeLevel;
+    private final int id;
+    private final String day;
+    private final String time;
+    private final int gradeLevel;
 
-    private Coach coach;
-    private List<Learner> learners;
-    private int maxLearners;
+    private final Coach coach;
+    private final List<Learner> learners;
+    private final int maxLearners;
 
     public Lesson(String day, String time, int gradeLevel, Coach coach) {
         this.id = ++lastId;
@@ -29,53 +29,21 @@ public class Lesson {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
     public String getDay() {
         return day;
-    }
-
-    public void setDay(String day) {
-        this.day = day;
     }
 
     public String getTime() {
         return time;
     }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
     public int getGradeLevel() {
         return gradeLevel;
     }
-
-    public void setGradeLevel(int gradeLevel) {
-        this.gradeLevel = gradeLevel;
-    }
-
     public Coach getCoach() {
         return coach;
     }
-
-    public void setCoach(Coach coach) {
-        this.coach = coach;
-    }
-
     public List<Learner> getLearners() {
         return learners;
-    }
-
-    @Override
-    public String toString() {
-        return "Lesson{" +
-                "day='" + day + '\'' +
-                ", time='" + time + '\'' +
-                ", gradeLevel='" + gradeLevel + '\'' +
-                ", coach=" + coach.name() +
-                '}';
     }
 
     public void addLearner(Learner learner) {
@@ -85,10 +53,8 @@ public class Lesson {
             System.out.println("Lesson is full. Cannot add more learners.");
         }
     }
-
-    public boolean removeLearner(Learner learner) {
-
-        return learners.remove(learner);
+    public void removeLearner(Learner learner) {
+        learners.remove(learner);
     }
 
     public boolean isLearnerEnrolled(Learner learner) {

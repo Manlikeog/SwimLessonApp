@@ -73,14 +73,6 @@ public class LearnerRepository {
                 Objects.equals(learner.getFirstName(), newlearner.getFirstName()) &&
                         Objects.equals(learner.getLastName(), newlearner.getLastName()));
     }
-    public void printRegisteredLearners() {
-        System.out.println("Registered Learners:");
-        listOfLearners.forEach(learner -> System.out.println("User ID: " + learner.getUserId() +
-                ", Name: " + learner.getFirstName() + " " + learner.getLastName() +
-                ", Gender: " + learner.getGender() +
-                ", Age: " + learner.getAge() +
-                ", Emergency Contact Number: " + learner.getEmergencyContact()));
-    }
 
     public Learner existingLearner(String firstname, String lastname) {
         Learner isExistingLearner = getLearnerByName(firstname, lastname);
