@@ -7,12 +7,12 @@ public class Learner {
     private  int userId;
     private String firstName;
     private String lastName;
-    private String gender;
+    private char gender;
     private int age;
     private String emergencyContact;
     private int currentGradeLevel;
 
-    public Learner(String firstName, String lastName, String gender, int age, String emergencyContact, int currentGradeLevel) {
+    public Learner(String firstName, String lastName, char gender, int age, String emergencyContact, int currentGradeLevel) {
         this.userId = ++lastId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -47,11 +47,11 @@ public class Learner {
         this.lastName = lastName;
     }
 
-    public String getGender() {
+    public char getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(char gender) {
         this.gender = gender;
     }
 

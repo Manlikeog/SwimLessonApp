@@ -1,9 +1,6 @@
 package swimlessonapp.model;
 
-import java.util.List;
-
 public class Book {
-
     private static int lastId = 0;
     private Learner learner;
     private Lesson lesson;
@@ -11,7 +8,16 @@ public class Book {
     private String review;
     private int rating;
 
-    private int id;
+    public int getMonth() {
+        return month;
+    }
+
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+    private int month;
+    private final int id;
 
     public Book(Learner learner, Lesson lesson) {
         this.learner = learner;
@@ -19,6 +25,7 @@ public class Book {
         this.status = "booked";
         this.review = "";
         this.rating = 0;
+        this.month = 2;
         this.id = ++lastId;
     }
 
@@ -26,9 +33,6 @@ public class Book {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
     public Learner getLearner() {
         return learner;
     }
@@ -51,10 +55,6 @@ public class Book {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public String getReview() {
-        return review;
     }
 
     public void setReview(String review) {

@@ -1,5 +1,6 @@
 package swimlessonapp.repository;
 
+import swimlessonapp.model.Book;
 import swimlessonapp.model.Coach;
 
 
@@ -26,7 +27,17 @@ public class CoachRepository {
         listOfCoaches.add(new Coach("Israel Soyombo"));
     }
 
-
+    public double calculateAverageRating(Coach coach, int month) {
+        int sum = 0;
+        int count = 0;
+        for (Book booking : coach.getBookings()) {
+            if (booking.getMonth() == month && booking.getStatus().equals("attended")) {
+                sum += booking.getRating();
+                count++;
+            }
+        }
+        return count == 0 ? 0 : (double) sum / count;
+    }
     public List<Coach> getAllCoaches() {
         return listOfCoaches;
     }

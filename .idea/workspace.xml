@@ -4,15 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da58d885-6f23-4c35-97e9-d4b6a05f8c99" name="Changes" comment="attend lesson functionality completed, cancel lesson functionality added">
+    <list default="true" id="da58d885-6f23-4c35-97e9-d4b6a05f8c99" name="Changes" comment="Report for coach and learner implemented">
+      <change afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/CoachReportController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/LearnerReportController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/swimlessonapp/view/ReportView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/Config.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/SwimLessonApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/SwimLessonApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/ActionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/ActionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/AttendController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/AttendController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/BookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/CancelBookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/CancelBookingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/EditBookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/EditBookingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/RegisterController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/TimeTableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/TimeTableController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/model/Learner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/model/Learner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/model/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/model/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/model/Coach.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/model/Coach.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/model/Lesson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/model/Lesson.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/repository/BookingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/repository/BookingRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/repository/CoachRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/repository/CoachRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/repository/LearnerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/repository/LearnerRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/view/AuthenticationView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/view/AuthenticationView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/repository/LessonRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/repository/LessonRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/view/MenuView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/view/MenuView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/view/TimeTableView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/view/TimeTableView.java" afterDir="false" />
     </list>
@@ -29,7 +41,18 @@
       </list>
     </option>
   </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="main" />
+  </component>
+  <component name="Git.Rebase.Settings">
+    <option name="NEW_BASE" value="version-1" />
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProblemsViewState">
@@ -45,23 +68,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.SwimLessonApp.executor": "Run",
-    "Application.SwimLessonSystem.executor": "Run",
-    "Application.Tester.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "version-1",
-    "jdk.selected.JAVA_MODULE": "21",
-    "kotlin-language-version-configured": "true",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.SwimLessonApp.executor&quot;: &quot;Run&quot;,
+    &quot;Application.SwimLessonSystem.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Tester.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;version-1&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;21&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/UML DIAGRAM" />
@@ -117,8 +140,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.SwimLessonApp" />
+        <item itemvalue="Application.Tester" />
         <item itemvalue="Application.SwimLessonSystem" />
         <item itemvalue="Application.Tester" />
+        <item itemvalue="Application.SwimLessonSystem" />
       </list>
     </recent_temporary>
   </component>
@@ -306,21 +331,60 @@
       <option name="project" value="LOCAL" />
       <updated>1712642615963</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="attend lesson functionality completed, cancel lesson functionality added">
+      <option name="closed" value="true" />
+      <created>1712692706951</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1712692706953</updated>
+    </task>
+    <task id="LOCAL-00023" summary="separate user from learner, identifying code bad smell, restructure the authentication flow">
+      <option name="closed" value="true" />
+      <created>1712715382102</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1712715382103</updated>
+    </task>
+    <task id="LOCAL-00024" summary="edit functionality added..">
+      <option name="closed" value="true" />
+      <created>1712857692254</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1712857692254</updated>
+    </task>
+    <task id="LOCAL-00025" summary="implemented oop..">
+      <option name="closed" value="true" />
+      <created>1713033240570</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1713033240570</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
-    <option name="COLUMN_ID_ORDER">
-      <list>
-        <option value="Default.Root" />
-        <option value="Default.Author" />
-        <option value="Default.Date" />
-        <option value="Default.Subject" />
-        <option value="Space.CommitStatus" />
-      </list>
-    </option>
+    <option name="SHOW_OTHER_BRANCHES" value="true" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="version-1" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -368,7 +432,11 @@
     <MESSAGE value="attend lesson functionality partially implemented" />
     <MESSAGE value="restructure booking and attending functionality" />
     <MESSAGE value="attend lesson functionality completed, cancel lesson functionality added" />
-    <option name="LAST_COMMIT_MESSAGE" value="attend lesson functionality completed, cancel lesson functionality added" />
+    <MESSAGE value="separate user from learner, identifying code bad smell, restructure the authentication flow" />
+    <MESSAGE value="edit functionality added.." />
+    <MESSAGE value="implemented oop.." />
+    <MESSAGE value="Report for coach and learner implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="Report for coach and learner implemented" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,22 +1,21 @@
 package swimlessonapp.controllers;
 
+import swimlessonapp.model.Book;
 import swimlessonapp.model.Coach;
 import swimlessonapp.model.Learner;
 import swimlessonapp.model.Lesson;
+import swimlessonapp.repository.BookingRepository;
 import swimlessonapp.repository.CoachRepository;
 import swimlessonapp.repository.LearnerRepository;
 import swimlessonapp.repository.LessonRepository;
-import swimlessonapp.view.TimeTableView;
 
 import java.util.*;
-
-import static swimlessonapp.Config.*;
 
 public class TimeTableController {
     LearnerRepository learnerRepository = LearnerRepository.getInstance();
     CoachRepository coachRepository = CoachRepository.getInstance();
     LessonRepository lessonRepository = LessonRepository.getInstance();
-    TimeTableView view = new TimeTableView();
+    BookingRepository bookingRepository = BookingRepository.getInstance();
 
     public void generateWeekTimetable() {
         List<Lesson> lessons = new ArrayList<>();
@@ -24,11 +23,18 @@ public class TimeTableController {
 
         Map<String, Integer> lessonsScheduledPerDay = initializeLessonsScheduledPerDay();
 
-        generateLessons(lessons, timeSlots, lessonsScheduledPerDay);
 
-        lessonRepository.setListOfLesson(lessons);
+        for (int week = 1; week <= 8; week++) {
+            generateLessons(lessons, timeSlots, lessonsScheduledPerDay);
+            if (week == 8) {
+                lessonRepository.setListOfLesson(lessons);
+            } else {
+                simulateLearnerStatuses(week);
 
+            }
+        }
     }
+
 
     private Map<String, String[]> createTimeSlots() {
         Map<String, String[]> timeSlots = new HashMap<>();
@@ -75,6 +81,22 @@ public class TimeTableController {
                 lessonsScheduledPerDay.put("Saturday", lessonsScheduledPerDay.get("Saturday") + 1);
             }
         }
+
+        for (Coach coach : coaches) {
+            List<Book> coachBookings = new ArrayList<>();
+            for (Lesson lesson : lessons) {
+                if (lesson.getCoach().equals(coach)) {
+                    for (Learner learner : lesson.getLearners()) {
+                        for (Book booking : bookingRepository.getAllBookings()) {
+                            if (booking.getLearner().equals(learner) && booking.getLesson().equals(lesson)) {
+                                coachBookings.add(booking);
+                            }
+                        }
+                    }
+                }
+            }
+            coach.setBookings(coachBookings);
+        }
     }
 
     private boolean isGradeLevelScheduled(List<Lesson> lessons, String day, int gradeLevel) {
@@ -91,6 +113,8 @@ public class TimeTableController {
             if (learner.getCurrentGradeLevel() == gradeLevel || learner.getCurrentGradeLevel() == gradeLevel - 1) {
                 if (lesson.isLearnerEnrolled(learner)) {
                     lesson.addLearner(learner);
+                    Book booking = new Book(learner, lesson);
+                    bookingRepository.addBooking(booking);
                     initialLearners--;
                     if (initialLearners == 0) {
                         break;
@@ -102,41 +126,38 @@ public class TimeTableController {
         return lesson;
     }
 
-    public boolean viewTimeTable() {
-        if (lessonRepository.getListOfLesson().isEmpty()) {
-            generateWeekTimetable();
-            viewTimeTable();
-        } else {
-            printTimeTable();
-            return true;
-        }
-        return false;
-    }
+    private void simulateLearnerStatuses(int week) {
+        Random random = new Random();
+        List<Book> availableBooking = bookingRepository.getAllBookings();
+        for (Book book : availableBooking) {
+            int randomNumber = random.nextInt(10);
+            int randomMonth = random.nextInt(1, 3);
+            int randomRating = random.nextInt(1, 6);
 
-    public void printTimeTable() {
-        List<Lesson> lessons = lessonRepository.getListOfLesson();
-        stringOutput("""
-                Select an option to view the timetable:
-                1. View timetable for a specific day
-                2. View timetable for a specific grade level
-                3. View timetable for a specific coach
-                """);
+                if (randomNumber < 6) { // 60% chance of booking
+                    if(!Objects.equals(book.getStatus(), "attended") && !Objects.equals(book.getStatus(), "canceled")){
+                        book.setStatus("booked");
+                        book.setMonth(randomMonth);
+                    }
+                } else if (randomNumber < 9) { // 30% chance of attending the lesson
+                    if (book.getLesson().getGradeLevel() <= book.getLearner().getCurrentGradeLevel() && !Objects.equals(book.getStatus(), "canceled")){
+                        if(week < 8){
+                            book.setStatus("attended");
+                            book.setMonth(randomMonth);
+                            book.setRating(randomRating);
+                        }
+                    }
+                } else { // 10% chance of canceling the lesson
+                    if(!Objects.equals(book.getStatus(), "attended") && !Objects.equals(book.getStatus(), "canceled")){
+                        if(week < 8){
+                            book.setStatus("canceled");
+                            book.setMonth(randomMonth);
+                        }
 
-        int choice = intInput("Enter your choice: ");
-        switch (choice) {
-            case 1:
-                view.viewTimeTableByCriteria("Enter the day (e.g., Monday): ", Lesson::getDay, lessons);
-                break;
-            case 2:
-                view.viewTimeTableByCriteria("Enter the grade level: ", Lesson::getGradeLevel, lessons);
-                break;
-            case 3:
-                view.viewTimeTableByCriteria("Enter the coach's name: ", lesson -> lesson.getCoach().name(), lessons);
-                break;
-            default:
-                stringOutput("Invalid choice!");
+                    }
+                }
+
         }
     }
-
 
 }
