@@ -22,7 +22,7 @@ public class TimeTableView {
             stringOutput("There is no available lesson for " + userInput + " this week");
             return false;
         } else {
-           viewLessons(prompt.substring(6), filteredLessons); // Displaying based on the provided criteria
+            viewLessons(prompt.substring(6), filteredLessons); // Displaying based on the provided criteria
         }
         return true;
     }
@@ -37,7 +37,7 @@ public class TimeTableView {
     }
 
     public void printLessons(String title, List<Lesson> lessons) {
-       stringOutput("Available Lessons for " + title + ":");
+        stringOutput("Available Lessons for " + title + ":");
 
         lessons.sort(Comparator.comparing(lesson -> Arrays.asList("Monday", "Wednesday", "Friday", "Saturday").indexOf(lesson.getDay())));
 
@@ -67,16 +67,24 @@ public class TimeTableView {
 
     public void displayBookings(List<Book> bookings) {
         stringOutput("Available Bookings:");
-        System.out.printf("%-12s%-15s%-10s%-20s%-20s%-10s%-10s%-10s%-10s%n",
-                "BookingID", "User", "Day", "Time", "Coach", "Month", "Grade", "Status",  "Rating");
+        int currentWeek = -1;
+
         for (Book book : bookings) {
-            System.out.printf("%-12s%-15s%-10s%-20s%-20s%-10s%-10s%-10s%-10s%n",
+            if(book.getWeek() != currentWeek){
+                // New week encountered, display week header
+                System.out.println("Booking for Week " + book.getWeek() + ":");
+                System.out.printf("%-12s%-15s%-10s%-20s%-15s%-20s%-10s%-10s%-10s%n",
+                        "BookingID", "User", "Day", "Time","Week/Month", "Coach",  "Grade", "Status", "Rating");
+
+                currentWeek = book.getWeek();
+            }
+            System.out.printf("%-12s%-15s%-10s%-20s%-15s%-20s%-10s%-10s%-10s%n",
                     book.getId(),
                     book.getLearner().getFirstName() + " " + book.getLearner().getLastName(),
                     book.getLesson().getDay(),
                     book.getLesson().getTime(),
+                    book.getWeek() + "/" + book.getMonth(),
                     book.getLesson().getCoach().getName(),
-                    book.getMonth(),
                     book.getLesson().getGradeLevel(),
                     book.getStatus(),
                     book.getRating());
@@ -96,8 +104,7 @@ public class TimeTableView {
         return switch (choice) {
             case 1 -> viewTimeTableByCriteria("Enter the day (e.g., Monday)", Lesson::getDay, lessons);
             case 2 -> viewTimeTableByCriteria("Enter the grade level", Lesson::getGradeLevel, lessons);
-            case 3 ->
-                    viewTimeTableByCriteria("Enter the coach's name", lesson -> lesson.getCoach().getName(), lessons);
+            case 3 -> viewTimeTableByCriteria("Enter the coach's name", lesson -> lesson.getCoach().getName(), lessons);
             default -> {
                 stringOutput("Invalid choice!");
                 yield false;

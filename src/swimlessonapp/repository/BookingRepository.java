@@ -2,6 +2,7 @@ package swimlessonapp.repository;
 
 import swimlessonapp.model.Book;
 import swimlessonapp.model.Learner;
+import swimlessonapp.model.Lesson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,5 +54,15 @@ public class BookingRepository {
             }
         }
         return learnerBookings;
+    }
+
+    public List<Book> getBookingsForLesson(Lesson lesson) {
+        List<Book> lessonBookinga = new ArrayList<>();
+        for (Book book : availableBookings) {
+            if (book.getLesson().equals(lesson)) {
+                lessonBookinga.add(book);
+            }
+        }
+        return  lessonBookinga;
     }
 }

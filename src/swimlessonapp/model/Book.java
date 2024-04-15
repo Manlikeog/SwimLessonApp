@@ -6,6 +6,7 @@ public class Book {
     private Lesson lesson;
     private String status;
     private String review;
+    private int week;
     private int rating;
 
     public int getMonth() {
@@ -26,6 +27,7 @@ public class Book {
         this.review = "";
         this.rating = 0;
         this.month = 2;
+        this.week = 4;
         this.id = ++lastId;
     }
 
@@ -60,7 +62,13 @@ public class Book {
     public void setReview(String review) {
         this.review = review;
     }
+    public int getWeek() {
+        return week;
+    }
 
+    public void setWeek(int week) {
+        this.week = week;
+    }
     public int getRating() {
         return rating;
     }

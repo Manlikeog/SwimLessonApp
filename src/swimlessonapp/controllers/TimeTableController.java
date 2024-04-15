@@ -12,28 +12,37 @@ import swimlessonapp.repository.LessonRepository;
 import java.util.*;
 
 public class TimeTableController {
-    LearnerRepository learnerRepository = LearnerRepository.getInstance();
-    CoachRepository coachRepository = CoachRepository.getInstance();
-    LessonRepository lessonRepository = LessonRepository.getInstance();
-    BookingRepository bookingRepository = BookingRepository.getInstance();
+    private final LearnerRepository learnerRepository = LearnerRepository.getInstance();
+    private final CoachRepository coachRepository = CoachRepository.getInstance();
+    private final LessonRepository lessonRepository = LessonRepository.getInstance();
+    private final BookingRepository bookingRepository = BookingRepository.getInstance();
+
+    private static final int WEEKS_IN_SEMESTER = 4;
+    private static final int MAX_LESSONS_PER_DAY = 3;
+    private static final int MAX_LESSONS_ON_SATURDAY = 2;
+    private static final int MIN_GRADE_LEVEL = 1;
+    private static final int MAX_GRADE_LEVEL = 5;
 
     public void generateWeekTimetable() {
         List<Lesson> lessons = new ArrayList<>();
         Map<String, String[]> timeSlots = createTimeSlots();
+        Random random = new Random();
 
-        Map<String, Integer> lessonsScheduledPerDay = initializeLessonsScheduledPerDay();
-
-
-        for (int week = 1; week <= 8; week++) {
-            generateLessons(lessons, timeSlots, lessonsScheduledPerDay);
-            if (week == 8) {
-                lessonRepository.setListOfLesson(lessons);
-            } else {
-                simulateLearnerStatuses(week);
-
+        for (int week = 1; week <= WEEKS_IN_SEMESTER; week++) {
+            Map<String, Integer> lessonsScheduledPerDay = initializeLessonsScheduledPerDay(); // Initialize lessons scheduled per day for each week
+            List<Lesson> generatedLessons = generateLessons(timeSlots, lessonsScheduledPerDay, random, week);
+            lessons.addAll(generatedLessons);
+            if (week < WEEKS_IN_SEMESTER) {
+                markPreviousBookings(generatedLessons, random, week); // Mark previous bookings for all generated lessons except for the last week
             }
+
+
+            // Add generated lessons to the main list
         }
+
+        lessonRepository.setListOfLesson(lessons); // Set the list of lessons to the repository after generating lessons for all weeks
     }
+
 
 
     private Map<String, String[]> createTimeSlots() {
@@ -54,49 +63,50 @@ public class TimeTableController {
         return lessonsScheduledPerDay;
     }
 
-    private void generateLessons(List<Lesson> lessons, Map<String, String[]> timeSlots, Map<String, Integer> lessonsScheduledPerDay) {
+    private List<Lesson> generateLessons( Map<String, String[]> timeSlots, Map<String, Integer> lessonsScheduledPerDay, Random random, int week) {
+        List<Lesson> lessons = new ArrayList<>();
         List<Coach> coaches = coachRepository.getAllCoaches();
-        Random random = new Random();
-
         for (String day : new String[]{"Monday", "Wednesday", "Friday"}) {
-            while (lessonsScheduledPerDay.get(day) < 3) {
+            while (lessonsScheduledPerDay.get(day) < MAX_LESSONS_PER_DAY) {
                 String time = timeSlots.get(day)[lessonsScheduledPerDay.get(day)];
                 Coach coach = coaches.get(random.nextInt(coaches.size()));
-                int gradeLevel = random.nextInt(5) + 1;
+                int gradeLevel = random.nextInt(MAX_GRADE_LEVEL - MIN_GRADE_LEVEL + 1) + MIN_GRADE_LEVEL;
                 if (isGradeLevelScheduled(lessons, day, gradeLevel)) {
-                    Lesson lesson = createLesson(day, time, gradeLevel, coach, random);
+                    Lesson lesson = createLesson(day, time, gradeLevel, coach, random, week);
                     lessons.add(lesson);
                     lessonsScheduledPerDay.put(day, lessonsScheduledPerDay.get(day) + 1);
+
                 }
             }
         }
 
-        while (lessonsScheduledPerDay.get("Saturday") < 2) {
+        while (lessonsScheduledPerDay.get("Saturday") < MAX_LESSONS_ON_SATURDAY) {
             String time = timeSlots.get("Saturday")[lessonsScheduledPerDay.get("Saturday")];
             Coach coach = coaches.get(random.nextInt(coaches.size()));
-            int gradeLevel = random.nextInt(4) + 1;
+            int gradeLevel = random.nextInt(MAX_GRADE_LEVEL - MIN_GRADE_LEVEL) + MIN_GRADE_LEVEL;
             if (isGradeLevelScheduled(lessons, "Saturday", gradeLevel)) {
-                Lesson lesson = createLesson("Saturday", time, gradeLevel, coach, random);
+                Lesson lesson = createLesson("Saturday", time, gradeLevel, coach, random, week);
                 lessons.add(lesson);
                 lessonsScheduledPerDay.put("Saturday", lessonsScheduledPerDay.get("Saturday") + 1);
             }
         }
 
-        for (Coach coach : coaches) {
-            List<Book> coachBookings = new ArrayList<>();
-            for (Lesson lesson : lessons) {
-                if (lesson.getCoach().equals(coach)) {
-                    for (Learner learner : lesson.getLearners()) {
-                        for (Book booking : bookingRepository.getAllBookings()) {
-                            if (booking.getLearner().equals(learner) && booking.getLesson().equals(lesson)) {
-                                coachBookings.add(booking);
-                            }
-                        }
-                    }
-                }
-            }
-            coach.setBookings(coachBookings);
-        }
+//        for (Coach coach : coaches) {
+//            List<Book> coachBookings = new ArrayList<>();
+//            for (Lesson lesson : lessons) {
+//                if (lesson.getCoach().equals(coach)) {
+//                    for (Learner learner : lesson.getLearners()) {
+//                        for (Book booking : bookingRepository.getAllBookings()) {
+//                            if (booking.getLearner().equals(learner) && booking.getLesson().equals(lesson)) {
+//                                coachBookings.add(booking);
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//            coach.setBookings(coachBookings);
+//        }
+        return lessons;
     }
 
     private boolean isGradeLevelScheduled(List<Lesson> lessons, String day, int gradeLevel) {
@@ -104,9 +114,9 @@ public class TimeTableController {
                 .noneMatch(lesson -> lesson.getDay().equals(day) && lesson.getGradeLevel() == gradeLevel);
     }
 
-    private Lesson createLesson(String day, String time, int gradeLevel, Coach coach, Random random) {
+    private Lesson createLesson(String day, String time, int gradeLevel, Coach coach, Random random, int week) {
         List<Learner> learners = learnerRepository.getAllLearners();
-        Lesson lesson = new Lesson(day, time, gradeLevel, coach);
+        Lesson lesson = new Lesson(day, time, gradeLevel, coach, week);
         int initialLearners = random.nextInt(3) + 1;
         Collections.shuffle(learners);
         for (Learner learner : learners) {
@@ -122,42 +132,33 @@ public class TimeTableController {
                 }
             }
         }
-
         return lesson;
     }
 
-    private void simulateLearnerStatuses(int week) {
-        Random random = new Random();
-        List<Book> availableBooking = bookingRepository.getAllBookings();
-        for (Book book : availableBooking) {
-            int randomNumber = random.nextInt(10);
-            int randomMonth = random.nextInt(1, 3);
-            int randomRating = random.nextInt(1, 6);
+    private void markPreviousBookings(List<Lesson> lessons, Random random, int week) {
+        for (Lesson lesson : lessons) {
+            // Get all bookings for this lesson
+            List<Book> bookings = bookingRepository.getBookingsForLesson(lesson);
 
-                if (randomNumber < 6) { // 60% chance of booking
-                    if(!Objects.equals(book.getStatus(), "attended") && !Objects.equals(book.getStatus(), "canceled")){
-                        book.setStatus("booked");
-                        book.setMonth(randomMonth);
+            // Randomly mark bookings as attended or canceled
+            for (Book booking : bookings) {
+                booking.setWeek(week);
+                booking.setMonth(week > WEEKS_IN_SEMESTER / 2 ? 2 : 1);
+                boolean isAttended = random.nextBoolean();
+                // Randomly determine if booking is attended
+                if (isAttended) {
+                    if (booking.getLearner().getCurrentGradeLevel() == booking.getLesson().getGradeLevel()){
+                        // Adding rating for coach after the lesson is booked
+                        int rating = random.nextInt(5) + 1;
+                        booking.setStatus("attended");
+                        booking.setRating(rating);
+                        coachRepository.addRatingForCoach(booking.getLesson().getCoach(), rating);
+                        booking.setReview("Good");
                     }
-                } else if (randomNumber < 9) { // 30% chance of attending the lesson
-                    if (book.getLesson().getGradeLevel() <= book.getLearner().getCurrentGradeLevel() && !Objects.equals(book.getStatus(), "canceled")){
-                        if(week < 8){
-                            book.setStatus("attended");
-                            book.setMonth(randomMonth);
-                            book.setRating(randomRating);
-                        }
-                    }
-                } else { // 10% chance of canceling the lesson
-                    if(!Objects.equals(book.getStatus(), "attended") && !Objects.equals(book.getStatus(), "canceled")){
-                        if(week < 8){
-                            book.setStatus("canceled");
-                            book.setMonth(randomMonth);
-                        }
-
-                    }
+                } else {
+                   booking.setStatus("canceled");
                 }
-
+            }
         }
     }
-
 }

@@ -37,13 +37,13 @@ public class LearnerRepository {
         listOfLearners.add(new Learner("SARAH", "MILLER", 'F', 8, "5678901234", 2));
         listOfLearners.add(new Learner("JACOB", "LEE", 'M', 7, "6789012345", 3));
         listOfLearners.add(new Learner("GRACE", "TAYLOR", 'F', 9, "7890123456", 4));
-        listOfLearners.add(new Learner("ETHAN", "CLARK", 'M', 6, "8901234567", 5));
-        listOfLearners.add(new Learner("LILY", "RODRIGUEZ", 'F', 8, "9012345678", 1));
-        listOfLearners.add(new Learner("NOAH", "HERNANDEZ", 'M', 7, "0123456789", 2));
-        listOfLearners.add(new Learner("AVA", "MARTINEZ", 'F', 9, "1357902468", 3));
-        listOfLearners.add(new Learner("LOGAN", "GONZALEZ", 'M', 6, "2468013579", 4));
-        listOfLearners.add(new Learner("CHLOE", "PEREZ", 'F', 8, "3579124680", 5));
-        listOfLearners.add(new Learner("MASON", "RAMIREZ", 'M', 7, "4680235791", 1));
+//        listOfLearners.add(new Learner("ETHAN", "CLARK", 'M', 6, "8901234567", 5));
+//        listOfLearners.add(new Learner("LILY", "RODRIGUEZ", 'F', 8, "9012345678", 1));
+//        listOfLearners.add(new Learner("NOAH", "HERNANDEZ", 'M', 7, "0123456789", 2));
+//        listOfLearners.add(new Learner("AVA", "MARTINEZ", 'F', 9, "1357902468", 3));
+//        listOfLearners.add(new Learner("LOGAN", "GONZALEZ", 'M', 6, "2468013579", 4));
+//        listOfLearners.add(new Learner("CHLOE", "PEREZ", 'F', 8, "3579124680", 5));
+//        listOfLearners.add(new Learner("MASON", "RAMIREZ", 'M', 7, "4680235791", 1));
     }
 
 

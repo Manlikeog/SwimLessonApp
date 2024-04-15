@@ -1,6 +1,7 @@
 package swimlessonapp.view;
 
 import swimlessonapp.controllers.*;
+import swimlessonapp.model.Book;
 import swimlessonapp.model.Lesson;
 import swimlessonapp.repository.BookingRepository;
 import swimlessonapp.repository.CoachRepository;
@@ -23,7 +24,7 @@ public class MenuView {
     }
 
     public void attendLesson() {
-        AttendController attendLessonController = new AttendController(lessonController, timeTableView, learnerRepository, bookingRepository);
+        AttendController attendLessonController = new AttendController(lessonController, timeTableView, learnerRepository, coachRepository, bookingRepository);
         attendLessonController.performAction();
     }
 

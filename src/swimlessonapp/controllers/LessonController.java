@@ -5,6 +5,7 @@ import swimlessonapp.model.Learner;
 import swimlessonapp.model.Lesson;
 import swimlessonapp.repository.LessonRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static swimlessonapp.Config.*;
@@ -66,6 +67,13 @@ public class LessonController {
     }
 
     public List<Lesson> getAvailableLessons (){
-        return lessonRepository.getListOfLesson();
+        List<Lesson> lessons = lessonRepository.getListOfLesson();
+        List<Lesson> currentWeekLessons = new ArrayList<>();
+        for (Lesson lesson :   lessons){
+           if( lesson.getWeek() == 4){
+               currentWeekLessons.add(lesson);
+           }
+        }
+        return currentWeekLessons;
     }
 }

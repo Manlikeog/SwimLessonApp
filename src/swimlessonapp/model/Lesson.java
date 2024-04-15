@@ -9,13 +9,13 @@ public class Lesson {
     private final int id;
     private final String day;
     private final String time;
+    private final int week;
     private final int gradeLevel;
-
     private final Coach coach;
     private final List<Learner> learners;
     private final int maxLearners;
 
-    public Lesson(String day, String time, int gradeLevel, Coach coach) {
+    public Lesson(String day, String time, int gradeLevel, Coach coach, int week) {
         this.id = ++lastId;
         this.day = day;
         this.time = time;
@@ -23,6 +23,7 @@ public class Lesson {
         this.coach = coach;
         this.learners = new ArrayList<>();
         this.maxLearners = 4;
+        this.week = week;
     }
 
     public int getId() {
@@ -63,5 +64,9 @@ public class Lesson {
 
     public int getMaxLearners() {
         return maxLearners;
+    }
+
+    public int getWeek() {
+        return week;
     }
 }

@@ -22,8 +22,8 @@ public class LessonRepository {
     public  List<Lesson> getListOfLesson() {
         return listOfLesson;
     }
-    public  void setListOfLesson(List<Lesson> listOfLesson) {
-        LessonRepository.listOfLesson = listOfLesson;
+    public  void setListOfLesson(List<Lesson> listOfLkesson) {
+        listOfLesson.addAll(listOfLkesson);
     }
 
     public Lesson getLessonById(int lessonId) {

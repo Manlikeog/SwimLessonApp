@@ -4,6 +4,7 @@ import swimlessonapp.model.Book;
 import swimlessonapp.model.Learner;
 import swimlessonapp.model.Lesson;
 import swimlessonapp.repository.BookingRepository;
+import swimlessonapp.repository.CoachRepository;
 import swimlessonapp.repository.LearnerRepository;
 import swimlessonapp.view.TimeTableView;
 
@@ -11,10 +12,12 @@ import java.util.Scanner;
 
 public class AttendController extends ActionController {
     private final LessonController lessonController;
+    private final CoachRepository coachRepository;
 
-    public AttendController(LessonController lessonController,TimeTableView timeTableView, LearnerRepository learnerRepository, BookingRepository bookingRepository) {
-        super(bookingRepository, timeTableView, lessonController, learnerRepository, null, null);
+    public AttendController(LessonController lessonController,TimeTableView timeTableView, LearnerRepository learnerRepository, CoachRepository coachRepository, BookingRepository bookingRepository) {
+        super(bookingRepository, timeTableView, lessonController, learnerRepository, coachRepository, null);
         this.lessonController = lessonController;
+        this.coachRepository =coachRepository;
     }
 
     @Override
@@ -25,13 +28,13 @@ public class AttendController extends ActionController {
             if (canPerformAction(selectedBook)) {
                 Lesson lesson = selectedBook.getLesson();
                 if (lessonController.checkGradeLevel(user, lesson)) {
+                    provideReviewAndRating(selectedBook);
                     System.out.println("You have attended Lesson for Grade " + lesson.getGradeLevel() + " on " + lesson.getDay() + " at " + lesson.getTime());
                     if (lesson.getGradeLevel() > user.getCurrentGradeLevel()) {
                         user.setCurrentGradeLevel(lesson.getGradeLevel());
                         System.out.println("You have been promoted to Grade " + user.getCurrentGradeLevel());
                     }
                     selectedBook.setStatus("attended");
-                    provideReviewAndRating(selectedBook);
                 } else {
                     System.out.println("Can't attend Grade Lesson as your grade doesn't match the lesson requirements grade");
                 }
@@ -53,5 +56,6 @@ public class AttendController extends ActionController {
         // You can save the review and rating to the booking or any other appropriate data structure
         selectedBook.setReview(review);
         selectedBook.setRating(rating);
+        coachRepository.addRatingForCoach(selectedBook.getLesson().getCoach(), rating);
     }
 }
