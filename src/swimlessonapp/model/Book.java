@@ -33,7 +33,7 @@ public class Book {
         this.rating = 0;
         this.month = 2;
         this.week = 4;
-        this.id = ++lastId;
+        setId(++lastId);
     }
 
     public int getId() {

@@ -6,7 +6,12 @@ import java.util.List;
 public class Lesson {
 
     private static int lastId = 0;
-    private final int id;
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    private  int id;
     private final String day;
     private final String time;
     private final int week;
@@ -16,7 +21,7 @@ public class Lesson {
     private final int maxLearners;
 
     public Lesson(String day, String time, int gradeLevel, Coach coach, int week) {
-        this.id = ++lastId;
+        setId(++lastId);
         this.day = day;
         this.time = time;
         this.gradeLevel = gradeLevel;

@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 import static swimlessonapp.Config.*;
 
-public class TimeTableView {
+public class UserInteraction {
 
     public boolean viewTimeTableByCriteria(String prompt, Function<Lesson, ?> criteriaExtractor, List<Lesson> lessons) {
         String userInput = stringInput(prompt);

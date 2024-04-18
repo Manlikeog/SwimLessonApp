@@ -4,39 +4,37 @@ import swimlessonapp.model.Book;
 import swimlessonapp.model.Learner;
 import swimlessonapp.model.Lesson;
 import swimlessonapp.repository.BookingRepository;
+import swimlessonapp.repository.CoachRepository;
 import swimlessonapp.repository.LearnerRepository;
-import swimlessonapp.view.TimeTableView;
+import swimlessonapp.view.ReportView;
+import swimlessonapp.view.UserInteraction;
 
-import static swimlessonapp.Config.printResult;
+import static swimlessonapp.Config.*;
 
-public class BookController extends ActionController {
-
-    private final TimeTableView timeTableView;
-    private final LessonController lessonController;
-    private final BookingRepository bookingRepository;
-
-    public BookController(BookingRepository bookingRepository, TimeTableView timeTableView, LessonController lessonController, LearnerRepository learnerRepository) {
-        super(bookingRepository, timeTableView, lessonController, learnerRepository, null, null);
-        this.bookingRepository = bookingRepository;
-        this.lessonController = lessonController;
-        this.timeTableView = timeTableView;
+public class BookController extends BaseController {
+    public BookController(BookingRepository bookingRepository, LearnerRepository learnerRepository,
+                          CoachRepository coachRepository, ReportView reportView, UserInteraction userInteraction,
+                          LessonController lessonController) {
+        super(bookingRepository, learnerRepository, coachRepository, reportView, userInteraction, lessonController);
     }
 
     @Override
     public void performAction() {
         Learner user = getUser();
-        timeTableView.printTimeTable(lessonController.getAvailableLessons());
-        Lesson selectedLesson = selectLesson();
-        if (lessonController.checkGradeLevel(user, selectedLesson)) {
-            if (lessonController.addLearnerToLesson(user, selectedLesson)) {
-                Book newBooking = new Book(user, selectedLesson);
-                bookingRepository.addBooking(newBooking);
+        userInteraction.printTimeTable(lessonController.getAvailableLessons());
+        int lessonIndex = intInput(promptAndGetLessonId());
+        Lesson selectedLesson = selectLesson(lessonIndex);
+        if(selectedLesson != null){
+            if (lessonController.checkGradeLevel(user, selectedLesson)) {
+                if (lessonController.addLearnerToLesson(user, selectedLesson)) {
+                    Book newBooking = new Book(user, selectedLesson);
+                    bookingRepository.addBooking(newBooking);
+                }
+            } else {
+                printResult(false,"Can't attend Grade Lesson as your grade doesn't match the lesson grade");
+
             }
-        } else {
-            printResult(false,"Can't attend Grade Lesson as your grade doesn't match the lesson grade");
-
         }
-
         redoAction("Book another Lesson");
     }
 

@@ -12,15 +12,7 @@ import static swimlessonapp.Config.*;
 
 
 public class LessonController {
-    private static LessonController instance;
-    LessonRepository lessonRepository = LessonRepository.getInstance();
-
-    public static LessonController getInstance() {
-        if (instance == null) {
-            instance = new LessonController();
-        }
-        return instance;
-    }
+    private final LessonRepository lessonRepository = LessonRepository.getInstance();
 
     public boolean addLearnerToLesson(Learner learner, Lesson lesson) {
         if (lesson.getLearners().size() < lesson.getMaxLearners()) {
@@ -28,11 +20,11 @@ public class LessonController {
                 lesson.addLearner(learner);
                 stringOutput(learner.getFirstName() + " added to lesson on " + lesson.getDay() + " at " + lesson.getTime());
             } else {
-                printResult(false,"Can't book lesson as learner has been enrolled in the lesson ");
+                printResult(false, "Can't book lesson as learner has been enrolled in the lesson ");
                 return false;
             }
         } else {
-           printResult(false,"The lesson is full. Cannot add more learners.");
+            printResult(false, "The lesson is full. Cannot add more learners.");
             return false;
         }
         return true;
@@ -44,7 +36,7 @@ public class LessonController {
             lesson.removeLearner(learner);
             stringOutput(learner.getFirstName() + " canceled the lesson on " + lesson.getDay() + " at " + lesson.getTime());
         } else {
-            printResult(false,"You are not booked for this lesson.");
+            printResult(false, "You are not booked for this lesson.");
             return false;
         }
         return true;
@@ -54,16 +46,12 @@ public class LessonController {
         return learner.getCurrentGradeLevel() == lesson.getGradeLevel() || learner.getCurrentGradeLevel() == lesson.getGradeLevel() - 1;
     }
 
-    public Lesson getLessonById(String text) {
-        int lessonIndex = intInput(text);
-        Lesson selectedLesson = lessonRepository.getLessonById(lessonIndex);
+    public Lesson getLessonById(int lessonID) {
+        Lesson selectedLesson = lessonRepository.getLessonById(lessonID);
         if (selectedLesson == null) {
-            printResult(false,"Invalid lesson index!");
-            return getLessonById(text);
-        } else {
-            return selectedLesson;
+            printResult(false, "Invalid lesson id!");
         }
-
+        return selectedLesson;
     }
 
     public List<Lesson> getAvailableLessons() {

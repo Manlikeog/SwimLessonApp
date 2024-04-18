@@ -8,52 +8,56 @@ import swimlessonapp.repository.LearnerRepository;
 
 import java.util.List;
 
+import static swimlessonapp.Config.intInput;
+
 public class MenuView {
 
     private final BookingRepository bookingRepository = BookingRepository.getInstance();
     private final LearnerRepository learnerRepository =LearnerRepository.getInstance();
-    private final TimeTableView timeTableView = new TimeTableView();
-    private final LessonController lessonController = LessonController.getInstance();
+    private final UserInteraction userInteraction = new UserInteraction();
+    private final LessonController lessonController = new  LessonController();
     private final ReportView reportView = new ReportView();
     private final CoachRepository coachRepository = CoachRepository.getInstance();
 
     public void bookLesson() {
-        ActionController bookLessonController = new BookController(bookingRepository, timeTableView, lessonController, learnerRepository);
+        BaseController bookLessonController = new BookController(bookingRepository,learnerRepository,  coachRepository,reportView, userInteraction,   lessonController);
         bookLessonController.performAction();
     }
 
     public void attendLesson() {
-        AttendController attendLessonController = new AttendController(lessonController, timeTableView, learnerRepository, coachRepository, bookingRepository);
+        AttendController attendLessonController = new AttendController(bookingRepository,learnerRepository,  coachRepository,reportView, userInteraction,   lessonController);
         attendLessonController.performAction();
     }
 
     public void cancelOrChangeBooking() {
-        ActionController cancelBookingController = new CancelBookingController(bookingRepository, timeTableView, lessonController, learnerRepository);
+        BaseController cancelBookingController = new CancelBookingController(bookingRepository,learnerRepository,  coachRepository,reportView, userInteraction,   lessonController);
         cancelBookingController.performAction();
     }
 
     public void editBooking() {
-        ActionController editBookingController = new EditBookingController(bookingRepository,  timeTableView, lessonController, learnerRepository);
+        BaseController editBookingController = new EditBookingController(bookingRepository,learnerRepository,  coachRepository,reportView, userInteraction,   lessonController);
         editBookingController.performAction();
     }
 
     public void registerUser(){
-        ActionController registerController = new RegisterController( learnerRepository, timeTableView);
+        BaseController registerController = new RegisterController( learnerRepository, userInteraction);
         registerController.performAction();
     }
 
     public  void viewTimeTable(){
         List<Lesson> weekTimeTable = lessonController.getAvailableLessons();
-        timeTableView.printLessons("This week", weekTimeTable);
+        userInteraction.printLessons("This week", weekTimeTable);
     }
 
     public void learnerReport(){
-        ActionController learnerReportController = new LearnerReportController(bookingRepository, learnerRepository, reportView);
-        learnerReportController.performAction();
+        int month = intInput("Enter month number (e.g., 03 for March)");
+        LearnerReportController learnerReportController = new LearnerReportController(bookingRepository, learnerRepository, reportView);
+        learnerReportController.generateMonthlyReport(month);
     }
 
     public void coachReport(){
-        ActionController coachReportController = new CoachReportController(coachRepository, reportView);
-        coachReportController.performAction();
+        int month = intInput("Enter month number (e.g., 03 for March)");
+        CoachReportController coachReportController = new CoachReportController(coachRepository, reportView);
+        coachReportController.generateMonthlyCoachReport(month);
     }
 }
