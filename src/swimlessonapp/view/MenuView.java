@@ -23,7 +23,7 @@ public class MenuView {
     }
 
     public void attendLesson() {
-        AttendController attendLessonController = new AttendController(lessonController, timeTableView, learnerRepository, bookingRepository);
+        AttendController attendLessonController = new AttendController(lessonController, timeTableView, learnerRepository, coachRepository, bookingRepository);
         attendLessonController.performAction();
     }
 
@@ -38,7 +38,7 @@ public class MenuView {
     }
 
     public void registerUser(){
-        ActionController registerController = new RegisterController( learnerRepository);
+        ActionController registerController = new RegisterController( learnerRepository, timeTableView);
         registerController.performAction();
     }
 

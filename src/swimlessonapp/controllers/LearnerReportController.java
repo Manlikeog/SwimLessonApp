@@ -8,7 +8,7 @@ import swimlessonapp.view.ReportView;
 
 import java.util.List;
 
-import static swimlessonapp.Config.intInput;
+import static swimlessonapp.Config.*;
 
 public class LearnerReportController extends ActionController {
 
@@ -37,13 +37,13 @@ public class LearnerReportController extends ActionController {
         for (Learner learner : learners) {
             List<Book> learnerBookings = bookingRepository.getLearnerBookingsByMonth(learner, month);
             displayLearnerInfo(learner);
-            if(learnerBookings.isEmpty()){
-                System.out.println("No bookings was made for month " + month);
+            if (learnerBookings.isEmpty()) {
+                printResult(false,"No bookings was made for month " + month);
             } else {
                 reportView.displayBookingsInfo(learnerBookings);
                 reportView.displayBookingSummary(learnerBookings);
             }
-            System.out.println(" ");
+            stringOutput(" ");
         }
     }
 

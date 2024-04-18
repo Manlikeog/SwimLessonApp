@@ -1,19 +1,18 @@
 package swimlessonapp.model;
 
-
 public class Learner {
 
-    private static int lastId = 20; // 20 pre-registered learners
-    private  int userId;
-    private String firstName;
-    private String lastName;
-    private char gender;
-    private int age;
-    private String emergencyContact;
+    private static int lastId = 0; // 15 pre-registered learners
+    private final int userId;
+    private final String firstName;
+    private final String lastName;
+    private final char gender;
+    private final int age;
+    private final String emergencyContact;
     private int currentGradeLevel;
 
-    public Learner(String firstName, String lastName, char gender, int age, String emergencyContact, int currentGradeLevel) {
-        this.userId = ++lastId;
+    public Learner(String firstName, String lastName, char gender, int age, String emergencyContact, int currentGradeLevel, int userId) {
+        this.userId =  ++lastId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -26,55 +25,24 @@ public class Learner {
     public int getUserId() {
         return userId;
     }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
     public String getFirstName() {
         return firstName;
     }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getLastName() {
         return lastName;
     }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public char getGender() {
         return gender;
     }
-
-    public void setGender(char gender) {
-        this.gender = gender;
-    }
-
     public int getAge() {
         return age;
     }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public String getEmergencyContact() {
         return emergencyContact;
     }
-
-    public void setEmergencyContact(String emergencyContact) {
-        this.emergencyContact = emergencyContact;
-    }
-
     public int getCurrentGradeLevel() {
         return currentGradeLevel;
     }
-
     public void setCurrentGradeLevel(int currentGradeLevel) {
         this.currentGradeLevel = currentGradeLevel;
     }

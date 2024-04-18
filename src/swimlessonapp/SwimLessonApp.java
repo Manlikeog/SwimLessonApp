@@ -49,7 +49,7 @@ public class SwimLessonApp {
                     System.exit(0);
                     break;
                 default:
-                    stringOutput("Invalid choice. Please try again.");
+                    printResult(false,"Invalid choice. Please try again.");
                     break;
             }
             continueApp = askToReturnToMainMenu();
@@ -83,7 +83,7 @@ public class SwimLessonApp {
         do {
             returnToMainMenu = charInput("\nWould you like to return to the main menu? (Y/N)");
             if (returnToMainMenu != 'Y' && returnToMainMenu != 'N') {
-                System.out.println("Invalid choice. Please try again.");
+                printResult(false,"Invalid choice. Please try again.");
             }
         } while (returnToMainMenu != 'Y' && returnToMainMenu != 'N');
         return returnToMainMenu == 'Y';

@@ -2,6 +2,7 @@ package swimlessonapp.controllers;
 
 import swimlessonapp.model.Learner;
 import swimlessonapp.repository.LearnerRepository;
+import swimlessonapp.view.TimeTableView;
 
 import static swimlessonapp.Config.*;
 
@@ -9,10 +10,12 @@ import static swimlessonapp.Config.*;
 public class RegisterController extends ActionController {
 
     private final LearnerRepository storedLearners;
+    private final TimeTableView timeTableView;
 
-    public RegisterController( LearnerRepository learnerRepository) {
-        super(null, null, null, learnerRepository, null, null);
+    public RegisterController(LearnerRepository learnerRepository, TimeTableView timeTableView) {
+        super(null, timeTableView, null, learnerRepository, null, null);
         this.storedLearners = learnerRepository;
+        this.timeTableView = timeTableView;
     }
 
     @Override
@@ -27,7 +30,7 @@ public class RegisterController extends ActionController {
     }
 
     public boolean checkEmergencyContact(Learner newLearner) {
-        return !newLearner.getEmergencyContact().matches("\\d{10}") || !newLearner.getEmergencyContact().matches("[0-9]+");
+        return !newLearner.getEmergencyContact().matches("\\d{11}") || !newLearner.getEmergencyContact().matches("[0-10]+");
     }
 
     private boolean checkGradeLevel(Learner newLearner) {
@@ -37,23 +40,24 @@ public class RegisterController extends ActionController {
 
     public void registerNewLearner(Learner newLearner) {
         if (!checkAge(newLearner)) {
-            stringOutput("Age must be between 4 and 11 years old.");
+            printResult(false,"Age must be between 4 and 11 years old.");
             return;
         }
         if (checkEmergencyContact(newLearner)) {
-            stringOutput("Invalid emergency contact number format. It must be a 11-digit number.");
+            printResult(false,"Invalid emergency contact number format. It must be a 11-digit number.");
             return;
         }
 
         if (!checkGradeLevel(newLearner)) {
-            stringOutput("Lesson must be between Grade Level. Grade level 1-5");
+            printResult(false,"Lesson must be between Grade Level. Grade level 1-5");
             return;
         }
         // Check if the learner already exists
         if (storedLearners.isLearnerRegistered(newLearner)) {
-            stringOutput("User Exists");
+            printResult(false,"User Exists");
         } else {
             storedLearners.addLearner(newLearner);
+            printResult(true,"Hi " + newLearner.getFirstName() + " " + newLearner.getLastName() + " you have been registered successfully");
         }
     }
 }

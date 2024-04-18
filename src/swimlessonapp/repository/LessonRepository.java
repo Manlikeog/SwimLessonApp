@@ -9,7 +9,7 @@ import java.util.Optional;
 
 
 public class LessonRepository {
-    private static List<Lesson> listOfLesson = new ArrayList<>();
+    private static final List<Lesson> LIST_OF_LESSON = new ArrayList<>();
     private static LessonRepository instance;
 
     public static LessonRepository getInstance() {
@@ -20,14 +20,14 @@ public class LessonRepository {
     }
 
     public  List<Lesson> getListOfLesson() {
-        return listOfLesson;
+        return LIST_OF_LESSON;
     }
     public  void setListOfLesson(List<Lesson> listOfLesson) {
-        LessonRepository.listOfLesson = listOfLesson;
+        LIST_OF_LESSON.addAll(listOfLesson);
     }
 
     public Lesson getLessonById(int lessonId) {
-        Optional<Lesson> optionalLesson = listOfLesson.stream()
+        Optional<Lesson> optionalLesson = LIST_OF_LESSON.stream()
                 .filter(lesson -> lesson.getId() == lessonId)
                 .findFirst();
         return optionalLesson.orElse(null);
