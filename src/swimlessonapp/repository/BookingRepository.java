@@ -22,10 +22,6 @@ public class BookingRepository {
     }
 
 
-    public List<Book> getAllBookings() {
-        return availableBookings;
-    }
-
     public  void addBooking(Book book) {
         availableBookings.add(book);
     }
@@ -57,12 +53,12 @@ public class BookingRepository {
     }
 
     public List<Book> getBookingsForLesson(Lesson lesson) {
-        List<Book> lessonBookinga = new ArrayList<>();
+        List<Book> lessonBookings = new ArrayList<>();
         for (Book book : availableBookings) {
             if (book.getLesson().equals(lesson)) {
-                lessonBookinga.add(book);
+                lessonBookings.add(book);
             }
         }
-        return  lessonBookinga;
+        return  lessonBookings;
     }
 }

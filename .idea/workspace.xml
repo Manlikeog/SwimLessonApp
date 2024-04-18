@@ -4,13 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da58d885-6f23-4c35-97e9-d4b6a05f8c99" name="Changes" comment="Report for coach and learner implemented">
+    <list default="true" id="da58d885-6f23-4c35-97e9-d4b6a05f8c99" name="Changes" comment="All functionality implemented!!!">
+      <change afterPath="$PROJECT_DIR$/test/swimlessonapp/controllers/ActionControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/swimlessonapp/controllers/LessonControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwimLessonApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SwimLessonApp.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/SwimLessonApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/SwimLessonApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/ActionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/ActionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/AttendController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/AttendController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/BookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/CancelBookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/CancelBookingController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/CoachReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/CoachReportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/EditBookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/EditBookingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/LearnerReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/LearnerReportController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/LessonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/LessonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/RegisterController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/TimeTableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/TimeTableController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/model/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/model/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/model/Coach.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/model/Coach.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/model/Learner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/model/Learner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/model/Lesson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/model/Lesson.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/repository/BookingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/repository/BookingRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/repository/CoachRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/repository/CoachRepository.java" afterDir="false" />
@@ -30,6 +43,7 @@
       <list>
         <option value="Enum" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -60,26 +74,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.SwimLessonApp.executor&quot;: &quot;Run&quot;,
-    &quot;Application.SwimLessonSystem.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Tester.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;version-1&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;21&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.SwimLessonApp.executor": "Run",
+    "Application.SwimLessonSystem.executor": "Run",
+    "Application.Tester.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.ActionControllerTest.executor": "Run",
+    "JUnit.ActionControllerTest.selectBook_ValidInput_ReturnsBook.executor": "Run",
+    "JUnit.LessonControllerTest.addLearnerToLesson_LearnerAdded_ReturnsTrue.executor": "Run",
+    "JUnit.LessonControllerTest.cancelLesson_LearnerCancelled_ReturnsTrue.executor": "Run",
+    "JUnit.LessonControllerTest.executor": "Run",
+    "JUnit.LessonControllerTest.getAvailableLessons_WeekFour_ReturnsList.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "create.test.in.the.same.root": "true",
+    "git-widget-placeholder": "version-1",
+    "jdk.selected.JAVA_MODULE": "21",
+    "kotlin-language-version-configured": "true",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/UML DIAGRAM" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="swimlessonapp.controllers" />
     </key>
   </component>
   <component name="RunManager" selected="Application.SwimLessonApp">
@@ -96,24 +130,65 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SwimLessonSystem" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="21" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="SwimLessonSystem" />
+    <configuration name="ActionControllerTest.selectBook_ValidInput_ReturnsBook" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="SwimLessonApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="swimlessonapp.controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="swimlessonapp.controllers" />
+      <option name="MAIN_CLASS_NAME" value="swimlessonapp.controllers.ActionControllerTest" />
+      <option name="METHOD_NAME" value="selectBook_ValidInput_ReturnsBook" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.stockitem.Tester" />
+    <configuration name="LessonControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="SwimLessonApp" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.stockitem.*" />
+          <option name="PATTERN" value="swimlessonapp.controllers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="swimlessonapp.controllers" />
+      <option name="MAIN_CLASS_NAME" value="swimlessonapp.controllers.LessonControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LessonControllerTest.addLearnerToLesson_LearnerAdded_ReturnsTrue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SwimLessonApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="swimlessonapp.controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="swimlessonapp.controllers" />
+      <option name="MAIN_CLASS_NAME" value="swimlessonapp.controllers.LessonControllerTest" />
+      <option name="METHOD_NAME" value="addLearnerToLesson_LearnerAdded_ReturnsTrue" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LessonControllerTest.cancelLesson_LearnerCancelled_ReturnsTrue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SwimLessonApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="swimlessonapp.controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="swimlessonapp.controllers" />
+      <option name="MAIN_CLASS_NAME" value="swimlessonapp.controllers.LessonControllerTest" />
+      <option name="METHOD_NAME" value="cancelLesson_LearnerCancelled_ReturnsTrue" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -132,10 +207,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.SwimLessonApp" />
-        <item itemvalue="Application.Tester" />
-        <item itemvalue="Application.SwimLessonSystem" />
-        <item itemvalue="Application.Tester" />
-        <item itemvalue="Application.SwimLessonSystem" />
+        <item itemvalue="JUnit.ActionControllerTest.selectBook_ValidInput_ReturnsBook" />
+        <item itemvalue="JUnit.LessonControllerTest.cancelLesson_LearnerCancelled_ReturnsTrue" />
+        <item itemvalue="JUnit.LessonControllerTest.addLearnerToLesson_LearnerAdded_ReturnsTrue" />
+        <item itemvalue="JUnit.LessonControllerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -363,7 +438,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713061270162</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="All functionality implemented!!!">
+      <option name="closed" value="true" />
+      <created>1713180453059</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1713180453059</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -436,7 +519,8 @@
     <MESSAGE value="edit functionality added.." />
     <MESSAGE value="implemented oop.." />
     <MESSAGE value="Report for coach and learner implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="Report for coach and learner implemented" />
+    <MESSAGE value="All functionality implemented!!!" />
+    <option name="LAST_COMMIT_MESSAGE" value="All functionality implemented!!!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -14,7 +14,7 @@ public class Config {
         try {
             return Integer.parseInt(input); // Attempt to parse the input as an integer
         } catch (NumberFormatException e) {
-            System.out.println("Invalid Entry!! Please enter a valid integer.");
+            printResult(false,"Invalid Entry!! Please enter a valid integer.");
             return intInput(displayText); // Prompt again for valid input
         }
     }
@@ -26,7 +26,7 @@ public class Config {
             System.exit(0); // Exiting the program
         }
         if (input.isEmpty()) {
-            System.out.println("Invalid Entry!! Try Again");
+            printResult(false,"Invalid Entry!! Try Again");
             return stringInput(displayText);
         }
         return input;
@@ -39,7 +39,7 @@ public class Config {
             System.exit(0); // Exiting the program
         }
         if (input.isEmpty()) {
-            System.out.println("Invalid Entry!! Try Again");
+            printResult(false,"Invalid Entry!! Try Again");
             return charInput(displayText);
         }
         return input.charAt(0);
@@ -49,30 +49,18 @@ public class Config {
         System.out.println("\n" + displayText);
     }
 
-//    public static int generateUserId() {
-//        Random random = new Random();
-//        int newUserId;
-//        boolean exists;
-//        do {
-//            exists = false;
-//            newUserId = random.nextInt(1000); // Generate a random integer as user ID
-//
-//            // Check if the generated ID already exists
-////            for (Learner learner : LearnerRepository.getAllLearners()) {
-////                if (learner.getUserId() == newUserId) {
-////                    exists = true;
-////                    break;
-////                }
-////            }
-//        } while (exists);
-//        return newUserId;
-//    }
     public static String promptAndGetLessonId() {
         return """ 
                 Select Lesson to book above!!
                 Input Lesson ID""";
     }
-
+    public static void printResult(boolean isGreen, String text) {
+        if (isGreen) {
+            System.out.println("\u001B[32m" + text + "\u001B[0m"); // Print text in green
+        } else {
+            System.out.println("\u001B[31m" + text + "\u001B[0m"); // Print text in red
+        }
+    }
     public static int promptAndGetBookingId() {
         return  intInput("""
                 To select lesson, Input ID""");

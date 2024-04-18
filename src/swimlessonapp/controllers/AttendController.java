@@ -8,35 +8,37 @@ import swimlessonapp.repository.CoachRepository;
 import swimlessonapp.repository.LearnerRepository;
 import swimlessonapp.view.TimeTableView;
 
-import java.util.Scanner;
+import static swimlessonapp.Config.*;
 
 public class AttendController extends ActionController {
     private final LessonController lessonController;
     private final CoachRepository coachRepository;
 
-    public AttendController(LessonController lessonController,TimeTableView timeTableView, LearnerRepository learnerRepository, CoachRepository coachRepository, BookingRepository bookingRepository) {
+    public AttendController(LessonController lessonController, TimeTableView timeTableView, LearnerRepository learnerRepository, CoachRepository coachRepository, BookingRepository bookingRepository) {
         super(bookingRepository, timeTableView, lessonController, learnerRepository, coachRepository, null);
         this.lessonController = lessonController;
-        this.coachRepository =coachRepository;
+        this.coachRepository = coachRepository;
     }
 
     @Override
     public void performAction() {
-      Learner  user = getUser();
+        Learner user = getUser();
         if (viewBookingsForLearner(user)) {
-            Book selectedBook = selectBook();
-            if (canPerformAction(selectedBook)) {
-                Lesson lesson = selectedBook.getLesson();
-                if (lessonController.checkGradeLevel(user, lesson)) {
-                    provideReviewAndRating(selectedBook);
-                    System.out.println("You have attended Lesson for Grade " + lesson.getGradeLevel() + " on " + lesson.getDay() + " at " + lesson.getTime());
-                    if (lesson.getGradeLevel() > user.getCurrentGradeLevel()) {
-                        user.setCurrentGradeLevel(lesson.getGradeLevel());
-                        System.out.println("You have been promoted to Grade " + user.getCurrentGradeLevel());
+            Book selectedBook = selectBook(inputBookingId());
+            if(selectedBook != null){
+                if (canPerformAction(selectedBook)) {
+                    Lesson lesson = selectedBook.getLesson();
+                    if (lessonController.checkGradeLevel(user, lesson)) {
+                        provideReviewAndRating(selectedBook);
+                        printResult(true,"You have attended Lesson for Grade " + lesson.getGradeLevel() + " on " + lesson.getDay() + " at " + lesson.getTime());
+                        if (lesson.getGradeLevel() > user.getCurrentGradeLevel()) {
+                            user.setCurrentGradeLevel(lesson.getGradeLevel());
+                            printResult(true,"You have been promoted to Grade " + user.getCurrentGradeLevel());
+                        }
+                        selectedBook.setStatus("attended");
+                    } else {
+                        printResult(false,"Can't attend Grade Lesson as your grade doesn't match the lesson requirements grade");
                     }
-                    selectedBook.setStatus("attended");
-                } else {
-                    System.out.println("Can't attend Grade Lesson as your grade doesn't match the lesson requirements grade");
                 }
             }
             redoAction("Attend another Lesson");
@@ -44,14 +46,11 @@ public class AttendController extends ActionController {
     }
 
     private void provideReviewAndRating(Book selectedBook) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please provide a review for the lesson:");
-        String review = scanner.nextLine();
+        String review = stringInput("Please provide a review for the lesson:");
         int rating;
-        do{
-            System.out.println("Please provide a numerical rating (1 to 5) for the coach:");
-          rating = scanner.nextInt();
-        } while (rating > 5 );
+        do {
+            rating = intInput("Please provide a numerical rating (1 to 5) for the coach:");
+        } while (rating > 5);
 
         // You can save the review and rating to the booking or any other appropriate data structure
         selectedBook.setReview(review);

@@ -6,7 +6,8 @@ import swimlessonapp.view.ReportView;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
+
+import static swimlessonapp.Config.intInput;
 
 public class CoachReportController extends ActionController {
     private final CoachRepository coachRepository;
@@ -20,9 +21,10 @@ public class CoachReportController extends ActionController {
 
     @Override
     public void performAction() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter month number (e.g., 03 for March): ");
-        int month = scanner.nextInt();
+        int month;
+        do{
+            month = intInput("Enter month number (e.g., 03 for March): ");
+        } while (month > 13);
         generateMonthlyCoachReport(month);
     }
 
@@ -30,8 +32,8 @@ public class CoachReportController extends ActionController {
         List<Coach> coaches = coachRepository.getAllCoaches();
         displayMonthlyReportHeader(month);
         for (Coach coach : coaches) {
-            Map<Integer, Integer> ratingCounts = coachRepository.getRatingCounts(coach, month);
-            double averageRating = coachRepository.calculateAverageRating(coach, month);
+            Map<Integer, Integer> ratingCounts = coachRepository.getRatingCounts(coach);
+            double averageRating = coachRepository.calculateAverageRating(coach);
             reportView.displayCoachInfo(coach);
             reportView.displayAverageRating(averageRating);
             reportView.displayRatingCounts(ratingCounts);

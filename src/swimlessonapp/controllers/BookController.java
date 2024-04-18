@@ -7,6 +7,8 @@ import swimlessonapp.repository.BookingRepository;
 import swimlessonapp.repository.LearnerRepository;
 import swimlessonapp.view.TimeTableView;
 
+import static swimlessonapp.Config.printResult;
+
 public class BookController extends ActionController {
 
     private final TimeTableView timeTableView;
@@ -23,19 +25,19 @@ public class BookController extends ActionController {
     @Override
     public void performAction() {
         Learner user = getUser();
-        if (timeTableView.printTimeTable(lessonController.getAvailableLessons())) {
-            Lesson selectedLesson = selectLesson();
-            if (lessonController.checkGradeLevel(user, selectedLesson)) {
-                if (lessonController.addLearnerToLesson(user, selectedLesson)) {
-                    Book newBooking = new Book(user, selectedLesson);
-                    bookingRepository.addBooking(newBooking);
-                }
-            } else {
-                System.out.println("Can't attend Grade Lesson as your grade doesn't match the lesson grade");
-
+        timeTableView.printTimeTable(lessonController.getAvailableLessons());
+        Lesson selectedLesson = selectLesson();
+        if (lessonController.checkGradeLevel(user, selectedLesson)) {
+            if (lessonController.addLearnerToLesson(user, selectedLesson)) {
+                Book newBooking = new Book(user, selectedLesson);
+                bookingRepository.addBooking(newBooking);
             }
-            redoAction("Book another Lesson");
+        } else {
+            printResult(false,"Can't attend Grade Lesson as your grade doesn't match the lesson grade");
+
         }
+
+        redoAction("Book another Lesson");
     }
 
 

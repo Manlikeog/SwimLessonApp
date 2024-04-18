@@ -1,6 +1,5 @@
 package swimlessonapp.repository;
 
-import swimlessonapp.model.Book;
 import swimlessonapp.model.Coach;
 
 import java.util.ArrayList;
@@ -23,13 +22,13 @@ public class CoachRepository {
     }
 
     static {
-        listOfCoaches.add(new Coach("Linda Mabuto"));
-        listOfCoaches.add(new Coach("Ojo Convenant"));
-        listOfCoaches.add(new Coach("John Afolabi"));
-        listOfCoaches.add(new Coach("Israel Soyombo"));
+        listOfCoaches.add(new Coach("Linda Maputo"));
+        listOfCoaches.add(new Coach("Ojo Convenient"));
+        listOfCoaches.add(new Coach("John syllabi"));
+        listOfCoaches.add(new Coach("Israel Bosomy"));
     }
 
-    public double calculateAverageRating(Coach coach, int month) {
+    public double calculateAverageRating(Coach coach) {
         List<Integer> ratings = coachRatings.getOrDefault(coach, new ArrayList<>());
         if (ratings.isEmpty()) {
             return 0.0;
@@ -43,7 +42,7 @@ public class CoachRepository {
         return (double) sum / count;
     }
 
-    public Map<Integer, Integer> getRatingCounts(Coach coach, int month) {
+    public Map<Integer, Integer> getRatingCounts(Coach coach) {
         List<Integer> ratings = coachRatings.getOrDefault(coach, new ArrayList<>());
         Map<Integer, Integer> ratingCounts = new HashMap<>();
         for (Integer rating : ratings) {

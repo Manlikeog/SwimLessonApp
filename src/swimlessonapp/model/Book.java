@@ -18,7 +18,12 @@ public class Book {
     }
 
     private int month;
-    private final int id;
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    private int id;
 
     public Book(Learner learner, Lesson lesson) {
         this.learner = learner;

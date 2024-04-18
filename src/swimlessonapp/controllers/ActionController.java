@@ -32,16 +32,13 @@ public abstract class ActionController {
     }
 
 
-
     public abstract void performAction();
 
-    protected Book selectBook() {
-        int lessonIndex = promptAndGetBookingId();
+    protected Book selectBook(int bookIndex) {
         Book selectedBook;
-        selectedBook = bookingRepository.getBookingById(lessonIndex);
-        if(selectedBook == null){
-            System.out.println("Invalid lesson index!");
-           return selectBook();
+        selectedBook = bookingRepository.getBookingById(bookIndex);
+        if (selectedBook == null) {
+            printResult(false, "Booking not available");
         }
         return selectedBook;
     }
@@ -49,7 +46,7 @@ public abstract class ActionController {
     protected boolean viewBookingsForLearner(Learner learner) {
         List<Book> learnerBookings = bookingRepository.getAvailableBookingsForLearner(learner);
         if (learnerBookings.isEmpty()) {
-            System.out.println("No available bookings for " + learner.getFirstName() + " " + learner.getLastName() + ".");
+            printResult(false, "No available bookings for " + learner.getFirstName() + " " + learner.getLastName() + ".");
             return false;
         } else {
             timeTableView.displayBookings(learnerBookings);
@@ -60,7 +57,7 @@ public abstract class ActionController {
     protected boolean canPerformAction(Book selectedBook) {
         String status = selectedBook.getStatus();
         if (Objects.equals(status, "attended") || Objects.equals(status, "canceled")) {
-            System.out.println("Can't perform action on this lesson as it has been " + status);
+            printResult(false, "Can't perform action on this lesson as it has been " + status);
             return false;
         }
         return true;
@@ -73,7 +70,7 @@ public abstract class ActionController {
     protected void redoAction(String prompt) {
         char bookAgain = '0';
         while (bookAgain != 'Y') {
-            bookAgain = charInput("\nWould you like to " + prompt + " ? (Y / N / E(EXIT)):");
+            bookAgain = Character.toUpperCase(charInput("\nWould you like to " + prompt + " ? (Y / N / E(EXIT)):"));
             switch (bookAgain) {
                 case 'N':
                     stringOutput("Exit....!");
@@ -81,7 +78,7 @@ public abstract class ActionController {
                 case 'Y':
                     performAction();
                 default:
-                    stringOutput("Invalid choice. Please try again.");
+                    printResult(false, "Invalid choice. Please try again.");
             }
         }
 
@@ -90,18 +87,23 @@ public abstract class ActionController {
     protected Learner getUser() {
         Learner learner;
         boolean userExists = false;
+        timeTableView.printLearnersInRow(learnerRepository.getAllLearners());
         do {
-            String firstName = stringInput("Enter first name");
-            String lastName = stringInput("Enter last name");
-            learner = learnerRepository.existingLearner(firstName, lastName);
+            int userID = intInput("Enter user id");
+            learner = learnerRepository.existingLearner(userID);
 
             if (learner != null) {
                 userExists = true;
+                timeTableView.printLearnerInfo(learner);
             } else {
-                stringOutput("User not found. Please try again.");
+                printResult(false, "User not found. Please try again.");
             }
         } while (!userExists);
         return learner;
+    }
+
+    protected int inputBookingId() {
+        return promptAndGetBookingId();
     }
 
     protected void displayMonthlyReportHeader(int month) {

@@ -19,7 +19,7 @@ public class TimeTableView {
         String userInput = stringInput(prompt);
         List<Lesson> filteredLessons = filterLessons(lesson -> criteriaExtractor.apply(lesson).toString().equalsIgnoreCase(userInput), lessons);
         if (filteredLessons.isEmpty()) {
-            stringOutput("There is no available lesson for " + userInput + " this week");
+            printResult(false,"There is no available lesson for " + userInput + " this week");
             return false;
         } else {
             viewLessons(prompt.substring(6), filteredLessons); // Displaying based on the provided criteria
@@ -32,6 +32,7 @@ public class TimeTableView {
                 .filter(predicate)
                 .collect(Collectors.toList());
     }
+
     public void viewLessons(String option, List<Lesson> lessons) {
         printLessons(option, lessons);
     }
@@ -47,7 +48,7 @@ public class TimeTableView {
         for (Lesson lesson : lessons) {
             String learners = getLearnersString(lesson.getLearners());
             System.out.printf("%-10s%-10s%-20s%-20s%-15s%-70s%-15s%s%n", lesson.getId(),
-                    lesson.getDay(), lesson.getTime(), lesson.getCoach().getName(),
+                    lesson.getDay(), lesson.getTime(), lesson.getCoach().name(),
                     lesson.getLearners().size(), learners,
                     lesson.getMaxLearners(), lesson.getGradeLevel());
         }
@@ -70,11 +71,11 @@ public class TimeTableView {
         int currentWeek = -1;
 
         for (Book book : bookings) {
-            if(book.getWeek() != currentWeek){
+            if (book.getWeek() != currentWeek) {
                 // New week encountered, display week header
-                System.out.println("Booking for Week " + book.getWeek() + ":");
+                stringOutput("Booking for Week " + book.getWeek() + ":");
                 System.out.printf("%-12s%-15s%-10s%-20s%-15s%-20s%-10s%-10s%-10s%n",
-                        "BookingID", "User", "Day", "Time","Week/Month", "Coach",  "Grade", "Status", "Rating");
+                        "BookingID", "User", "Day", "Time", "Week/Month", "Coach", "Grade", "Status", "Rating");
 
                 currentWeek = book.getWeek();
             }
@@ -84,15 +85,15 @@ public class TimeTableView {
                     book.getLesson().getDay(),
                     book.getLesson().getTime(),
                     book.getWeek() + "/" + book.getMonth(),
-                    book.getLesson().getCoach().getName(),
+                    book.getLesson().getCoach().name(),
                     book.getLesson().getGradeLevel(),
                     book.getStatus(),
                     book.getRating());
         }
     }
 
-    public boolean printTimeTable(List<Lesson> lessons) {
-
+    public void printTimeTable(List<Lesson> lessons) {
+        boolean correctChoice;
         stringOutput("""
                 Select an option to view the timetable:
                 1. View timetable for a specific day
@@ -100,17 +101,47 @@ public class TimeTableView {
                 3. View timetable for a specific coach
                 """);
 
+        do {
+            correctChoice = viewChoice(lessons);
+        } while (!correctChoice);
+    }
+
+    public boolean viewChoice(List<Lesson> lessons) {
         int choice = intInput("Enter your choice");
         return switch (choice) {
             case 1 -> viewTimeTableByCriteria("Enter the day (e.g., Monday)", Lesson::getDay, lessons);
             case 2 -> viewTimeTableByCriteria("Enter the grade level", Lesson::getGradeLevel, lessons);
-            case 3 -> viewTimeTableByCriteria("Enter the coach's name", lesson -> lesson.getCoach().getName(), lessons);
+            case 3 -> viewTimeTableByCriteria("Enter the coach's name", lesson -> lesson.getCoach().name(), lessons);
             default -> {
-                stringOutput("Invalid choice!");
+                printResult(false,"Invalid choice!");
                 yield false;
             }
         };
+    }
 
+    public void printLearnerInfo(Learner learner) {
+        String columnBuilder = "First Name: " + learner.getFirstName() + "\n" +
+                "Last Name: " + learner.getLastName() + "\n" +
+                "Gender: " + learner.getGender() + "\n" +
+                "Age: " + learner.getAge() + "\n" +
+                "Phone Number: " + learner.getEmergencyContact() + "\n" +
+                "User ID: " + learner.getUserId() + "\n" +
+                "Grade Level: " + learner.getCurrentGradeLevel() + "\n\n";
+        stringOutput(columnBuilder);
+    }
+
+    public void printLearnersInRow(List<Learner> listOfLearners) {
+        stringOutput("Available Learners:");
+        // Sort the list by user ID
+        listOfLearners.sort(Comparator.comparingInt(Learner::getUserId));
+
+        StringBuilder rowBuilder = new StringBuilder();
+        for (Learner learner : listOfLearners) {
+            rowBuilder.append(" - User ID: ").append(learner.getUserId()).append(", ")
+                    .append("Name: ").append(learner.getFirstName()).append(" ").append(learner.getLastName()).append(", ")
+                    .append("Gender: ").append(learner.getGender()).append("\n");
+        }
+        stringOutput(rowBuilder.toString());
     }
 
     public Learner learnerDetailsInput() {
@@ -120,6 +151,6 @@ public class TimeTableView {
         int age = intInput("Enter age");
         String emergencyContact = stringInput("Enter emergency contact number");
         int gradeLevel = intInput("Enter GradeLevel");
-        return new Learner(firstName, lastName, gender, age, emergencyContact, gradeLevel);
+        return new Learner(firstName, lastName, gender, age, emergencyContact, gradeLevel, 0);
     }
 }

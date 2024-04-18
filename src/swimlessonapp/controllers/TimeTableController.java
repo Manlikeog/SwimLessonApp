@@ -35,14 +35,11 @@ public class TimeTableController {
             if (week < WEEKS_IN_SEMESTER) {
                 markPreviousBookings(generatedLessons, random, week); // Mark previous bookings for all generated lessons except for the last week
             }
-
-
             // Add generated lessons to the main list
         }
 
         lessonRepository.setListOfLesson(lessons); // Set the list of lessons to the repository after generating lessons for all weeks
     }
-
 
 
     private Map<String, String[]> createTimeSlots() {
@@ -63,7 +60,7 @@ public class TimeTableController {
         return lessonsScheduledPerDay;
     }
 
-    private List<Lesson> generateLessons( Map<String, String[]> timeSlots, Map<String, Integer> lessonsScheduledPerDay, Random random, int week) {
+    private List<Lesson> generateLessons(Map<String, String[]> timeSlots, Map<String, Integer> lessonsScheduledPerDay, Random random, int week) {
         List<Lesson> lessons = new ArrayList<>();
         List<Coach> coaches = coachRepository.getAllCoaches();
         for (String day : new String[]{"Monday", "Wednesday", "Friday"}) {
@@ -91,21 +88,6 @@ public class TimeTableController {
             }
         }
 
-//        for (Coach coach : coaches) {
-//            List<Book> coachBookings = new ArrayList<>();
-//            for (Lesson lesson : lessons) {
-//                if (lesson.getCoach().equals(coach)) {
-//                    for (Learner learner : lesson.getLearners()) {
-//                        for (Book booking : bookingRepository.getAllBookings()) {
-//                            if (booking.getLearner().equals(learner) && booking.getLesson().equals(lesson)) {
-//                                coachBookings.add(booking);
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//            coach.setBookings(coachBookings);
-//        }
         return lessons;
     }
 
@@ -121,7 +103,7 @@ public class TimeTableController {
         Collections.shuffle(learners);
         for (Learner learner : learners) {
             if (learner.getCurrentGradeLevel() == gradeLevel || learner.getCurrentGradeLevel() == gradeLevel - 1) {
-                if (lesson.isLearnerEnrolled(learner)) {
+                if (!lesson.isLearnerEnrolled(learner)) {
                     lesson.addLearner(learner);
                     Book booking = new Book(learner, lesson);
                     bookingRepository.addBooking(booking);
@@ -147,7 +129,7 @@ public class TimeTableController {
                 boolean isAttended = random.nextBoolean();
                 // Randomly determine if booking is attended
                 if (isAttended) {
-                    if (booking.getLearner().getCurrentGradeLevel() == booking.getLesson().getGradeLevel()){
+                    if (booking.getLearner().getCurrentGradeLevel() == booking.getLesson().getGradeLevel()) {
                         // Adding rating for coach after the lesson is booked
                         int rating = random.nextInt(5) + 1;
                         booking.setStatus("attended");
@@ -156,7 +138,7 @@ public class TimeTableController {
                         booking.setReview("Good");
                     }
                 } else {
-                   booking.setStatus("canceled");
+                    booking.setStatus("canceled");
                 }
             }
         }

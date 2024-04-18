@@ -59,7 +59,7 @@ public class Lesson {
     }
 
     public boolean isLearnerEnrolled(Learner learner) {
-        return !learners.contains(learner);
+        return learners.contains(learner);
     }
 
     public int getMaxLearners() {
