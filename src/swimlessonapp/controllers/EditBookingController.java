@@ -4,37 +4,36 @@ import swimlessonapp.model.Book;
 import swimlessonapp.model.Learner;
 import swimlessonapp.model.Lesson;
 import swimlessonapp.repository.BookingRepository;
+import swimlessonapp.repository.CoachRepository;
 import swimlessonapp.repository.LearnerRepository;
-import swimlessonapp.view.TimeTableView;
+import swimlessonapp.view.ReportView;
+import swimlessonapp.view.UserInteraction;
 
-import static swimlessonapp.Config.printResult;
-import static swimlessonapp.Config.stringOutput;
+import static swimlessonapp.Config.*;
+import static swimlessonapp.Config.promptAndGetLessonId;
 
-public class EditBookingController extends ActionController {
-    private final TimeTableView timeTableView;
-    private final LessonController lessonController;
-
-    public EditBookingController(BookingRepository bookingRepository, TimeTableView timeTableView, LessonController lessonController, LearnerRepository learnerRepository) {
-        super(bookingRepository, timeTableView, lessonController, learnerRepository, null, null);
-        this.lessonController = lessonController;
-        this.timeTableView = timeTableView;
+public class EditBookingController extends BaseController {
+    public EditBookingController(BookingRepository bookingRepository, LearnerRepository learnerRepository,
+                                 UserInteraction userInteraction,
+                                 LessonController lessonController) {
+        super(bookingRepository, learnerRepository, null,  userInteraction, lessonController);
     }
 
     @Override
     public void performAction() {
         Learner user = getUser();
         if (viewBookingsForLearner(user)) {
-            Book selectedBook = selectBook(inputBookingId());
-            if(selectedBook != null){
-                if (canPerformAction(selectedBook)) {
-                    stringOutput("To edit booking please choose a new lesson");
-                    timeTableView.printTimeTable(lessonController.getAvailableLessons());
-                    Lesson selectedLesson = selectLesson();
-                    if (selectedBook.getLesson() == selectedLesson) {
-                        printResult(false,"Can't Edit same lesson");
-                        return;
-                    }
+            int bookIndex = promptAndGetBookingId();
+            Book selectedBook = selectBook(bookIndex);
+            if (selectedBook != null && canPerformAction(selectedBook)) {
+                stringOutput("To edit booking please choose a new lesson");
+                userInteraction.printTimeTable(lessonController.getAvailableLessons());
+                int lessonIndex = intInput(promptAndGetLessonId());
+                Lesson selectedLesson = selectLesson(lessonIndex);
+                if (selectedLesson != null && selectedBook.getLesson() == selectedLesson) {
                     handleEdit(selectedBook, selectedLesson, user);
+                } else {
+                    printResult(false, "Can't Edit same lesson");
                 }
             }
             redoAction("Edit another lesson");
@@ -49,7 +48,7 @@ public class EditBookingController extends ActionController {
                 }
             }
         } else {
-            printResult( false, "Can't attend Grade Lesson as your grade doesn't match the lesson grade");
+            printResult(false, "Can't attend Grade Lesson as your grade doesn't match the lesson grade");
         }
     }
 }

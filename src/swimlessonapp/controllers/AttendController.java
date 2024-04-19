@@ -6,45 +6,42 @@ import swimlessonapp.model.Lesson;
 import swimlessonapp.repository.BookingRepository;
 import swimlessonapp.repository.CoachRepository;
 import swimlessonapp.repository.LearnerRepository;
-import swimlessonapp.view.TimeTableView;
+import swimlessonapp.view.ReportView;
+import swimlessonapp.view.UserInteraction;
 
 import static swimlessonapp.Config.*;
 
-public class AttendController extends ActionController {
-    private final LessonController lessonController;
-    private final CoachRepository coachRepository;
-
-    public AttendController(LessonController lessonController, TimeTableView timeTableView, LearnerRepository learnerRepository, CoachRepository coachRepository, BookingRepository bookingRepository) {
-        super(bookingRepository, timeTableView, lessonController, learnerRepository, coachRepository, null);
-        this.lessonController = lessonController;
-        this.coachRepository = coachRepository;
+public class AttendController extends BaseController {
+    public AttendController(BookingRepository bookingRepository, LearnerRepository learnerRepository,
+                            CoachRepository coachRepository, UserInteraction userInteraction,
+                            LessonController lessonController) {
+        super(bookingRepository, learnerRepository, coachRepository,  userInteraction, lessonController);
     }
 
     @Override
     public void performAction() {
         Learner user = getUser();
         if (viewBookingsForLearner(user)) {
-            Book selectedBook = selectBook(inputBookingId());
-            if(selectedBook != null){
-                if (canPerformAction(selectedBook)) {
+            int bookIndex = promptAndGetBookingId();
+            Book selectedBook = selectBook(bookIndex);
+            if (selectedBook != null && canPerformAction(selectedBook)) {
                     Lesson lesson = selectedBook.getLesson();
                     if (lessonController.checkGradeLevel(user, lesson)) {
                         provideReviewAndRating(selectedBook);
-                        printResult(true,"You have attended Lesson for Grade " + lesson.getGradeLevel() + " on " + lesson.getDay() + " at " + lesson.getTime());
+                        String message = "You have attended Lesson for Grade " + lesson.getGradeLevel() + " on " + lesson.getDay() + " at " + lesson.getTime();
                         if (lesson.getGradeLevel() > user.getCurrentGradeLevel()) {
                             user.setCurrentGradeLevel(lesson.getGradeLevel());
-                            printResult(true,"You have been promoted to Grade " + user.getCurrentGradeLevel());
+                            message += "\nYou have been promoted to Grade " + user.getCurrentGradeLevel();
                         }
+                        printResult(true, message);
                         selectedBook.setStatus("attended");
                     } else {
-                        printResult(false,"Can't attend Grade Lesson as your grade doesn't match the lesson requirements grade");
+                        printResult(false, "Can't attend Grade Lesson as your grade doesn't match the lesson requirements grade");
                     }
-                }
             }
             redoAction("Attend another Lesson");
         }
     }
-
     private void provideReviewAndRating(Book selectedBook) {
         String review = stringInput("Please provide a review for the lesson:");
         int rating;

@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 import static swimlessonapp.Config.*;
 
-public class TimeTableView {
+public class UserInteraction {
 
     public boolean viewTimeTableByCriteria(String prompt, Function<Lesson, ?> criteriaExtractor, List<Lesson> lessons) {
         String userInput = stringInput(prompt);
@@ -38,7 +38,7 @@ public class TimeTableView {
     }
 
     public void printLessons(String title, List<Lesson> lessons) {
-        stringOutput("Available Lessons for " + title + ":");
+        printResult(true,"Available Lessons for " + title + ":");
 
         lessons.sort(Comparator.comparing(lesson -> Arrays.asList("Monday", "Wednesday", "Friday", "Saturday").indexOf(lesson.getDay())));
 
@@ -107,7 +107,7 @@ public class TimeTableView {
     }
 
     public boolean viewChoice(List<Lesson> lessons) {
-        int choice = intInput("Enter your choice");
+        int choice = intInput("Enter view choice:");
         return switch (choice) {
             case 1 -> viewTimeTableByCriteria("Enter the day (e.g., Monday)", Lesson::getDay, lessons);
             case 2 -> viewTimeTableByCriteria("Enter the grade level", Lesson::getGradeLevel, lessons);

@@ -84,4 +84,24 @@ class LessonControllerTest {
         assertEquals(0, lesson.getLearners().size());
         assertFalse(lesson.isLearnerEnrolled(learner));
     }
+
+    @Test
+    void selectLesson_ValidInput_ReturnsLesson() {
+        // Mocking necessary dependencies
+        LessonRepository lessonRepository = new LessonRepository();
+
+        // Creating a test instance of LessonController
+        LessonController lessonController = new LessonController();
+
+        // Adding a test lesson to the repository
+        Lesson testLesson = new Lesson("Monday", "4:00 PM - 5:00 PM", 3, new Coach("Layo"), 3);
+        testLesson.setId(10);
+        lessonRepository.setListOfLesson(List.of(testLesson));
+
+        // Calling selectLesson() method
+        Lesson selectedLesson = lessonController.getLessonById(10);
+
+        // Asserting that the returned value is not null
+        assertNotNull(selectedLesson);
+    }
 }

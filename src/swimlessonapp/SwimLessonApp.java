@@ -1,11 +1,11 @@
 package swimlessonapp;
 
 import swimlessonapp.controllers.TimeTableController;
-import swimlessonapp.view.MenuView;
+
 import static swimlessonapp.Config.*;
 
 public class SwimLessonApp {
-    private static final MenuView menu = new MenuView();
+    private static final Menu menu = new Menu();
     private static final TimeTableController timeTable = new TimeTableController();
 
     public static void main(String[] args) {

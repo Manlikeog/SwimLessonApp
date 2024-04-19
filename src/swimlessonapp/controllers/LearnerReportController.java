@@ -8,37 +8,29 @@ import swimlessonapp.view.ReportView;
 
 import java.util.List;
 
-import static swimlessonapp.Config.*;
+import static swimlessonapp.Config.printResult;
+import static swimlessonapp.Config.stringOutput;
 
-public class LearnerReportController extends ActionController {
-
-    private final LearnerRepository learnerRepository;
+public class LearnerReportController {
     private final BookingRepository bookingRepository;
+    private final LearnerRepository learnerRepository;
     private final ReportView reportView;
 
     public LearnerReportController(BookingRepository bookingRepository, LearnerRepository learnerRepository,
                                    ReportView reportView) {
-        super(bookingRepository, null, null, learnerRepository, null, reportView);
-        this.learnerRepository = learnerRepository;
         this.bookingRepository = bookingRepository;
+        this.learnerRepository = learnerRepository;
         this.reportView = reportView;
     }
 
-    @Override
-    public void performAction() {
-        int month = intInput("Enter month number (e.g., 03 for March)");
-        generateMonthlyReport(month);
-    }
-
-    private void generateMonthlyReport(int month) {
+    public void generateMonthlyReport(int month) {
         List<Learner> learners = learnerRepository.getAllLearners();
         displayMonthlyReportHeader(month);
-
         for (Learner learner : learners) {
             List<Book> learnerBookings = bookingRepository.getLearnerBookingsByMonth(learner, month);
             displayLearnerInfo(learner);
             if (learnerBookings.isEmpty()) {
-                printResult(false,"No bookings was made for month " + month);
+                printResult(false, "No bookings were made for month " + month);
             } else {
                 reportView.displayBookingsInfo(learnerBookings);
                 reportView.displayBookingSummary(learnerBookings);
@@ -49,5 +41,9 @@ public class LearnerReportController extends ActionController {
 
     private void displayLearnerInfo(Learner learner) {
         reportView.displayLearnerInfo(learner);
+    }
+
+    private void displayMonthlyReportHeader(int month) {
+        reportView.displayMonthlyReportHeader(month);
     }
 }

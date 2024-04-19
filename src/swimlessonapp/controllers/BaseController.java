@@ -7,28 +7,28 @@ import swimlessonapp.repository.BookingRepository;
 import swimlessonapp.repository.CoachRepository;
 import swimlessonapp.repository.LearnerRepository;
 import swimlessonapp.view.ReportView;
-import swimlessonapp.view.TimeTableView;
+import swimlessonapp.view.UserInteraction;
 
 import java.util.List;
 import java.util.Objects;
 
 import static swimlessonapp.Config.*;
 
-public abstract class ActionController {
+public abstract class BaseController {
     protected final BookingRepository bookingRepository;
     protected final LearnerRepository learnerRepository;
     protected final CoachRepository coachRepository;
-    protected final ReportView reportView;
-    protected final TimeTableView timeTableView;
+    protected final UserInteraction userInteraction;
     protected final LessonController lessonController;
 
-    public ActionController(BookingRepository bookingRepository, TimeTableView timeTableView, LessonController lessonController, LearnerRepository learnerRepository, CoachRepository coachRepository, ReportView reportView) {
+    public BaseController(BookingRepository bookingRepository, LearnerRepository learnerRepository,
+                          CoachRepository coachRepository, UserInteraction userInteraction,
+                          LessonController lessonController) {
         this.bookingRepository = bookingRepository;
-        this.timeTableView = timeTableView;
-        this.lessonController = lessonController;
         this.learnerRepository = learnerRepository;
         this.coachRepository = coachRepository;
-        this.reportView = reportView;
+        this.userInteraction = userInteraction;
+        this.lessonController = lessonController;
     }
 
 
@@ -38,7 +38,7 @@ public abstract class ActionController {
         Book selectedBook;
         selectedBook = bookingRepository.getBookingById(bookIndex);
         if (selectedBook == null) {
-            printResult(false, "Booking not available");
+            printResult(false, "Invalid Booking ID");
         }
         return selectedBook;
     }
@@ -49,7 +49,7 @@ public abstract class ActionController {
             printResult(false, "No available bookings for " + learner.getFirstName() + " " + learner.getLastName() + ".");
             return false;
         } else {
-            timeTableView.displayBookings(learnerBookings);
+            userInteraction.displayBookings(learnerBookings);
         }
         return true;
     }
@@ -63,14 +63,14 @@ public abstract class ActionController {
         return true;
     }
 
-    protected Lesson selectLesson() {
-        return lessonController.getLessonById(promptAndGetLessonId());
+    protected Lesson selectLesson(int lessonID) {
+        return lessonController.getLessonById(lessonID);
     }
 
     protected void redoAction(String prompt) {
         char bookAgain = '0';
         while (bookAgain != 'Y') {
-            bookAgain = Character.toUpperCase(charInput("\nWould you like to " + prompt + " ? (Y / N / E(EXIT)):"));
+            bookAgain = charInput("\nWould you like to " + prompt + " ? (Y / N / E(EXIT)):");
             switch (bookAgain) {
                 case 'N':
                     stringOutput("Exit....!");
@@ -81,20 +81,19 @@ public abstract class ActionController {
                     printResult(false, "Invalid choice. Please try again.");
             }
         }
-
     }
 
     protected Learner getUser() {
         Learner learner;
         boolean userExists = false;
-        timeTableView.printLearnersInRow(learnerRepository.getAllLearners());
+        userInteraction.printLearnersInRow(learnerRepository.getAllLearners());
         do {
             int userID = intInput("Enter user id");
             learner = learnerRepository.existingLearner(userID);
 
             if (learner != null) {
                 userExists = true;
-                timeTableView.printLearnerInfo(learner);
+                userInteraction.printLearnerInfo(learner);
             } else {
                 printResult(false, "User not found. Please try again.");
             }
@@ -102,12 +101,5 @@ public abstract class ActionController {
         return learner;
     }
 
-    protected int inputBookingId() {
-        return promptAndGetBookingId();
-    }
-
-    protected void displayMonthlyReportHeader(int month) {
-        reportView.displayMonthlyReportHeader(month);
-    }
 }
 
