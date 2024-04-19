@@ -10,19 +10,21 @@ import swimlessonapp.view.ReportView;
 import swimlessonapp.view.UserInteraction;
 
 import static swimlessonapp.Config.printResult;
+import static swimlessonapp.Config.promptAndGetBookingId;
 
 public class CancelBookingController extends BaseController {
     public CancelBookingController(BookingRepository bookingRepository, LearnerRepository learnerRepository,
-                                   CoachRepository coachRepository, ReportView reportView, UserInteraction userInteraction,
+                                  UserInteraction userInteraction,
                                    LessonController lessonController) {
-        super(bookingRepository, learnerRepository, coachRepository, reportView, userInteraction, lessonController);
+        super(bookingRepository, learnerRepository,  null, userInteraction, lessonController);
     }
 
     @Override
     public void performAction() {
         Learner user = getUser();
         if (viewBookingsForLearner(user)) {
-            Book selectedBook = selectBook(inputBookingId());
+            int bookIndex = promptAndGetBookingId();
+            Book selectedBook = selectBook(bookIndex);
             if(selectedBook != null && canPerformAction(selectedBook)){
                     Lesson lesson = selectedBook.getLesson();
                     if (lessonController.cancelLesson(user, lesson)) {

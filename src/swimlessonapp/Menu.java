@@ -1,16 +1,18 @@
-package swimlessonapp.view;
+package swimlessonapp;
 
 import swimlessonapp.controllers.*;
 import swimlessonapp.model.Lesson;
 import swimlessonapp.repository.BookingRepository;
 import swimlessonapp.repository.CoachRepository;
 import swimlessonapp.repository.LearnerRepository;
+import swimlessonapp.view.ReportView;
+import swimlessonapp.view.UserInteraction;
 
 import java.util.List;
 
 import static swimlessonapp.Config.intInput;
 
-public class MenuView {
+public class Menu {
 
     private final BookingRepository bookingRepository = BookingRepository.getInstance();
     private final LearnerRepository learnerRepository =LearnerRepository.getInstance();
@@ -20,22 +22,22 @@ public class MenuView {
     private final CoachRepository coachRepository = CoachRepository.getInstance();
 
     public void bookLesson() {
-        BaseController bookLessonController = new BookController(bookingRepository,learnerRepository,  coachRepository,reportView, userInteraction,   lessonController);
+        BaseController bookLessonController = new BookController(bookingRepository,learnerRepository,  userInteraction,   lessonController);
         bookLessonController.performAction();
     }
 
     public void attendLesson() {
-        AttendController attendLessonController = new AttendController(bookingRepository,learnerRepository,  coachRepository,reportView, userInteraction,   lessonController);
+        AttendController attendLessonController = new AttendController(bookingRepository,learnerRepository,  coachRepository, userInteraction,   lessonController);
         attendLessonController.performAction();
     }
 
     public void cancelOrChangeBooking() {
-        BaseController cancelBookingController = new CancelBookingController(bookingRepository,learnerRepository,  coachRepository,reportView, userInteraction,   lessonController);
+        BaseController cancelBookingController = new CancelBookingController(bookingRepository,learnerRepository,  userInteraction,   lessonController);
         cancelBookingController.performAction();
     }
 
     public void editBooking() {
-        BaseController editBookingController = new EditBookingController(bookingRepository,learnerRepository,  coachRepository,reportView, userInteraction,   lessonController);
+        BaseController editBookingController = new EditBookingController(bookingRepository,learnerRepository,  userInteraction,   lessonController);
         editBookingController.performAction();
     }
 

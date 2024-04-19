@@ -9,7 +9,7 @@ import static swimlessonapp.Config.*;
 
 public class RegisterController extends BaseController {
     public RegisterController(LearnerRepository learnerRepository, UserInteraction userInteraction) {
-        super(null, learnerRepository, null, null, userInteraction, null);
+        super(null, learnerRepository,  null, userInteraction, null);
     }
 
     @Override

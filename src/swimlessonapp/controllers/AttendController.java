@@ -13,16 +13,17 @@ import static swimlessonapp.Config.*;
 
 public class AttendController extends BaseController {
     public AttendController(BookingRepository bookingRepository, LearnerRepository learnerRepository,
-                            CoachRepository coachRepository, ReportView reportView, UserInteraction userInteraction,
+                            CoachRepository coachRepository, UserInteraction userInteraction,
                             LessonController lessonController) {
-        super(bookingRepository, learnerRepository, coachRepository, reportView, userInteraction, lessonController);
+        super(bookingRepository, learnerRepository, coachRepository,  userInteraction, lessonController);
     }
 
     @Override
     public void performAction() {
         Learner user = getUser();
         if (viewBookingsForLearner(user)) {
-            Book selectedBook = selectBook(inputBookingId());
+            int bookIndex = promptAndGetBookingId();
+            Book selectedBook = selectBook(bookIndex);
             if (selectedBook != null && canPerformAction(selectedBook)) {
                     Lesson lesson = selectedBook.getLesson();
                     if (lessonController.checkGradeLevel(user, lesson)) {

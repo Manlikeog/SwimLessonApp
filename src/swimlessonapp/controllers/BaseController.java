@@ -18,17 +18,15 @@ public abstract class BaseController {
     protected final BookingRepository bookingRepository;
     protected final LearnerRepository learnerRepository;
     protected final CoachRepository coachRepository;
-    protected final ReportView reportView;
     protected final UserInteraction userInteraction;
     protected final LessonController lessonController;
 
     public BaseController(BookingRepository bookingRepository, LearnerRepository learnerRepository,
-                          CoachRepository coachRepository, ReportView reportView, UserInteraction userInteraction,
+                          CoachRepository coachRepository, UserInteraction userInteraction,
                           LessonController lessonController) {
         this.bookingRepository = bookingRepository;
         this.learnerRepository = learnerRepository;
         this.coachRepository = coachRepository;
-        this.reportView = reportView;
         this.userInteraction = userInteraction;
         this.lessonController = lessonController;
     }
@@ -72,7 +70,7 @@ public abstract class BaseController {
     protected void redoAction(String prompt) {
         char bookAgain = '0';
         while (bookAgain != 'Y') {
-            bookAgain = Character.toUpperCase(charInput("\nWould you like to " + prompt + " ? (Y / N / E(EXIT)):"));
+            bookAgain = charInput("\nWould you like to " + prompt + " ? (Y / N / E(EXIT)):");
             switch (bookAgain) {
                 case 'N':
                     stringOutput("Exit....!");
@@ -103,8 +101,5 @@ public abstract class BaseController {
         return learner;
     }
 
-    protected int inputBookingId() {
-        return promptAndGetBookingId();
-    }
 }
 

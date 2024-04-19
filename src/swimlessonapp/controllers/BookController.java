@@ -13,9 +13,9 @@ import static swimlessonapp.Config.*;
 
 public class BookController extends BaseController {
     public BookController(BookingRepository bookingRepository, LearnerRepository learnerRepository,
-                          CoachRepository coachRepository, ReportView reportView, UserInteraction userInteraction,
+                          UserInteraction userInteraction,
                           LessonController lessonController) {
-        super(bookingRepository, learnerRepository, coachRepository, reportView, userInteraction, lessonController);
+        super(bookingRepository, learnerRepository,  null, userInteraction, lessonController);
     }
 
     @Override

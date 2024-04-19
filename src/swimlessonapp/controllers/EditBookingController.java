@@ -14,16 +14,17 @@ import static swimlessonapp.Config.promptAndGetLessonId;
 
 public class EditBookingController extends BaseController {
     public EditBookingController(BookingRepository bookingRepository, LearnerRepository learnerRepository,
-                                 CoachRepository coachRepository, ReportView reportView, UserInteraction userInteraction,
+                                 UserInteraction userInteraction,
                                  LessonController lessonController) {
-        super(bookingRepository, learnerRepository, coachRepository, reportView, userInteraction, lessonController);
+        super(bookingRepository, learnerRepository, null,  userInteraction, lessonController);
     }
 
     @Override
     public void performAction() {
         Learner user = getUser();
         if (viewBookingsForLearner(user)) {
-            Book selectedBook = selectBook(inputBookingId());
+            int bookIndex = promptAndGetBookingId();
+            Book selectedBook = selectBook(bookIndex);
             if (selectedBook != null && canPerformAction(selectedBook)) {
                 stringOutput("To edit booking please choose a new lesson");
                 userInteraction.printTimeTable(lessonController.getAvailableLessons());
