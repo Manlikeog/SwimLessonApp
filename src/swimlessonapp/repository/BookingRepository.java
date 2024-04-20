@@ -1,6 +1,7 @@
 package swimlessonapp.repository;
 
 import swimlessonapp.model.Book;
+import swimlessonapp.model.Coach;
 import swimlessonapp.model.Learner;
 import swimlessonapp.model.Lesson;
 
@@ -50,6 +51,16 @@ public class BookingRepository {
             }
         }
         return learnerBookings;
+    }
+
+    public List<Book> getCoachBookingByMonth(Coach coach, int month){
+        List<Book> coachBookings = new ArrayList<>();
+        for(Book book: availableBookings){
+            if(book.getLesson().getCoach().equals(coach) && book.getMonth() == month){
+                coachBookings.add(book);
+            }
+        }
+        return coachBookings;
     }
 
     public List<Book> getBookingsForLesson(Lesson lesson) {

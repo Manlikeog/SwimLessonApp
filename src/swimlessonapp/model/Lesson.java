@@ -19,8 +19,9 @@ public class Lesson {
     private final Coach coach;
     private final List<Learner> learners;
     private final int maxLearners;
+    private final int month;
 
-    public Lesson(String day, String time, int gradeLevel, Coach coach, int week) {
+    public Lesson(String day, String time, int gradeLevel, Coach coach, int week, int month) {
         setId(++lastId);
         this.day = day;
         this.time = time;
@@ -29,6 +30,7 @@ public class Lesson {
         this.learners = new ArrayList<>();
         this.maxLearners = 4;
         this.week = week;
+        this.month = month;
     }
 
     public int getId() {
@@ -73,5 +75,9 @@ public class Lesson {
 
     public int getWeek() {
         return week;
+    }
+
+    public int getMonth() {
+        return month;
     }
 }

@@ -38,17 +38,21 @@ public class UserInteraction {
     }
 
     public void printLessons(String title, List<Lesson> lessons) {
+        int currentWeek = -1;
         printResult(true,"Available Lessons for " + title + ":");
 
         lessons.sort(Comparator.comparing(lesson -> Arrays.asList("Monday", "Wednesday", "Friday", "Saturday").indexOf(lesson.getDay())));
-
-        System.out.printf("%-10s%-10s%-20s%-20s%-15s%-70s%-15s%s%n", "LessonID",
-                "Day", "Time", "Coach", "Participants", "Learners", "Class Size", "Grade Level");
-
         for (Lesson lesson : lessons) {
+            if(lesson.getWeek() != currentWeek){
+                // New week encountered, display week header
+                stringOutput("Lesson for Week " + lesson.getWeek() + ":");
+                System.out.printf("%-10s%-10s%-20s%-15s%-20s%-15s%-70s%-15s%s%n", "LessonID",
+                        "Day", "Time", "Week/Month", "Coach", "Participants", "Learners", "Class Size", "Grade Level");
+                currentWeek = lesson.getWeek();
+            }
             String learners = getLearnersString(lesson.getLearners());
-            System.out.printf("%-10s%-10s%-20s%-20s%-15s%-70s%-15s%s%n", lesson.getId(),
-                    lesson.getDay(), lesson.getTime(), lesson.getCoach().name(),
+            System.out.printf("%-10s%-10s%-20s%-15s%-20s%-15s%-70s%-15s%s%n", lesson.getId(),
+                    lesson.getDay(), lesson.getTime(), lesson.getWeek() + "/" + lesson.getMonth(), lesson.getCoach().name(),
                     lesson.getLearners().size(), learners,
                     lesson.getMaxLearners(), lesson.getGradeLevel());
         }
