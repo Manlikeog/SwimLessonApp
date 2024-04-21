@@ -8,7 +8,6 @@ import swimlessonapp.model.Lesson;
 import swimlessonapp.repository.BookingRepository;
 import swimlessonapp.repository.CoachRepository;
 import swimlessonapp.repository.LearnerRepository;
-import swimlessonapp.view.ReportView;
 import swimlessonapp.view.UserInteraction;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,13 +21,13 @@ class BaseControllerTest {
         LessonController lessonController = new LessonController();
         LearnerRepository learnerRepository = new LearnerRepository();
         CoachRepository coachRepository = new CoachRepository();
-        ReportView reportView = new ReportView();
+
 
         // Creating a test instance of ActionController
-        BaseControllerForTest actionController = new BaseControllerForTest(bookingRepository, userInteraction, lessonController, learnerRepository, coachRepository, reportView);
+        BaseControllerForTest actionController = new BaseControllerForTest(bookingRepository, userInteraction, lessonController, learnerRepository, coachRepository);
 
         Learner learner = new Learner("JOHN", "DOE", 'M', 8, "1234567890", 1, 1);
-        Lesson lesson = new Lesson("monday", "4:00 PM - 5:00 PM", 3, new Coach("timi oguntade"), 3);
+        Lesson lesson = new Lesson("monday", "4:00 PM - 5:00 PM", 3, new Coach("timi oguntade"), 3, 2);
 
         // Adding a test booking to the repository
         Book testBook = new Book( learner, lesson );
@@ -45,8 +44,8 @@ class BaseControllerTest {
     // Concrete subclass of ActionController for testing purposes
     private static class BaseControllerForTest extends BaseController {
 
-        public BaseControllerForTest(BookingRepository bookingRepository, UserInteraction userInteraction, LessonController lessonController, LearnerRepository learnerRepository, CoachRepository coachRepository, ReportView reportView) {
-            super(bookingRepository, learnerRepository, coachRepository, reportView, userInteraction, lessonController);
+        public BaseControllerForTest(BookingRepository bookingRepository, UserInteraction userInteraction, LessonController lessonController, LearnerRepository learnerRepository, CoachRepository coachRepository) {
+            super(bookingRepository, learnerRepository, coachRepository,  userInteraction, lessonController);
         }
 
         @Override

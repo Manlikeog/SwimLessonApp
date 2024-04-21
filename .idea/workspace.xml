@@ -4,16 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da58d885-6f23-4c35-97e9-d4b6a05f8c99" name="Changes" comment="cleanse code and full junit test functionality">
+    <list default="true" id="da58d885-6f23-4c35-97e9-d4b6a05f8c99" name="Changes" comment="code restructure">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/SwimLessonApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/SwimLessonApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/AttendController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/AttendController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/BaseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/BookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/CancelBookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/CancelBookingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/EditBookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/EditBookingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/view/MenuView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/CoachReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/CoachReportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/LessonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/LessonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/TimeTableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/TimeTableController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/model/Lesson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/model/Lesson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/repository/BookingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/repository/BookingRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/repository/CoachRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/repository/CoachRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swimlessonapp/view/UserInteraction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/view/UserInteraction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/swimlessonapp/controllers/BaseControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/swimlessonapp/controllers/BaseControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/swimlessonapp/controllers/LessonControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/swimlessonapp/controllers/LessonControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,41 +59,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.SwimLessonApp.executor": "Run",
-    "Application.SwimLessonSystem.executor": "Run",
-    "Application.Tester.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "JUnit.ActionControllerTest.executor": "Run",
-    "JUnit.ActionControllerTest.selectBook_ValidInput_ReturnsBook.executor": "Run",
-    "JUnit.BaseControllerTest.selectBook_ValidInput_ReturnsBook.executor": "Run",
-    "JUnit.LessonControllerTest.addLearnerToLesson_LearnerAdded_ReturnsTrue.executor": "Run",
-    "JUnit.LessonControllerTest.cancelLesson_LearnerCancelled_ReturnsTrue.executor": "Run",
-    "JUnit.LessonControllerTest.executor": "Run",
-    "JUnit.LessonControllerTest.getAvailableLessons_WeekFour_ReturnsList.executor": "Run",
-    "JUnit.LessonControllerTest.selectLesson_ValidInput_ReturnsLesson.executor": "Run",
-    "JUnit.RegisterControllerTest.registerNewLearner_ExistingLearner_Failure.executor": "Run",
-    "JUnit.RegisterControllerTest.registerNewLearner_ValidLearner_SuccessfullyRegistered.executor": "Run",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "create.test.in.the.same.root": "true",
-    "git-widget-placeholder": "version-1",
-    "jdk.selected.JAVA_MODULE": "21",
-    "kotlin-language-version-configured": "true",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.SwimLessonApp.executor&quot;: &quot;Run&quot;,
+    &quot;Application.SwimLessonSystem.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Tester.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.ActionControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ActionControllerTest.selectBook_ValidInput_ReturnsBook.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BaseControllerTest.selectBook_ValidInput_ReturnsBook.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LessonControllerTest.addLearnerToLesson_LearnerAdded_ReturnsTrue.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LessonControllerTest.cancelLesson_LearnerCancelled_ReturnsTrue.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LessonControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LessonControllerTest.getAvailableLessons_WeekFour_ReturnsList.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LessonControllerTest.selectLesson_ValidInput_ReturnsLesson.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RegisterControllerTest.registerNewLearner_ExistingLearner_Failure.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RegisterControllerTest.registerNewLearner_ValidLearner_SuccessfullyRegistered.executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;version-1&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;21&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/UML DIAGRAM" />
@@ -197,9 +200,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.SwimLessonApp" />
+        <item itemvalue="JUnit.LessonControllerTest.getAvailableLessons_WeekFour_ReturnsList" />
         <item itemvalue="JUnit.BaseControllerTest.selectBook_ValidInput_ReturnsBook" />
         <item itemvalue="JUnit.LessonControllerTest.addLearnerToLesson_LearnerAdded_ReturnsTrue" />
-        <item itemvalue="JUnit.LessonControllerTest.getAvailableLessons_WeekFour_ReturnsList" />
         <item itemvalue="JUnit.LessonControllerTest.cancelLesson_LearnerCancelled_ReturnsTrue" />
       </list>
     </recent_temporary>
@@ -452,7 +455,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713483573555</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="code restructure">
+      <option name="closed" value="true" />
+      <created>1713494498397</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1713494498397</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -515,7 +526,6 @@
     <MESSAGE value="Created lesson id in the model, Booking structure created." />
     <MESSAGE value="Created lesson id in the lesson model, Booking structure created." />
     <MESSAGE value="Tested the functionality book lesson." />
-    <MESSAGE value="code restructure" />
     <MESSAGE value="attend lesson functionality partially implemented" />
     <MESSAGE value="restructure booking and attending functionality" />
     <MESSAGE value="attend lesson functionality completed, cancel lesson functionality added" />
@@ -527,7 +537,8 @@
     <MESSAGE value="Learner id implemented in learner model, junit test added for 3 fucntions(add learner, cancel booking, select book)" />
     <MESSAGE value="cleanse code" />
     <MESSAGE value="cleanse code and full junit test functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="cleanse code and full junit test functionality" />
+    <MESSAGE value="code restructure" />
+    <option name="LAST_COMMIT_MESSAGE" value="code restructure" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

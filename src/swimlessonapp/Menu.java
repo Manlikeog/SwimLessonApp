@@ -59,7 +59,7 @@ public class Menu {
 
     public void coachReport(){
         int month = intInput("Enter month number (e.g., 03 for March)");
-        CoachReportController coachReportController = new CoachReportController(coachRepository, reportView);
+        CoachReportController coachReportController = new CoachReportController( coachRepository, reportView, bookingRepository);
         coachReportController.generateMonthlyCoachReport(month);
     }
 }

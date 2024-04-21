@@ -1,5 +1,6 @@
 package swimlessonapp.repository;
 
+import swimlessonapp.model.Book;
 import swimlessonapp.model.Coach;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.Map;
 public class CoachRepository {
 
     private static final List<Coach> listOfCoaches = new ArrayList<>();
-    private static final Map<Coach, List<Integer>> coachRatings = new HashMap<>();
+    private static final List<Integer> coachRatings =  new ArrayList<>();
 
     private static CoachRepository instance;
 
@@ -28,8 +29,8 @@ public class CoachRepository {
         listOfCoaches.add(new Coach("Israel Bosomy"));
     }
 
-    public double calculateAverageRating(Coach coach) {
-        List<Integer> ratings = coachRatings.getOrDefault(coach, new ArrayList<>());
+    public double calculateAverageRating() {
+        List<Integer> ratings = coachRatings;
         if (ratings.isEmpty()) {
             return 0.0;
         }
@@ -42,11 +43,15 @@ public class CoachRepository {
         return (double) sum / count;
     }
 
-    public Map<Integer, Integer> getRatingCounts(Coach coach) {
-        List<Integer> ratings = coachRatings.getOrDefault(coach, new ArrayList<>());
+    public Map<Integer, Integer> getRatingCounts(List<Book> bookings) {
         Map<Integer, Integer> ratingCounts = new HashMap<>();
-        for (Integer rating : ratings) {
-            ratingCounts.put(rating, ratingCounts.getOrDefault(rating, 0) + 1);
+        for (Book book : bookings){
+            if(book.getRating() != 0){
+                coachRatings.add(book.getRating());
+            }
+        }
+        for (Integer rating : coachRatings) {
+                ratingCounts.put(rating, ratingCounts.getOrDefault(rating, 0) + 1);
         }
         return ratingCounts;
     }
@@ -55,10 +60,4 @@ public class CoachRepository {
         return listOfCoaches;
     }
 
-    // Method to add a rating for a coach
-    public void addRatingForCoach(Coach coach, int rating) {
-        List<Integer> ratings = coachRatings.getOrDefault(coach, new ArrayList<>());
-        ratings.add(rating);
-        coachRatings.put(coach, ratings);
-    }
 }

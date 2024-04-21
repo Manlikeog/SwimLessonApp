@@ -6,7 +6,6 @@ import swimlessonapp.model.Lesson;
 import swimlessonapp.repository.BookingRepository;
 import swimlessonapp.repository.CoachRepository;
 import swimlessonapp.repository.LearnerRepository;
-import swimlessonapp.view.ReportView;
 import swimlessonapp.view.UserInteraction;
 
 import static swimlessonapp.Config.*;
@@ -46,12 +45,18 @@ public class AttendController extends BaseController {
         String review = stringInput("Please provide a review for the lesson:");
         int rating;
         do {
-            rating = intInput("Please provide a numerical rating (1 to 5) for the coach:");
+            rating = intInput("""
+                    Please provide a numerical rating (1 to 5) for the coach:
+                    1. Very Dissatisfied
+                    2. Dissatisfied
+                    3. Ok
+                    4. Satisfied
+                    5. Very Satisfied
+                    """);
         } while (rating > 5);
 
         // You can save the review and rating to the booking or any other appropriate data structure
         selectedBook.setReview(review);
         selectedBook.setRating(rating);
-        coachRepository.addRatingForCoach(selectedBook.getLesson().getCoach(), rating);
     }
 }
