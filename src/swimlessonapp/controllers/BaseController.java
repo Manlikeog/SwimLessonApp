@@ -6,7 +6,6 @@ import swimlessonapp.model.Lesson;
 import swimlessonapp.repository.BookingRepository;
 import swimlessonapp.repository.CoachRepository;
 import swimlessonapp.repository.LearnerRepository;
-import swimlessonapp.view.ReportView;
 import swimlessonapp.view.UserInteraction;
 
 import java.util.List;
@@ -68,19 +67,15 @@ public abstract class BaseController {
     }
 
     protected void redoAction(String prompt) {
-        char bookAgain = '0';
-        while (bookAgain != 'Y') {
+        char bookAgain ;
+        do {
             bookAgain = charInput("\nWould you like to " + prompt + " ? (Y / N / E(EXIT)):");
-            switch (bookAgain) {
-                case 'N':
-                    stringOutput("Exit....!");
-                    return;
-                case 'Y':
-                    performAction();
-                default:
-                    printResult(false, "Invalid choice. Please try again.");
+            if (bookAgain != 'Y' && bookAgain != 'N') {
+                printResult(false,"Invalid choice. Please try again.");
+            } else if (bookAgain == 'Y'){
+                performAction();
             }
-        }
+        } while (bookAgain != 'Y' && bookAgain != 'N');
     }
 
     protected Learner getUser() {

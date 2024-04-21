@@ -4,7 +4,6 @@ import swimlessonapp.model.Book;
 import swimlessonapp.model.Learner;
 import swimlessonapp.model.Lesson;
 
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Function;
@@ -41,7 +40,7 @@ public class UserInteraction {
         int currentWeek = -1;
         printResult(true,"Available Lessons for " + title + ":");
 
-        lessons.sort(Comparator.comparing(lesson -> Arrays.asList("Monday", "Wednesday", "Friday", "Saturday").indexOf(lesson.getDay())));
+
         for (Lesson lesson : lessons) {
             if(lesson.getWeek() != currentWeek){
                 // New week encountered, display week header
@@ -115,7 +114,7 @@ public class UserInteraction {
         return switch (choice) {
             case 1 -> viewTimeTableByCriteria("Enter the day (e.g., Monday)", Lesson::getDay, lessons);
             case 2 -> viewTimeTableByCriteria("Enter the grade level", Lesson::getGradeLevel, lessons);
-            case 3 -> viewTimeTableByCriteria("Enter the coach's name", lesson -> lesson.getCoach().name(), lessons);
+            case 3 -> viewTimeTableByCriteria("Enter the coach's Full name(Timi oguntade)", lesson -> lesson.getCoach().name(), lessons);
             default -> {
                 printResult(false,"Invalid choice!");
                 yield false;

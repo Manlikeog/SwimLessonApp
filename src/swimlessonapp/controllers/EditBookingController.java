@@ -4,9 +4,7 @@ import swimlessonapp.model.Book;
 import swimlessonapp.model.Learner;
 import swimlessonapp.model.Lesson;
 import swimlessonapp.repository.BookingRepository;
-import swimlessonapp.repository.CoachRepository;
 import swimlessonapp.repository.LearnerRepository;
-import swimlessonapp.view.ReportView;
 import swimlessonapp.view.UserInteraction;
 
 import static swimlessonapp.Config.*;
@@ -30,7 +28,7 @@ public class EditBookingController extends BaseController {
                 userInteraction.printTimeTable(lessonController.getAvailableLessons());
                 int lessonIndex = intInput(promptAndGetLessonId());
                 Lesson selectedLesson = selectLesson(lessonIndex);
-                if (selectedLesson != null && selectedBook.getLesson() == selectedLesson) {
+                if (selectedLesson != null && selectedBook.getLesson() != selectedLesson) {
                     handleEdit(selectedBook, selectedLesson, user);
                 } else {
                     printResult(false, "Can't Edit same lesson");
