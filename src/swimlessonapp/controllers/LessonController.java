@@ -17,7 +17,7 @@ public class LessonController {
         if (lesson.getLearners().size() < lesson.getMaxLearners()) {
             if (!lesson.isLearnerEnrolled(learner)) {
                 lesson.addLearner(learner);
-                stringOutput(learner.getFirstName() + " added to lesson on " + lesson.getDay() + " at " + lesson.getTime());
+                printResult(true,learner.getFirstName() + " added to lesson on " + lesson.getDay() + " at " + lesson.getTime());
             } else {
                 printResult(false, "Can't book lesson as learner has been enrolled in the lesson ");
                 return false;

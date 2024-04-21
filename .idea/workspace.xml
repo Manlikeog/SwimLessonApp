@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="SwimLessonApp:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da58d885-6f23-4c35-97e9-d4b6a05f8c99" name="Changes" comment="Code Completed!!!!!">
+    <list default="true" id="da58d885-6f23-4c35-97e9-d4b6a05f8c99" name="Changes" comment="jar file created">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/SwimLessonApp_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Uncommitted_changes_before_Checkout_at_10_04_2024,_03_33_[Changes].patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/BaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/EditBookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/EditBookingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/LessonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/LessonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/view/UserInteraction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/view/UserInteraction.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +28,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -35,12 +47,12 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Manlikeog"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Manlikeog&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -70,6 +82,7 @@
     &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
     &quot;JUnit.ActionControllerTest.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.ActionControllerTest.selectBook_ValidInput_ReturnsBook.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.All in SwimLessonApp.executor&quot;: &quot;Coverage&quot;,
     &quot;JUnit.BaseControllerTest.selectBook_ValidInput_ReturnsBook.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.LessonControllerTest.addLearnerToLesson_LearnerAdded_ReturnsTrue.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.LessonControllerTest.cancelLesson_LearnerCancelled_ReturnsTrue.executor&quot;: &quot;Run&quot;,
@@ -90,7 +103,7 @@
     &quot;git-widget-placeholder&quot;: &quot;version-1&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;21&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
@@ -111,7 +124,7 @@
       <recent name="swimlessonapp.controllers" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.SwimLessonApp">
+  <component name="RunManager" selected="JUnit.BaseControllerTest.selectBook_ValidInput_ReturnsBook">
     <configuration name="SwimLessonApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="swimlessonapp.SwimLessonApp" />
       <module name="SwimLessonApp" />
@@ -121,6 +134,14 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in SwimLessonApp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SwimLessonApp" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -157,22 +178,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LessonControllerTest.cancelLesson_LearnerCancelled_ReturnsTrue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="SwimLessonApp" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="swimlessonapp.controllers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="swimlessonapp.controllers" />
-      <option name="MAIN_CLASS_NAME" value="swimlessonapp.controllers.LessonControllerTest" />
-      <option name="METHOD_NAME" value="cancelLesson_LearnerCancelled_ReturnsTrue" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="LessonControllerTest.getAvailableLessons_WeekFour_ReturnsList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="SwimLessonApp" />
       <extension name="coverage">
@@ -202,11 +207,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.SwimLessonApp" />
-        <item itemvalue="JUnit.LessonControllerTest.getAvailableLessons_WeekFour_ReturnsList" />
         <item itemvalue="JUnit.BaseControllerTest.selectBook_ValidInput_ReturnsBook" />
+        <item itemvalue="Application.SwimLessonApp" />
+        <item itemvalue="JUnit.All in SwimLessonApp" />
+        <item itemvalue="JUnit.LessonControllerTest.getAvailableLessons_WeekFour_ReturnsList" />
         <item itemvalue="JUnit.LessonControllerTest.addLearnerToLesson_LearnerAdded_ReturnsTrue" />
-        <item itemvalue="JUnit.LessonControllerTest.cancelLesson_LearnerCancelled_ReturnsTrue" />
       </list>
     </recent_temporary>
   </component>
@@ -474,7 +479,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713649791610</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Update uml diagram">
+      <option name="closed" value="true" />
+      <created>1713663875625</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1713663875625</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -524,8 +537,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Registration of learner implemented" />
-    <MESSAGE value="Code Refactor, Menu method created, Created constructor for learner class." />
     <MESSAGE value="Check if user exists, fix bugs on invalid format, assign proper user id," />
     <MESSAGE value="Implemented MVC Structure, Created Lesson class, Coach class" />
     <MESSAGE value="Created Coach Repository, Login Functionality(checks if user exist. if user exist it returns the existing user, else prompt user to register), More list of users added, Created functionality to add learner to lesson but not tested, TimeTable Created." />
@@ -549,7 +560,9 @@
     <MESSAGE value="cleanse code and full junit test functionality" />
     <MESSAGE value="code restructure" />
     <MESSAGE value="Code Completed!!!!!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Code Completed!!!!!" />
+    <MESSAGE value="Update uml diagram" />
+    <MESSAGE value="jar file created" />
+    <option name="LAST_COMMIT_MESSAGE" value="jar file created" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -564,5 +577,8 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/SwimLessonApp$All_in_SwimLessonApp.ic" NAME="All in SwimLessonApp Coverage Results" MODIFIED="1713665540600" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
