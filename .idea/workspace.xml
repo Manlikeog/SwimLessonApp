@@ -4,19 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da58d885-6f23-4c35-97e9-d4b6a05f8c99" name="Changes" comment="code restructure">
+    <list default="true" id="da58d885-6f23-4c35-97e9-d4b6a05f8c99" name="Changes" comment="Code Completed!!!!!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/AttendController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/AttendController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/CoachReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/CoachReportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/LessonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/LessonController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/controllers/TimeTableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/controllers/TimeTableController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/model/Lesson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/model/Lesson.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/repository/BookingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/repository/BookingRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/repository/CoachRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/repository/CoachRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swimlessonapp/view/UserInteraction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swimlessonapp/view/UserInteraction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/swimlessonapp/controllers/BaseControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/swimlessonapp/controllers/BaseControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/swimlessonapp/controllers/LessonControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/swimlessonapp/controllers/LessonControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +34,20 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Manlikeog"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="16aae4a7-add5-4e8f-96c8-8ca9da825722" />
+        <option name="url" value="https://github.com/Manlikeog/SwimLessonApp.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -463,7 +466,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713494498397</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Code Completed!!!!!">
+      <option name="closed" value="true" />
+      <created>1713649791610</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1713649791610</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -500,7 +511,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="HEAD" />
+                        <option value="origin/main" />
                       </list>
                     </value>
                   </entry>
@@ -513,7 +524,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Uml Diagram added" />
     <MESSAGE value="Registration of learner implemented" />
     <MESSAGE value="Code Refactor, Menu method created, Created constructor for learner class." />
     <MESSAGE value="Check if user exists, fix bugs on invalid format, assign proper user id," />
@@ -538,7 +548,8 @@
     <MESSAGE value="cleanse code" />
     <MESSAGE value="cleanse code and full junit test functionality" />
     <MESSAGE value="code restructure" />
-    <option name="LAST_COMMIT_MESSAGE" value="code restructure" />
+    <MESSAGE value="Code Completed!!!!!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Code Completed!!!!!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
